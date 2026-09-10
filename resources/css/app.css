@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-heading: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+
+    /* Maiharta Colors — ported 1:1 from the Figma "Maiharta Colors" variable collection */
+    --color-brand-light: #eaf6fb;
+    --color-brand-light-hover: #c9e7f3;
+    --color-brand-light-active: #a6d8ec;
+    --color-brand-normal: #0aa1dd;
+    --color-brand-normal-hover: #0882b3;
+    --color-brand-normal-active: #06648a;
+    --color-brand-dark: #1a5d78;
+    --color-brand-dark-hover: #124356;
+    --color-brand-dark-active: #0b2833;
+    --color-brand-darker: #051217;
+    --color-brand-border: #cce6f0;
+}
+
+/* Scroll-reveal: elements start slightly lowered + transparent, and settle
+   into place the first time they enter the viewport (see app.js). Respects
+   reduced-motion preference by skipping the animated state entirely. */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0s);
+}
+[data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    [data-animate] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* Gentle continuous float for the hero's accent block — just enough to feel alive. */
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(var(--float-rotate, -10deg)); }
+    50% { transform: translateY(-10px) rotate(var(--float-rotate, -10deg)); }
+}
+.animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    .animate-float-slow {
+        animation: none;
+    }
+}
