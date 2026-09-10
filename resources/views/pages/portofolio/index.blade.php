@@ -1,86 +1,75 @@
-<x-layout title="Portofolio — MaiHarta">
+@php
+    $counts = $projects->countBy('category')->all();
+    $counts = ['Semua' => $projects->count()] + $counts;
+    $featured = $projects->firstWhere('slug', 'lais-market') ?? $projects->first();
+    $grid = $projects->reject(fn ($p) => $p->is($featured))->values();
+@endphp
 
-    {{-- Header --}}
-    <section class="mx-auto max-w-[1440px] px-5 py-16 md:px-20 md:py-24">
-        <p data-animate class="text-sm font-semibold uppercase tracking-wide text-brand-normal">Portofolio</p>
-        <h1 data-animate style="--reveal-delay:0.06s" class="mt-3 max-w-3xl font-heading text-3xl font-semibold text-brand-dark md:text-5xl md:leading-[1.15]">
-            Karya yang Kami Kerjakan Bersama Klien
-        </h1>
-        <p data-animate style="--reveal-delay:0.12s" class="mt-4 max-w-2xl text-brand-dark/80">
-            Dari sistem keamanan perbankan hingga portal pariwisata daerah — berikut sebagian proyek yang telah kami bangun dan kami dampingi hingga digunakan sehari-hari.
-        </p>
-    </section>
+<x-layout title="Portofolio — MaiHarta" description="Kumpulan proyek yang telah kami kerjakan bersama klien dari berbagai industri.">
+<div x-data="{ active: 'Semua' }">
 
-    {{-- Grid + Filter --}}
-    <section class="pb-16 md:pb-24" x-data="{ cat: 'Semua' }">
-        <div class="mx-auto max-w-[1440px] px-5 md:px-20">
-
-            {{-- Filter --}}
-            <div data-animate class="flex flex-wrap gap-2">
-                @foreach ($categories as $category)
-                    <button
-                        type="button"
-                        @click="cat = '{{ $category }}'"
-                        :class="cat === '{{ $category }}'
-                            ? 'bg-brand-normal text-white border-brand-normal'
-                            : 'bg-white text-brand-dark border-brand-border hover:border-brand-normal/40 hover:text-brand-normal'"
-                        class="rounded-full border px-4 py-2 text-[13px] font-medium transition-colors duration-200"
-                    >
-                        {{ $category }}
-                    </button>
-                @endforeach
+    <x-page-hero
+        eyebrow="Portofolio Kami"
+        title="Bukti Nyata Kapabilitas Kami"
+        description="Kumpulan proyek yang telah kami kerjakan bersama klien dari berbagai industri — perbankan, pemerintahan, pariwisata, hingga e-commerce."
+        :stats="[[$projects->count(), 'Proyek Unggulan'], [$projects->pluck('client_type')->filter()->map(fn ($c) => trim(explode('—', $c)[0]))->unique()->count(), 'Sektor Industri'], ['40+', 'Instansi']]"
+    >
+        <x-slot:footer>
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <x-filter-tabs :items="$categories->all()" :counts="$counts" />
+                <span class="text-caption text-brand-muted" x-text="active === 'Semua' ? 'Menampilkan semua proyek' : 'Filter: ' + active"></span>
             </div>
+        </x-slot:footer>
+    </x-page-hero>
 
-            {{-- Cards --}}
-            <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                @foreach ($projects as $project)
-                    <article
-                        x-show="cat === 'Semua' || cat === '{{ $project->category }}'"
-                        x-transition.opacity.duration.300ms
-                        data-animate
-                        style="--reveal-delay:{{ ($loop->index % 3) * 0.08 }}s"
-                        class="group flex flex-col overflow-hidden rounded-2xl border border-brand-border bg-white transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-normal/30 hover:shadow-lg hover:shadow-brand-normal/10"
-                    >
-                        <div class="h-[200px] w-full overflow-hidden bg-brand-light">
-                            <img
-                                src="{{ asset('images/projects/' . $project->slug . '.jpg') }}"
-                                alt="{{ $project->name }}"
-                                loading="lazy"
-                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            >
+    <section class="container-site py-12 md:py-16">
+        {{-- Featured --}}
+        @if ($featured)
+            <div data-animate="scale" x-show="active === 'Semua' || active === @js($featured->category)" class="grid overflow-hidden rounded-panel bg-brand-dark text-white lg:grid-cols-[1fr_600px]">
+                <div class="p-7 md:p-10">
+                    <div class="flex flex-wrap gap-2">
+                        <x-chip variant="accent">Proyek Unggulan</x-chip>
+                        <x-chip variant="outline" class="border-transparent">{{ $featured->category }}</x-chip>
+                        @if ($featured->external_url)<x-chip variant="outline" class="border-transparent"><span class="h-1.5 w-1.5 rounded-full bg-success"></span>Live</x-chip>@endif
+                    </div>
+                    <h2 class="mt-4 font-heading text-h3 font-semibold md:text-h2">{{ $featured->name }}</h2>
+                    <p class="mt-3 text-body-sm text-brand-on-dark md:text-[15px] md:leading-6">{{ $featured->short_description }}</p>
+                    @if ($featured->outcome_stats)
+                        <div class="mt-5 flex flex-wrap gap-6">
+                            @foreach (array_slice($featured->outcome_stats, 0, 3) as $stat)
+                                <div><p class="font-heading text-[20px] font-semibold leading-7 text-brand-normal">{{ $stat['value'] }}</p><p class="text-caption text-brand-on-dark">{{ $stat['label'] }}</p></div>
+                            @endforeach
                         </div>
-
-                        <div class="flex flex-1 flex-col p-6">
-                            <div class="flex items-start justify-between gap-3">
-                                <h2 class="font-heading text-lg font-semibold leading-snug text-brand-dark">{{ $project->name }}</h2>
-                                <span class="shrink-0 rounded-full bg-brand-light px-3 py-1 text-xs font-medium text-brand-dark">
-                                    {{ $project->category }}
-                                </span>
-                            </div>
-
-                            <p class="mt-2 text-xs font-medium uppercase tracking-wide text-brand-normal">{{ $project->client_type }}</p>
-                            <p class="mt-3 flex-1 text-sm text-brand-dark/80">{{ $project->short_description }}</p>
-
-                            <a href="{{ route('portofolio.show', $project) }}" class="mt-5 inline-flex items-center gap-1 text-[13px] font-medium text-brand-normal hover:text-brand-normal-hover">
-                                Lihat Detail Proyek
-                                <x-icons.arrow-right class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                            </a>
-                        </div>
-                    </article>
-                @endforeach
+                    @endif
+                    <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+                        <x-button :href="route('portofolio.show', $featured)" icon="arrow-right">Lihat Studi Kasus</x-button>
+                        @if ($featured->external_url)<x-button :href="$featured->external_url" variant="white" icon="arrow-top-right-on-square" target="_blank" rel="noopener">{{ parse_url($featured->external_url, PHP_URL_HOST) }}</x-button>@endif
+                    </div>
+                </div>
+                <div class="relative min-h-[240px] overflow-hidden lg:min-h-[420px]">
+                    <img src="{{ $featured->cover_image ? asset($featured->cover_image) : asset('images/projects/' . $featured->slug . '.jpg') }}" alt="{{ $featured->name }}" class="absolute left-6 top-6 h-[calc(100%+40px)] w-[calc(100%+40px)] rounded-xl object-cover object-left-top shadow-showcase lg:left-12 lg:top-12">
+                </div>
             </div>
+        @endif
+
+        {{-- Grid --}}
+        <div data-animate-group class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+            @foreach ($grid as $project)
+                <div data-animate x-show="active === 'Semua' || active === @js($project->category)">
+                    <x-project-card :project="$project" class="h-full" />
+                </div>
+            @endforeach
         </div>
+
+        <template x-if="active !== 'Semua' && !@js($projects->pluck('category')->unique()->values()).includes(active)">
+            <div class="mt-6"><x-empty-state title="Belum ada proyek di kategori ini" description="Coba kategori lain — atau jadilah klien pertama kami di kategori ini.">
+                <x-button :href="route('kontak')" size="sm" icon="arrow-right">Konsultasi Gratis</x-button>
+            </x-empty-state></div>
+        </template>
+
+        <p class="mt-6 text-caption text-brand-muted">*Tautan proyek akan diperbarui sesuai URL resmi masing-masing aplikasi.</p>
     </section>
 
-    {{-- CTA --}}
-    <section class="bg-brand-light/60 py-16 text-center md:py-20">
-        <div data-animate class="mx-auto max-w-2xl px-5">
-            <h2 class="font-heading text-2xl font-semibold text-brand-dark md:text-[30px]">Punya Proyek Serupa?</h2>
-            <p class="mt-3 text-brand-dark/80">Ceritakan kebutuhan Anda, kami bantu rancang solusinya dari awal hingga sistem siap digunakan.</p>
-            <div class="mt-8">
-                <x-button :href="route('kontak')">Mulai Diskusi</x-button>
-            </div>
-        </div>
-    </section>
-
+    <x-cta-panel eyebrow="Mari Berkolaborasi" title="Punya Proyek Serupa?" description="Mari diskusikan bagaimana kami bisa membantu mewujudkan proyek digital Anda." primary-label="Konsultasi Gratis" :primary-href="route('kontak')" secondary-label="Lihat Layanan" :secondary-href="route('layanan.index')" />
+</div>
 </x-layout>
