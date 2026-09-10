@@ -5,12 +5,16 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+/* =====================================================================
+   Design tokens — ported 1:1 from the Figma "Sistem Desain" page
+   (Maiharta Colors variables, text styles, effect styles).
+   ===================================================================== */
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
     --font-heading: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 
-    /* Maiharta Colors — ported 1:1 from the Figma "Maiharta Colors" variable collection */
+    /* --- Core palette ------------------------------------------------ */
     --color-brand-light: #eaf6fb;
     --color-brand-light-hover: #c9e7f3;
     --color-brand-light-active: #a6d8ec;
@@ -22,39 +26,236 @@
     --color-brand-dark-active: #0b2833;
     --color-brand-darker: #051217;
     --color-brand-border: #cce6f0;
+    --color-brand-border-on-dark: rgb(255 255 255 / 0.12);
+
+    /* --- Semantic additions ------------------------------------------ */
+    --color-brand-muted: #4f7a8e;          /* color/text-muted */
+    --color-brand-on-dark: #c9e7f3;        /* color/text-on-dark */
+    --color-brand-accent-on-dark: #7dd3f5; /* color/accent-on-dark */
+    --color-brand-surface-on-dark: rgb(255 255 255 / 0.08);
+    --color-brand-input: #f7fbfd;          /* color/surface-input */
+    --color-brand-placeholder: #9ab3bf;
+    --color-brand-gradient-end: #0e6f95;
+    --color-success: #1fa85a;
+    --color-success-bg: #e3f8ec;
+    --color-success-text: #167a41;
+    --color-error: #db3d3d;
+    --color-error-bg: #fceded;
+
+    /* --- Type scale (Maiharta/…) ------------------------------------- */
+    --text-display: 72px;
+    --text-display--line-height: 80px;
+    --text-display-sm: 64px;
+    --text-display-sm--line-height: 72px;
+    --text-h1-hero: 44px;
+    --text-h1-hero--line-height: 54px;
+    --text-h1: 40px;
+    --text-h1--line-height: 48px;
+    --text-h2-lg: 34px;
+    --text-h2-lg--line-height: 44px;
+    --text-h2: 30px;
+    --text-h2--line-height: 38px;
+    --text-h3: 22px;
+    --text-h3--line-height: 30px;
+    --text-h4: 18px;
+    --text-h4--line-height: 26px;
+    --text-h5: 15px;
+    --text-h5--line-height: 22px;
+    --text-body: 16px;
+    --text-body--line-height: 26px;
+    --text-body-sm: 14px;
+    --text-body-sm--line-height: 22px;
+    --text-caption: 12px;
+    --text-caption--line-height: 18px;
+    --text-label: 13px;
+    --text-label--line-height: 18px;
+    --text-label-sm: 12px;
+    --text-label-sm--line-height: 16px;
+    --text-chip: 11px;
+    --text-chip--line-height: 16px;
+    --text-overline: 13px;
+    --text-overline--line-height: 18px;
+    --text-nav: 15px;
+    --text-nav--line-height: 20px;
+
+    /* --- Radius ------------------------------------------------------- */
+    --radius-card: 16px;
+    --radius-panel: 20px;
+    --radius-cta: 24px;
+
+    /* --- Shadows (Maiharta/Shadow …) — all tinted with color/dark ----- */
+    --shadow-card: 0 8px 24px rgb(26 93 120 / 0.05);
+    --shadow-elevated: 0 12px 32px rgb(26 93 120 / 0.08);
+    --shadow-floating: 0 12px 28px rgb(26 93 120 / 0.14);
+    --shadow-hero: 0 20px 40px rgb(26 93 120 / 0.18);
+    --shadow-showcase: 0 24px 48px -8px rgb(26 93 120 / 0.14);
+
+    /* --- Easing ------------------------------------------------------- */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Scroll-reveal: elements start slightly lowered + transparent, and settle
-   into place the first time they enter the viewport (see app.js). Respects
-   reduced-motion preference by skipping the animated state entirely. */
+/* =====================================================================
+   Reusable utilities
+   ===================================================================== */
+@utility container-site {
+    margin-inline: auto;
+    max-width: 1440px;
+    padding-inline: 20px;
+    @variant md {
+        padding-inline: 80px;
+    }
+}
+
+@utility bg-hero-gradient {
+    background-image: linear-gradient(180deg, var(--color-brand-light) 0%, #ffffff 100%);
+}
+
+@utility bg-cta-gradient {
+    background-image: linear-gradient(90deg, var(--color-brand-dark) 0%, var(--color-brand-gradient-end) 100%);
+}
+
+@utility bg-button-gradient {
+    background-image: linear-gradient(90deg, var(--color-brand-normal) 0%, var(--color-brand-dark) 100%);
+}
+
+/* Gradient headline: "Ngga ada habisnya" — 200% wide so it can shimmer. */
+@utility text-gradient-brand {
+    background-image: linear-gradient(
+        90deg,
+        var(--color-brand-normal) 0%,
+        var(--color-brand-dark) 45%,
+        var(--color-brand-normal) 100%
+    );
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Overline / eyebrow label */
+@utility overline {
+    font-size: var(--text-overline);
+    line-height: var(--text-overline--line-height);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-brand-normal);
+}
+
+/* =====================================================================
+   Motion
+   ===================================================================== */
+
+/* Scroll-reveal: [data-animate] elements slide up + fade the first time
+   they enter the viewport (IntersectionObserver in app.js). */
 [data-animate] {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(20px);
+    transition:
+        opacity 0.7s var(--ease-out-expo),
+        transform 0.7s var(--ease-out-expo);
     transition-delay: var(--reveal-delay, 0s);
+}
+[data-animate='scale'] {
+    transform: translateY(12px) scale(0.94);
 }
 [data-animate].is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
+
+/* Headline shimmer (Hero spec #2) */
+@keyframes shimmer-x {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+.animate-shimmer {
+    animation: shimmer-x 6s linear infinite;
+}
+
+/* Idle float loop (Hero spec #4) — duration/delay vary per card via CSS vars */
+@keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(calc(-1 * var(--float-amp, 6px))); }
+}
+.animate-float {
+    animation: float-y var(--float-dur, 5s) ease-in-out var(--float-delay, 0s) infinite;
+}
+
+/* Background glow breathing */
+@keyframes glow-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.08); opacity: 1; }
+}
+.animate-glow {
+    animation: glow-pulse 8s ease-in-out infinite;
+}
+
+/* Bar chart grows from the baseline (Hero spec #5) */
+@keyframes bar-grow {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+}
+.is-visible .animate-bar,
+.animate-bar.is-visible {
+    transform-origin: bottom;
+    animation: bar-grow 0.8s var(--ease-out-expo) var(--bar-delay, 0s) both;
+}
+.animate-bar {
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+
+/* Progress fill */
+@keyframes fill-x {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+.animate-fill {
+    transform-origin: left;
+    animation: fill-x 1.2s var(--ease-out-expo) 0.6s both;
+}
+
+/* Dashed connector draws itself (Hero spec #6) */
+.animate-draw {
+    stroke-dasharray: 4 4;
+    stroke-dashoffset: 0;
+    animation: draw-in 0.8s var(--ease-out-expo) 0.9s both;
+}
+@keyframes draw-in {
+    from { opacity: 0; clip-path: inset(0 100% 0 0); }
+    to { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+/* Typing dots */
+@keyframes typing-dot {
+    0%, 80%, 100% { opacity: 0.3; transform: translateY(0); }
+    40% { opacity: 1; transform: translateY(-2px); }
+}
+.animate-typing > span {
+    animation: typing-dot 1.2s ease-in-out infinite;
+}
+.animate-typing > span:nth-child(2) { animation-delay: 0.2s; }
+.animate-typing > span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Reduced motion: keep content visible, drop the loops (Hero spec #7) */
 @media (prefers-reduced-motion: reduce) {
     [data-animate] {
         opacity: 1;
         transform: none;
         transition: none;
     }
-}
-
-/* Gentle continuous float for the hero's accent block — just enough to feel alive. */
-@keyframes float-slow {
-    0%, 100% { transform: translateY(0) rotate(var(--float-rotate, -10deg)); }
-    50% { transform: translateY(-10px) rotate(var(--float-rotate, -10deg)); }
-}
-.animate-float-slow {
-    animation: float-slow 6s ease-in-out infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-    .animate-float-slow {
+    .animate-shimmer,
+    .animate-float,
+    .animate-glow,
+    .animate-bar,
+    .animate-fill,
+    .animate-draw,
+    .animate-typing > span {
         animation: none;
+    }
+    .animate-bar {
+        transform: none;
     }
 }

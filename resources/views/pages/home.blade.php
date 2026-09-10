@@ -1,226 +1,258 @@
 <x-layout title="MaiHarta — Ngga Ada Habisnya">
 
-    {{-- Hero --}}
-    <section class="mx-auto max-w-[1440px] px-5 py-16 md:px-20 md:py-24">
-        <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-            <div>
-                <span data-animate class="inline-flex items-center rounded-full bg-brand-light px-3.5 py-2 text-[13px] font-medium text-brand-dark">
+    {{-- ============================================================ Hero --}}
+    <section class="bg-hero-gradient overflow-hidden">
+        <div class="container-site grid grid-cols-1 items-center gap-12 py-12 md:py-16 lg:grid-cols-[1fr_600px] lg:gap-12 lg:py-20">
+
+            {{-- Left: copy --}}
+            <div data-animate-group="0.07" class="max-w-[680px]">
+                <span data-animate class="inline-flex items-center gap-2 rounded-full border border-brand-border bg-white py-1.5 pl-1.5 pr-3.5 text-label font-medium text-brand-dark">
+                    <span class="flex h-6 w-6 items-center justify-center rounded-full bg-brand-light">
+                        <x-heroicon-o-shield-check class="h-3.5 w-3.5 text-brand-normal" />
+                    </span>
                     Bersertifikasi ISO/IEC 27001
                 </span>
 
-                <h1 data-animate style="--reveal-delay:0.08s" class="mt-6 font-heading text-5xl font-semibold text-brand-dark md:text-[72px] md:leading-[1.05]">MaiHarta</h1>
-                <p data-animate style="--reveal-delay:0.14s" class="mt-1 font-heading text-2xl font-semibold text-brand-normal md:text-[40px] md:leading-[1.1]">Ngga Ada Habisnya</p>
+                <h1 class="mt-6 font-heading font-semibold text-brand-dark">
+                    <span data-animate class="text-gradient-brand animate-shimmer block text-h2-lg md:text-[56px] md:leading-[64px] xl:text-display-sm xl:whitespace-nowrap">Ngga ada habisnya</span>
+                    <span data-animate class="block text-h2-lg md:text-[56px] md:leading-[64px] xl:text-display-sm">membangun produk digital untuk bisnis Anda</span>
+                </h1>
 
-                <p data-animate style="--reveal-delay:0.2s" class="mt-6 max-w-lg text-brand-dark/90">
-                    MAIHARTA merupakan sebuah perusahaan yang bergerak di bidang IT dengan produknya berupa Jasa dan Produk Digital. Kami adalah tempat yang tepat bagi Anda untuk mendapatkan solusi lengkap untuk membantu bisnis Anda berkembang dengan cepat.
+                <p data-animate class="mt-6 max-w-[620px] text-body-sm text-brand-muted md:text-body">
+                    MaiHarta membantu bisnis Anda berkembang cepat melalui jasa dan produk digital — dari sistem internal, aplikasi mobile, hingga marketplace — dengan standar keamanan internasional.
                 </p>
 
-                <div data-animate style="--reveal-delay:0.26s" class="mt-8 flex flex-wrap items-center gap-6">
-                    <x-button :href="route('kontak')">Kontak Kami</x-button>
-                    <a href="{{ route('portofolio.index') }}" class="group text-sm font-semibold text-brand-dark transition-colors hover:text-brand-normal">
-                        Lihat Portofolio
-                        <span class="inline-block transition-transform group-hover:translate-x-1">→</span>
-                    </a>
+                <div data-animate class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <x-button :href="route('kontak')" variant="gradient" size="lg" icon="arrow-right">Mulai Konsultasi Gratis</x-button>
+                    <x-button :href="route('portofolio.index')" variant="outline" size="lg">Lihat Portofolio</x-button>
                 </div>
 
-                <div data-animate style="--reveal-delay:0.32s" class="mt-10 flex flex-wrap gap-10">
-                    <div>
-                        <p class="font-heading text-2xl font-medium text-brand-dark">8+</p>
-                        <p class="mt-1 text-xs text-brand-dark/70">Tahun Berkarya</p>
-                    </div>
-                    <div>
-                        <p class="font-heading text-2xl font-medium text-brand-dark">199+</p>
-                        <p class="mt-1 text-xs text-brand-dark/70">Proyek Selesai</p>
-                    </div>
-                    <div>
-                        <p class="font-heading text-2xl font-medium text-brand-dark">40+</p>
-                        <p class="mt-1 text-xs text-brand-dark/70">Instansi Terlayani</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Layered visual: accent block + 2 overlapping photo cards --}}
-            <div data-animate style="--reveal-delay:0.15s" class="relative mx-auto hidden h-[420px] w-full max-w-[480px] md:block">
-                <div style="--float-rotate:-10deg" class="animate-float-slow absolute right-4 top-2 h-[300px] w-[300px] -rotate-[10deg] rounded-[28px] bg-brand-normal"></div>
-                <div class="absolute left-0 top-[70px] h-[220px] w-[260px] rotate-[9deg] overflow-hidden rounded-[20px] shadow-xl transition-transform duration-500 hover:-translate-y-1.5 hover:rotate-[6deg]">
-                    <img src="{{ asset('images/hero-dashboard.jpg') }}" alt="Dashboard analitik" class="h-full w-full object-cover">
-                </div>
-                <div class="absolute left-[70px] top-[130px] h-[260px] w-[300px] -rotate-[5deg] overflow-hidden rounded-[24px] shadow-xl transition-transform duration-500 hover:-translate-y-1.5 hover:rotate-[-2deg]">
-                    <img src="{{ asset('images/hero-team.jpg') }}" alt="Tim MaiHarta bekerja" class="h-full w-full object-cover">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- Solusi Kita --}}
-    <section class="bg-brand-light/40 py-16 md:py-24">
-        <div class="mx-auto max-w-[1440px] px-5 md:px-20">
-            <h2 data-animate class="font-heading text-2xl font-semibold text-brand-dark md:text-[30px]">Solusi Kita</h2>
-            <p data-animate style="--reveal-delay:0.06s" class="mt-2 text-brand-dark/80">Solusi digital yang disesuaikan dengan kebutuhan bisnis Anda.</p>
-
-            <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-                @foreach ($services as $service)
-                    <div
-                        data-animate
-                        style="--reveal-delay:{{ 0.1 + $loop->index * 0.08 }}s"
-                        class="group rounded-2xl border border-brand-border bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-normal/30 hover:shadow-lg hover:shadow-brand-normal/10"
-                    >
-                        <div class="flex h-[52px] w-[52px] items-center justify-center rounded-xl bg-brand-light transition-colors duration-300 group-hover:bg-brand-normal/15">
-                            @if ($service->icon === 'code')
-                                <x-icons.service-code class="h-6 w-6" />
-                            @elseif ($service->icon === 'palette')
-                                <x-icons.service-palette class="h-6 w-6" />
-                            @else
-                                <x-icons.service-megaphone class="h-6 w-6" />
-                            @endif
-                        </div>
-
-                        <h3 class="mt-6 font-heading text-lg font-medium text-brand-dark">{{ $service->name }}</h3>
-                        <p class="mt-3 text-sm text-brand-dark/80">{{ $service->short_description }}</p>
-
-                        <a href="{{ route('layanan.show', $service) }}" class="mt-6 inline-flex items-center gap-1 text-[13px] font-medium text-brand-normal hover:text-brand-normal-hover">
-                            Pelajari Lebih Lanjut
-                            <x-icons.arrow-right class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    {{-- Portofolio --}}
-    <section class="py-16 md:py-24">
-        <div class="mx-auto max-w-[1440px] px-5 md:px-20">
-            <div data-animate class="flex flex-wrap items-end justify-between gap-4">
-                <div>
-                    <h2 class="font-heading text-2xl font-semibold text-brand-dark md:text-[30px]">Portofolio</h2>
-                    <p class="mt-2 text-brand-dark/80">Sebagian proyek yang telah kami kerjakan bersama klien dari berbagai industri.</p>
-                </div>
-                <a href="{{ route('portofolio.index') }}" class="group inline-flex items-center gap-1.5 text-sm font-semibold text-brand-normal hover:text-brand-normal-hover">
-                    Lihat Semua Proyek
-                    <x-icons.arrow-right class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
-            </div>
-
-            <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-                @foreach ($projects as $project)
-                    <div
-                        data-animate
-                        style="--reveal-delay:{{ $loop->index * 0.08 }}s"
-                        class="group overflow-hidden rounded-2xl border border-brand-border transition-all duration-300 hover:-translate-y-1.5 hover:border-brand-normal/30 hover:shadow-lg hover:shadow-brand-normal/10"
-                    >
-                        <div class="h-[200px] w-full overflow-hidden bg-brand-light">
-                            <img
-                                src="{{ asset('images/projects/' . $project->slug . '.jpg') }}"
-                                alt="{{ $project->name }}"
-                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            >
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-start justify-between gap-3">
-                                <h3 class="font-heading text-lg font-semibold text-brand-dark">{{ $project->name }}</h3>
-                                <span class="shrink-0 rounded-full bg-brand-light px-3 py-1 text-xs font-medium text-brand-dark">
-                                    {{ $project->category }}
-                                </span>
-                            </div>
-                            <p class="mt-4 text-sm text-brand-dark/80">{{ $project->short_description }}</p>
-                            <a href="{{ route('portofolio.show', $project) }}" class="mt-5 inline-flex items-center gap-1 text-[13px] font-medium text-brand-normal hover:text-brand-normal-hover">
-                                Kunjungi Proyek
-                                <x-icons.arrow-right class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    {{-- Sertifikasi --}}
-    <section class="bg-brand-darker py-16 text-white md:py-24">
-        <div class="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-12 px-5 md:grid-cols-2 md:px-20">
-            <div data-animate>
-                <p class="text-sm font-semibold uppercase tracking-wide text-brand-normal">Kredibilitas &amp; Keamanan</p>
-                <h2 class="mt-4 font-heading text-2xl font-semibold md:text-[30px]">Standar Keamanan yang Terjamin</h2>
-                <p class="mt-4 max-w-md text-white/70">
-                    Kami mengikuti standar keamanan informasi internasional ISO/IEC 27001 untuk memastikan data dan sistem klien kami terlindungi di setiap tahap kerja sama.
-                </p>
-
-                <ul class="mt-8 space-y-4">
-                    <li class="flex items-center gap-3">
-                        <x-icons.check class="h-[18px] w-[18px] shrink-0" />
-                        <span class="text-sm text-white/90">Perlindungan data terenkripsi</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <x-icons.check class="h-[18px] w-[18px] shrink-0" />
-                        <span class="text-sm text-white/90">Akses sistem yang terkontrol</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <x-icons.check class="h-[18px] w-[18px] shrink-0" />
-                        <span class="text-sm text-white/90">Penilaian risiko berkala</span>
-                    </li>
+                <ul data-animate class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-caption text-brand-muted">
+                    @foreach (['Konsultasi gratis', 'Tanpa biaya tersembunyi', 'Dukungan pascarilis'] as $bullet)
+                        <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span>{{ $bullet }}</li>
+                    @endforeach
                 </ul>
             </div>
 
-            <div data-animate style="--reveal-delay:0.12s" class="rounded-2xl bg-white/5 p-10 text-center transition-transform duration-300 hover:-translate-y-1">
-                <x-icons.shield class="mx-auto h-12 w-12" />
-                <h3 class="mt-4 font-heading text-xl font-semibold">ISO/IEC 27001</h3>
-                <p class="mt-1 text-sm text-white/60">Information Security Management</p>
+            {{-- Right: floating product-card composition (layers mirror the Figma "Float → …" names) --}}
+            <div data-animate-group="0.09" class="relative mx-auto h-[360px] w-full max-w-[362px] lg:h-[600px] lg:max-w-none">
+                <div class="animate-glow absolute left-[14%] top-[6%] h-[75%] w-[72%] rounded-full bg-brand-normal/10 blur-3xl"></div>
+
+                {{-- Float → Dashboard Card --}}
+                <div data-animate="scale" style="--float-dur:5s" class="animate-float absolute left-[28%] top-[8%] w-[72%] rounded-card bg-brand-dark p-4 text-white shadow-hero lg:left-[33%] lg:top-[12%] lg:w-[340px] lg:rounded-[18px] lg:p-5">
+                    <div class="flex items-center gap-2">
+                        <div class="flex-1">
+                            <p class="text-label font-medium lg:text-h5">Ringkasan Proyek</p>
+                            <p class="text-caption text-brand-on-dark">Semua klien · {{ date('Y') }}</p>
+                        </div>
+                        <x-chip variant="on-dark"><span class="h-1.5 w-1.5 rounded-full bg-success"></span>Live</x-chip>
+                    </div>
+                    <div class="mt-3 flex gap-4 lg:mt-4 lg:gap-5">
+                        <x-stat value="199" suffix="+" label="Proyek selesai" dark />
+                        <x-stat value="40" suffix="+" label="Instansi" dark />
+                        <x-stat value="8" suffix="+" label="Tahun" dark />
+                    </div>
+                    <div class="mt-3 flex h-[70px] items-end gap-1.5 lg:mt-4 lg:h-[120px]">
+                        @foreach ([28, 43, 33, 58, 48, 72, 53, 80, 65, 92, 75, 100] as $i => $h)
+                            <span style="height:{{ $h }}%;--bar-delay:{{ 0.5 + $i * 0.04 }}s" class="animate-bar flex-1 rounded {{ $i >= 9 ? 'bg-brand-normal' : 'bg-white/25' }}"></span>
+                        @endforeach
+                    </div>
+                    <div class="mt-3 flex items-center gap-2 lg:mt-4">
+                        <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-brand-surface-on-dark"><span class="animate-fill block h-full w-full rounded-full bg-brand-normal"></span></div>
+                        <span class="text-caption text-brand-on-dark">12 proyek aktif</span>
+                    </div>
+                </div>
+
+                {{-- Float → Photo Tile 1 --}}
+                <div data-animate="scale" style="--float-dur:6s;--float-delay:0.6s" class="animate-float absolute left-0 top-[26%] w-[34%] overflow-hidden rounded-[14px] border-[3px] border-white shadow-hero lg:top-[16%] lg:w-[180px] lg:rounded-card lg:border-4">
+                    <img src="{{ asset('images/hero-team.jpg') }}" alt="Tim MaiHarta" class="aspect-[18/13] w-full object-cover">
+                </div>
+
+                {{-- Float → ISO Badge --}}
+                <div data-animate="scale" style="--float-dur:4.5s;--float-delay:1.1s" class="animate-float absolute right-0 top-0 flex items-center gap-2.5 rounded-xl bg-white p-2.5 pr-4 shadow-floating lg:right-[10px] lg:top-[1%] lg:rounded-[14px] lg:p-3">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-light lg:h-9 lg:w-9"><x-heroicon-o-shield-check class="h-5 w-5 text-brand-normal" /></span>
+                    <span>
+                        <span class="block text-label font-semibold text-brand-dark lg:text-body-sm">ISO/IEC 27001</span>
+                        <span class="block text-caption text-brand-muted">Keamanan informasi tersertifikasi</span>
+                    </span>
+                </div>
+
+                {{-- Float → Sparkle Node + Connector Line --}}
+                <div data-animate="scale" style="--float-dur:4s;--float-delay:0.3s" class="animate-float absolute left-[12%] top-[52%] flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-floating lg:left-[15%] lg:top-[45%] lg:h-10 lg:w-10">
+                    <x-heroicon-o-sparkles class="h-4 w-4 text-brand-normal lg:h-5 lg:w-5" />
+                </div>
+                <svg class="animate-draw absolute left-[20%] top-[56%] hidden h-[60px] w-[120px] lg:left-[20%] lg:top-[49%] lg:block" viewBox="0 0 120 60" fill="none" aria-hidden="true">
+                    <path d="M0 0C40 0 60 60 120 60" stroke="#0aa1dd" stroke-width="1.5" stroke-dasharray="4 4" />
+                </svg>
+
+                {{-- Float → Helpdesk Bubble --}}
+                <div data-animate="scale" style="--float-dur:5.5s;--float-delay:0.9s" class="animate-float absolute bottom-0 left-[8%] z-10 w-[84%] rounded-[14px] bg-white p-3.5 shadow-hero lg:bottom-[20%] lg:left-[33%] lg:w-[330px] lg:rounded-card lg:p-4">
+                    <div class="flex items-center gap-2.5">
+                        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-light-hover text-chip font-medium text-brand-dark">NS</span>
+                        <span class="flex-1">
+                            <span class="block text-label font-medium text-brand-dark">Helpdesk · Tiket #1042</span>
+                            <span class="block text-caption text-brand-muted">Nasabah · 2 jam lalu</span>
+                        </span>
+                        <x-chip variant="success"><x-heroicon-o-check class="h-3 w-3" />Selesai · SLA</x-chip>
+                    </div>
+                    <p class="mt-2.5 text-caption text-brand-dark lg:text-body-sm">“Pengaduan sudah ditindaklanjuti unit terkait dan diselesaikan dalam 2 jam. Terima kasih!”</p>
+                    <span class="animate-typing mt-2 flex gap-1 pl-0.5" aria-hidden="true">
+                        <span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span>
+                    </span>
+                </div>
+
+                {{-- Float → SSO Card (desktop only) --}}
+                <div data-animate="scale" style="--float-dur:6.5s;--float-delay:1.4s" class="animate-float absolute bottom-[4%] left-0 hidden items-center gap-2.5 rounded-[14px] bg-white p-3 pr-4 shadow-floating lg:flex">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-[10px] bg-brand-dark"><x-heroicon-o-lock-closed class="h-[18px] w-[18px] text-white" /></span>
+                    <span>
+                        <span class="block text-body-sm font-semibold text-brand-dark">SSO + 2FA aktif</span>
+                        <span class="block text-caption text-brand-muted">Bank BPD Bali · 1 pintu login</span>
+                    </span>
+                </div>
+
+                {{-- Float → Photo Tile 2 (desktop only) --}}
+                <div data-animate="scale" style="--float-dur:5.2s;--float-delay:0.4s" class="animate-float absolute bottom-0 right-0 hidden w-[180px] overflow-hidden rounded-card border-4 border-white shadow-hero lg:block">
+                    <img src="{{ asset('images/hero-dashboard.jpg') }}" alt="Dashboard analitik" class="aspect-[18/13] w-full object-cover">
+                </div>
             </div>
         </div>
     </section>
 
-    {{-- Tentang --}}
-    <section class="py-16 md:py-24">
-        <div class="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 md:grid-cols-2 md:px-20">
-            <div data-animate>
-                <p class="text-sm font-medium text-brand-normal">TENTANG MAIHARTA</p>
-                <h2 class="mt-3 font-heading text-2xl font-semibold text-brand-dark md:text-[30px]">Mitra Transformasi Digital Bisnis Anda</h2>
-                <p class="mt-4 text-brand-dark/80">
-                    Maiharta adalah tim yang berfokus membantu bisnis bertransformasi secara digital melalui solusi teknologi yang aman, scalable, dan berorientasi pada hasil — mulai dari perencanaan, desain, hingga pengembangan sistem.
-                </p>
-            </div>
+    {{-- ===================================================== Solusi Kita --}}
+    <section class="container-site py-16 md:py-20">
+        <x-section-head eyebrow="Solusi Kita" title="Satu Mitra untuk Seluruh Kebutuhan Digital Anda" description="Solusi digital yang disesuaikan dengan kebutuhan bisnis Anda — dari sistem internal hingga identitas brand dan pemasaran.">
+            <x-slot:action><x-button :href="route('layanan.index')" variant="outline" size="sm" icon="arrow-right">Semua Layanan</x-button></x-slot:action>
+        </x-section-head>
 
-            <div class="space-y-6">
-                <div data-animate style="--reveal-delay:0.06s" class="flex items-start gap-4">
-                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-light">
-                        <x-icons.check class="h-5 w-5" />
+        <div data-animate-group class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+            @foreach ($services as $service)
+                @php $tags = collect($service->tech_tags ?? [])->take(3); @endphp
+                <x-card data-animate :href="route('layanan.show', $service)" padding="p-6 md:p-7">
+                    <div class="flex h-[52px] w-[52px] items-center justify-center rounded-xl bg-brand-light transition-colors duration-300 group-hover:bg-brand-light-hover">
+                        @if ($service->icon === 'code') <x-icons.service-code class="h-6 w-6" />
+                        @elseif ($service->icon === 'palette') <x-icons.service-palette class="h-6 w-6" />
+                        @else <x-icons.service-megaphone class="h-6 w-6" /> @endif
                     </div>
-                    <div>
-                        <h3 class="font-heading font-semibold text-brand-dark">Profesional</h3>
-                        <p class="mt-1 text-sm text-brand-dark/80">Bekerja dengan standar dan proses yang konsisten di setiap proyek.</p>
-                    </div>
-                </div>
-                <div data-animate style="--reveal-delay:0.12s" class="flex items-start gap-4">
-                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-light">
-                        <x-icons.value-collab class="h-5 w-5" />
-                    </div>
-                    <div>
-                        <h3 class="font-heading font-semibold text-brand-dark">Kolaboratif</h3>
-                        <p class="mt-1 text-sm text-brand-dark/80">Melibatkan klien secara aktif dari perencanaan hingga peluncuran.</p>
-                    </div>
-                </div>
-                <div data-animate style="--reveal-delay:0.18s" class="flex items-start gap-4">
-                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-light">
-                        <x-icons.value-result class="h-5 w-5" />
-                    </div>
-                    <div>
-                        <h3 class="font-heading font-semibold text-brand-dark">Berorientasi Hasil</h3>
-                        <p class="mt-1 text-sm text-brand-dark/80">Setiap solusi dirancang untuk memberi dampak nyata pada bisnis Anda.</p>
-                    </div>
-                </div>
+                    <h3 class="mt-5 font-heading text-h4 font-medium text-brand-dark md:text-[20px] md:leading-7">{{ $service->name }}</h3>
+                    <p class="mt-3 text-body-sm text-brand-muted">{{ $service->short_description }}</p>
+                    @if ($tags->isNotEmpty())
+                        <div class="mt-4 flex flex-wrap gap-1.5">
+                            @foreach ($tags as $tag) <x-chip>{{ $tag }}</x-chip> @endforeach
+                        </div>
+                    @endif
+                    <span class="mt-5 inline-flex items-center gap-1.5 text-label font-medium text-brand-normal">
+                        Pelajari Lebih Lanjut <x-heroicon-o-arrow-right class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                </x-card>
+            @endforeach
+        </div>
+    </section>
+
+    {{-- ====================================================== Portofolio --}}
+    <section class="bg-brand-light py-16 md:py-20">
+        <div class="container-site">
+            <x-section-head eyebrow="Portofolio" title="Bukti Nyata Kapabilitas Kami">
+                <x-slot:action><x-button :href="route('portofolio.index')" variant="outline" size="sm" icon="arrow-right">Lihat Semua Proyek</x-button></x-slot:action>
+            </x-section-head>
+
+            <div data-animate-group class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+                @foreach ($projects as $project)
+                    <x-card data-animate :href="route('portofolio.show', $project)" padding="p-0" class="overflow-hidden">
+                        <div class="aspect-[16/10] w-full overflow-hidden bg-brand-light-hover">
+                            <img src="{{ $project->cover_image ? asset($project->cover_image) : asset('images/projects/' . $project->slug . '.jpg') }}" alt="{{ $project->name }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="p-5 md:p-6">
+                            <x-chip>{{ $project->category }}</x-chip>
+                            <h3 class="mt-3 font-heading text-h4 font-medium text-brand-dark">{{ $project->name }}</h3>
+                            <p class="mt-2 line-clamp-3 text-body-sm text-brand-muted">{{ $project->short_description }}</p>
+                            <span class="mt-4 inline-flex items-center gap-1.5 text-label font-medium text-brand-normal">
+                                Lihat Detail Proyek <x-heroicon-o-arrow-right class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                            </span>
+                        </div>
+                    </x-card>
+                @endforeach
             </div>
         </div>
     </section>
 
-    {{-- CTA Akhir --}}
-    <section class="bg-brand-light/60 py-16 text-center md:py-20">
-        <div data-animate class="mx-auto max-w-2xl px-5">
-            <h2 class="font-heading text-2xl font-semibold text-brand-dark md:text-[30px]">Siap Membangun Produk Digital Anda?</h2>
-            <p class="mt-3 text-brand-dark/80">Ceritakan kebutuhan bisnis Anda, tim kami akan membantu menemukan solusi digital yang tepat.</p>
-            <div class="mt-8">
-                <x-button :href="route('kontak')">Hubungi Kami Sekarang</x-button>
+    {{-- ===================================================== Sertifikasi --}}
+    <section class="container-site grid grid-cols-1 items-center gap-10 py-16 md:py-20 lg:grid-cols-[1fr_520px] lg:gap-16">
+        <div data-animate-group="0.07">
+            <p data-animate class="overline">Kredibilitas &amp; Keamanan</p>
+            <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-h2-lg">Standar Keamanan yang Terjamin</h2>
+            <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">Kami mengikuti standar keamanan informasi internasional ISO/IEC 27001 untuk memastikan data dan sistem klien kami terlindungi di setiap tahap kerja sama.</p>
+            <ul class="mt-6 space-y-3">
+                @foreach ([
+                    ['Perlindungan data terenkripsi', 'Data klien dienkripsi saat disimpan maupun ditransmisikan.'],
+                    ['Akses sistem yang terkontrol', 'Hak akses berjenjang dan tercatat pada audit trail.'],
+                    ['Penilaian risiko berkala', 'Evaluasi keamanan rutin di setiap siklus pengembangan.'],
+                ] as [$pointTitle, $pointDesc])
+                    <li data-animate class="flex items-start gap-3.5 rounded-xl bg-brand-light px-4 py-3.5">
+                        <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-normal"><x-heroicon-o-check class="h-3.5 w-3.5 text-white" /></span>
+                        <span>
+                            <span class="block text-[15px] font-medium leading-[22px] text-brand-dark">{{ $pointTitle }}</span>
+                            <span class="block text-label text-brand-muted">{{ $pointDesc }}</span>
+                        </span>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
+        <div data-animate="scale" class="flex flex-col items-center rounded-panel bg-brand-dark px-8 py-10 text-center text-white md:px-12 md:py-12">
+            <span class="flex h-28 w-28 items-center justify-center rounded-full border border-brand-border-on-dark bg-brand-surface-on-dark">
+                <x-icons.shield class="h-12 w-12" />
+            </span>
+            <p class="mt-5 font-heading text-h3 font-semibold md:text-[26px] md:leading-[34px]">ISO/IEC 27001</p>
+            <p class="mt-1 text-body-sm text-brand-on-dark">Information Security Management System</p>
+            <div class="mt-5 flex flex-wrap justify-center gap-2">
+                @foreach (['Tersertifikasi', 'Audit Berkala', 'Standar Internasional'] as $tag)
+                    <x-chip variant="on-dark" class="text-label-sm">{{ $tag }}</x-chip>
+                @endforeach
             </div>
         </div>
     </section>
+
+    {{-- ========================================================= Tentang --}}
+    <section class="bg-brand-light py-16 md:py-20">
+        <div class="container-site grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-16">
+            <div data-animate-group="0.07">
+                <p data-animate class="overline">Tentang Maiharta</p>
+                <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-h2-lg">Mitra Transformasi Digital Bisnis Anda</h2>
+                <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">Maiharta adalah tim yang berfokus membantu bisnis bertransformasi secara digital melalui solusi teknologi yang aman, scalable, dan berorientasi pada hasil — mulai dari perencanaan, desain, hingga pengembangan sistem.</p>
+                <div data-animate class="mt-6"><x-button :href="route('tentang')" icon="arrow-right">Kenali Kami Lebih Dekat</x-button></div>
+            </div>
+
+            <div data-animate-group class="space-y-3.5">
+                @foreach ([
+                    ['check', 'Profesional', 'Bekerja dengan standar dan proses yang konsisten di setiap proyek.'],
+                    ['value-collab', 'Kolaboratif', 'Melibatkan klien secara aktif dari perencanaan hingga peluncuran.'],
+                    ['value-result', 'Berorientasi Hasil', 'Setiap solusi dirancang untuk memberi dampak nyata pada bisnis Anda.'],
+                ] as [$icon, $valueTitle, $valueDesc])
+                    <div data-animate class="flex items-center gap-4 rounded-[14px] border border-brand-border bg-white px-5 py-5">
+                        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand-normal">
+                            <x-dynamic-component :component="'icons.' . $icon" class="h-5 w-5" />
+                        </span>
+                        <span>
+                            <span class="block font-heading text-[17px] font-medium leading-6 text-brand-dark">{{ $valueTitle }}</span>
+                            <span class="block text-body-sm text-brand-muted">{{ $valueDesc }}</span>
+                        </span>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- ============================================================= CTA --}}
+    <div class="bg-brand-light">
+        <x-cta-panel
+            eyebrow="Mulai Sekarang"
+            title="Siap Membangun Produk Digital Anda?"
+            description="Ceritakan kebutuhan bisnis Anda, tim kami akan membantu menemukan solusi digital yang tepat."
+            primary-label="Hubungi Kami Sekarang"
+            :primary-href="route('kontak')"
+            secondary-label="Lihat Layanan"
+            :secondary-href="route('layanan.index')"
+        />
+    </div>
 
 </x-layout>
