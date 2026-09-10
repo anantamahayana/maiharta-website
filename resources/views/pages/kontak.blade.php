@@ -91,7 +91,7 @@
             <div data-animate class="rounded-panel bg-brand-dark p-7 text-white">
                 <p class="overline text-brand-accent-on-dark">Info Kontak Langsung</p>
                 <ul class="mt-5 space-y-4">
-                    @foreach ([['envelope', 'Email', 'info@maiharta.com', 'mailto:info@maiharta.com'], ['phone', 'Telepon / WhatsApp', '+62 812-3630-0562', 'tel:+6281236300562'], ['map-pin', 'Lokasi', 'Denpasar, Bali', null], ['clock', 'Jam Operasional', 'Senin–Jumat, 09.00–17.00 WITA', null]] as [$icon, $l, $v, $href])
+                    @foreach ([['envelope', 'Email', 'info@maiharta.com', 'mailto:info@maiharta.com'], ['phone', 'Telepon / WhatsApp', '+62 812-3630-0562', 'tel:+6281236300562'], ['map-pin', 'Alamat Kantor', 'Jl. Tukad Ayung No.5, Denpasar Selatan, Kota Denpasar, Bali', 'https://maps.google.com/?q=Jl.+Tukad+Ayung+No.5,+Denpasar+Selatan,+Kota+Denpasar,+Bali'], ['clock', 'Jam Operasional', 'Senin–Jumat, 09.00–17.00 WITA', null]] as [$icon, $l, $v, $href])
                         <li class="flex items-center gap-3.5">
                             <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-brand-surface-on-dark"><x-dynamic-component :component="'heroicon-o-' . $icon" class="h-[18px] w-[18px]" /></span>
                             <span><span class="block text-caption text-brand-on-dark">{{ $l }}</span>@if ($href)<a href="{{ $href }}" class="block text-body-sm font-semibold hover:text-brand-accent-on-dark">{{ $v }}</a>@else<span class="block text-body-sm font-semibold">{{ $v }}</span>@endif</span>
@@ -102,10 +102,10 @@
             </div>
 
             <div data-animate class="overflow-hidden rounded-panel border border-brand-border bg-white">
-                <iframe title="Peta lokasi Maiharta" src="https://www.google.com/maps?q=Denpasar,Bali&output=embed" class="h-[200px] w-full border-0 grayscale-[30%]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe title="Peta lokasi Maiharta" src="https://www.google.com/maps?q=Jl.+Tukad+Ayung+No.5,+Denpasar+Selatan,+Kota+Denpasar,+Bali&output=embed" class="h-[200px] w-full border-0 grayscale-[30%]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="flex items-center justify-between gap-3 px-5 py-4">
-                    <span><span class="block text-body-sm font-medium text-brand-dark">Kantor Maiharta</span><span class="block text-caption text-brand-muted">Denpasar, Bali</span></span>
-                    <a href="https://maps.google.com/?q=Denpasar,Bali" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-label font-medium text-brand-normal">Buka di Maps <x-heroicon-o-arrow-top-right-on-square class="h-3.5 w-3.5" /></a>
+                    <span><span class="block text-body-sm font-medium text-brand-dark">Kantor Maiharta</span><span class="block text-caption text-brand-muted">Jl. Tukad Ayung No.5, Denpasar Selatan, Kota Denpasar, Bali</span></span>
+                    <a href="https://maps.google.com/?q=Jl.+Tukad+Ayung+No.5,+Denpasar+Selatan,+Kota+Denpasar,+Bali" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-label font-medium text-brand-normal">Buka di Maps <x-heroicon-o-arrow-top-right-on-square class="h-3.5 w-3.5" /></a>
                 </div>
             </div>
 

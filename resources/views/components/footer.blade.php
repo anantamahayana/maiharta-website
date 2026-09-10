@@ -23,7 +23,7 @@
                 <ul class="mt-4 space-y-3 text-sm text-white/60">
                     <li>info@maiharta.com</li>
                     <li>+62 812-3630-0562</li>
-                    <li>Denpasar, Bali</li>
+                    <li>Jl. Tukad Ayung No.5, Denpasar Selatan, Kota Denpasar, Bali</li>
                 </ul>
             </div>
         </div>
