@@ -82,7 +82,7 @@
                 <div data-animate-group class="mt-9 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
                     @foreach ($summary as $i => [$t, $d])
                         <x-card data-animate :interactive="false" padding="p-7">
-                            <span class="flex h-11 w-11 items-center justify-center rounded-xl font-heading text-[15px] font-semibold {{ $loop->index === 1 ? 'bg-brand-normal text-white' : 'bg-brand-light text-brand-dark' }}">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                            <span class="flex h-11 w-11 items-center justify-center rounded-xl font-heading text-[15px] font-semibold bg-brand-light text-brand-dark">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                             <h3 class="mt-4 font-heading text-h4 font-medium text-brand-dark">{{ $t }}</h3>
                             <p class="mt-3 text-body-sm text-brand-muted">{{ $d }}</p>
                         </x-card>

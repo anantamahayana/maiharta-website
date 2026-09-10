@@ -82,7 +82,7 @@
             <div data-animate-group class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach ($steps as $i => [$t, $d])
                     <x-card data-animate :interactive="false" padding="p-6">
-                        <span class="flex h-10 w-10 items-center justify-center rounded-full font-heading text-h5 font-semibold {{ $i === 0 ? 'bg-brand-normal text-white' : 'bg-brand-light text-brand-dark' }}">{{ $i + 1 }}</span>
+                        <span class="flex h-10 w-10 items-center justify-center rounded-full font-heading text-h5 font-semibold bg-brand-light text-brand-dark">{{ $i + 1 }}</span>
                         <h3 class="mt-4 font-heading text-[17px] font-medium leading-6 text-brand-dark">{{ $t }}</h3>
                         <p class="mt-2 text-label text-brand-muted">{{ $d }}</p>
                     </x-card>
