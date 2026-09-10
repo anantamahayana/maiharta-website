@@ -131,6 +131,10 @@
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
+    /* background-clip:text clips to the line box; give descenders (g, y, p)
+       room below the baseline without adding visible spacing */
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
 }
 
 /* Overline / eyebrow label */
