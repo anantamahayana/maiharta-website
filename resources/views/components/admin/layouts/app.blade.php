@@ -25,7 +25,7 @@
 <body class="h-full bg-brand-light font-sans text-brand-dark antialiased" x-data="{ sidebar: false }">
 
     {{-- Sidebar --}}
-    <aside :class="sidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'" class="fixed inset-y-0 left-0 z-40 flex w-[248px] flex-col bg-brand-dark p-4 text-white transition-transform duration-300">
+    <aside :class="sidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'" class="fixed left-0 top-0 z-40 flex h-dvh w-[248px] flex-col overflow-y-auto bg-brand-dark p-4 pb-6 text-white transition-transform duration-300">
         <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2.5 px-2 pb-5">
             <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-normal font-heading text-body-sm font-semibold">M</span>
             <span><span class="block text-label font-semibold tracking-wider">MAIHARTA</span><span class="block text-caption text-brand-on-dark">Panel Admin</span></span>
@@ -40,7 +40,7 @@
                 </a>
             @endforeach
         </nav>
-        <div class="mt-auto space-y-3">
+        <div class="mt-auto space-y-3 pt-6">
             <a href="{{ route('home') }}" target="_blank" class="flex items-center gap-3 rounded-lg bg-brand-surface-on-dark px-3 py-2.5 text-label font-medium hover:bg-white/15">
                 <x-heroicon-o-arrow-top-right-on-square class="h-[18px] w-[18px] text-brand-on-dark" /> Lihat Website
             </a>
