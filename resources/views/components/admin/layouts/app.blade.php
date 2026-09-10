@@ -25,7 +25,7 @@
 <body class="h-full bg-brand-light font-sans text-brand-dark antialiased" x-data="{ sidebar: false }">
 
     {{-- Sidebar --}}
-    <aside :class="sidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'" class="fixed left-0 top-0 z-40 flex h-dvh w-[248px] flex-col overflow-y-auto bg-brand-dark p-4 pb-16 text-white transition-transform duration-300">
+    <aside :class="sidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'" class="fixed left-0 top-0 z-40 flex h-dvh w-[248px] flex-col overflow-y-auto bg-brand-dark p-4 pb-6 text-white transition-transform duration-300">
         <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2.5 px-2 pb-5">
             <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-normal font-heading text-body-sm font-semibold">M</span>
             <span><span class="block text-label font-semibold tracking-wider">MAIHARTA</span><span class="block text-caption text-brand-on-dark">Panel Admin</span></span>
