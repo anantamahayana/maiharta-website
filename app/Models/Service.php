@@ -15,12 +15,17 @@ class Service extends Model
         'description',
         'tech_tags',
         'process_steps',
+        'meta',
+        'capabilities',
+        'about_title',
         'sort_order',
     ];
 
     protected $casts = [
         'tech_tags' => 'array',
         'process_steps' => 'array',
+        'meta' => 'array',
+        'capabilities' => 'array',
     ];
 
     public function projects(): HasMany

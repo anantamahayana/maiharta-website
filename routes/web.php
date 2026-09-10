@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -50,6 +51,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('messages/{message}', [MessageController::class, 'show'])->name('messages.show');
         Route::patch('messages/{message}/toggle', [MessageController::class, 'toggle'])->name('messages.toggle');
         Route::delete('messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+
+        Route::get('content/{page?}', [ContentController::class, 'edit'])->name('content.edit');
+        Route::put('content/{page}', [ContentController::class, 'update'])->name('content.update');
 
         Route::get('settings', [SettingsController::class, 'edit'])->name('settings');
         Route::put('settings/profile', [SettingsController::class, 'updateProfile'])->name('settings.profile');

@@ -3,16 +3,17 @@
     $counts = ['Semua' => $projects->count()] + $counts;
     $featured = $projects->firstWhere('slug', 'lais-market') ?? $projects->first();
     $grid = $projects->reject(fn ($p) => $p->is($featured))->values();
+    $hero = site('portofolio.hero'); $cta = site('portofolio.cta'); $st = site('umum.stats');
 @endphp
 
 <x-layout title="Portofolio — MaiHarta" description="Kumpulan proyek yang telah kami kerjakan bersama klien dari berbagai industri.">
 <div x-data="{ active: 'Semua' }">
 
     <x-page-hero
-        eyebrow="Portofolio Kami"
-        title="Bukti Nyata Kapabilitas Kami"
-        description="Kumpulan proyek yang telah kami kerjakan bersama klien dari berbagai industri — perbankan, pemerintahan, pariwisata, hingga e-commerce."
-        :stats="[[$projects->count(), 'Proyek Unggulan'], [$projects->pluck('client_type')->filter()->map(fn ($c) => trim(explode('—', $c)[0]))->unique()->count(), 'Sektor Industri'], ['40+', 'Instansi']]"
+        :eyebrow="$hero['eyebrow']"
+        :title="$hero['title']"
+        :description="$hero['description']"
+        :stats="[[$projects->count(), 'Proyek Unggulan'], [$projects->pluck('client_type')->filter()->map(fn ($c) => trim(explode('—', $c)[0]))->unique()->count(), 'Sektor Industri'], [$st['clients'], 'Instansi']]"
     >
         <x-slot:footer>
             <div class="flex flex-wrap items-center justify-between gap-4">
@@ -67,9 +68,9 @@
             </x-empty-state></div>
         </template>
 
-        <p class="mt-6 text-caption text-brand-muted">*Tautan proyek akan diperbarui sesuai URL resmi masing-masing aplikasi.</p>
+        @if ($hero['note'])<p class="mt-6 text-caption text-brand-muted">{{ $hero['note'] }}</p>@endif
     </section>
 
-    <x-cta-panel eyebrow="Mari Berkolaborasi" title="Punya Proyek Serupa?" description="Mari diskusikan bagaimana kami bisa membantu mewujudkan proyek digital Anda." primary-label="Konsultasi Gratis" :primary-href="route('kontak')" secondary-label="Lihat Layanan" :secondary-href="route('layanan.index')" />
+    <x-cta-panel :eyebrow="$cta['eyebrow']" :title="$cta['title']" :description="$cta['description']" :primary-label="$cta['primary']" :primary-href="route('kontak')" :secondary-label="$cta['secondary']" :secondary-href="route('layanan.index')" />
 </div>
 </x-layout>

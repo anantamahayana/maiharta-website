@@ -28,6 +28,19 @@ class ServiceSeeder extends Seeder
                     ['title' => 'Testing', 'description' => 'Menguji fungsi, performa, dan keamanan di berbagai perangkat.'],
                     ['title' => 'Launch', 'description' => 'Peluncuran sistem beserta dukungan pascarilis.'],
                 ],
+                'meta' => [
+                    ['label' => 'Cocok untuk', 'value' => 'Instansi pemerintah, perbankan, UMKM'],
+                    ['label' => 'Deliverable', 'value' => 'Web app, mobile app, API, dokumentasi'],
+                    ['label' => 'Durasi tipikal', 'value' => '2 — 6 bulan'],
+                    ['label' => 'Model kerja', 'value' => 'Fixed-scope atau retainer'],
+                    ['label' => 'Standar', 'value' => 'ISO/IEC 27001'],
+                ],
+                'capabilities' => [
+                    ['title' => 'Aplikasi Web & Portal', 'description' => 'Sistem internal, portal publik, dashboard'],
+                    ['title' => 'Aplikasi Mobile', 'description' => 'Android & iOS, native maupun hybrid'],
+                    ['title' => 'Integrasi & API', 'description' => 'Host-to-host, payment gateway, SSO'],
+                    ['title' => 'Migrasi & Modernisasi', 'description' => 'Peremajaan sistem lama ke arsitektur baru'],
+                ],
                 'sort_order' => 1,
             ],
             [

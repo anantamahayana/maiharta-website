@@ -1,16 +1,20 @@
 @php
-    $serviceOptions = ['Software Development', 'Graphics Design', 'Digital Marketing', 'UI/UX Design', 'Konsultasi', 'Lainnya'];
+    $serviceOptions = site_list('kontak.hero.services') ?: ['Lainnya'];
+    $brand = site('umum.brand');
+    $k = site('kontak.hero');
+    $mapQ = rawurlencode($k['map_query'] ?: $brand['address']);
+    $socials = array_filter([['Instagram', $brand['instagram'], 'IG'], ['Facebook', $brand['facebook'], 'FB'], ['LinkedIn', $brand['linkedin'], 'IN'], ['WhatsApp', 'https://wa.me/' . $brand['whatsapp'], 'WA']], fn ($x) => filled($x[1]));
     $sent = session('status');
     $inputClass = 'w-full rounded-[10px] border bg-brand-input px-3.5 py-3 text-body-sm text-brand-dark placeholder:text-brand-placeholder outline-none transition focus:border-brand-normal focus:bg-white focus:ring-[3px] focus:ring-brand-normal/20';
 @endphp
 
 <x-layout title="Kontak — MaiHarta" description="Hubungi tim Maiharta — kami merespons dalam 1×24 jam kerja.">
 
-    <x-page-hero eyebrow="Kontak" title="Hubungi Kami" description="Ceritakan kebutuhan bisnis Anda — tim kami akan merespons dalam 1×24 jam kerja.">
+    <x-page-hero :eyebrow="$k['eyebrow']" :title="$k['title']" :description="$k['description']">
         <x-slot:aside>
             <span class="inline-flex items-center gap-2.5 rounded-full border border-brand-border bg-white px-4 py-3 text-label font-medium text-brand-dark">
                 <span class="relative flex h-2.5 w-2.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60"></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-success"></span></span>
-                Tim kami online · Senin–Jumat 09.00–17.00 WITA
+                {{ $k['online'] }}
             </span>
         </x-slot:aside>
     </x-page-hero>
@@ -30,8 +34,8 @@
                     </div>
                 </div>
             @else
-                <h2 class="font-heading text-h3 font-semibold text-brand-dark">Kirim Pesan</h2>
-                <p class="mt-1 text-body-sm text-brand-muted">Isi formulir di bawah, kami akan menghubungi Anda kembali.</p>
+                <h2 class="font-heading text-h3 font-semibold text-brand-dark">{{ $k['form_title'] }}</h2>
+                <p class="mt-1 text-body-sm text-brand-muted">{{ $k['form_sub'] }}</p>
 
                 @if ($errors->any())
                     <div class="mt-5 flex items-start gap-3 rounded-[10px] border border-error/30 bg-error-bg px-4 py-3 text-body-sm text-error">
@@ -80,7 +84,7 @@
 
                     <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
                         <x-button type="submit" icon="arrow-right">Kirim Pesan</x-button>
-                        <p class="text-caption text-brand-muted">Dengan mengirim, Anda menyetujui kebijakan privasi kami.</p>
+                        <p class="text-caption text-brand-muted">{{ $k['privacy'] }}</p>
                     </div>
                 </form>
             @endif
@@ -91,29 +95,29 @@
             <div data-animate class="rounded-panel bg-brand-dark p-7 text-white">
                 <p class="overline text-brand-accent-on-dark">Info Kontak Langsung</p>
                 <ul class="mt-5 space-y-4">
-                    @foreach ([['envelope', 'Email', 'info@maiharta.com', 'mailto:info@maiharta.com'], ['phone', 'Telepon / WhatsApp', '+62 812-3630-0562', 'tel:+6281236300562'], ['map-pin', 'Alamat Kantor', 'Jl. Tukad Ayung No.5, Denpasar Selatan, Kota Denpasar, Bali', 'https://maps.google.com/?q=Jl.+Tukad+Ayung+No.5,+Denpasar+Selatan,+Kota+Denpasar,+Bali'], ['clock', 'Jam Operasional', 'Senin–Jumat, 09.00–17.00 WITA', null]] as [$icon, $l, $v, $href])
+                    @foreach ([['envelope', 'Email', $brand['email'], 'mailto:' . $brand['email']], ['phone', 'Telepon / WhatsApp', $brand['phone'], 'tel:+' . $brand['whatsapp']], ['map-pin', 'Alamat Kantor', $brand['address'], 'https://maps.google.com/?q=' . $mapQ], ['clock', 'Jam Operasional', $brand['hours'], null]] as [$icon, $l, $v, $href])
                         <li class="flex items-center gap-3.5">
                             <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-brand-surface-on-dark"><x-dynamic-component :component="'heroicon-o-' . $icon" class="h-[18px] w-[18px]" /></span>
                             <span><span class="block text-caption text-brand-on-dark">{{ $l }}</span>@if ($href)<a href="{{ $href }}" class="block text-body-sm font-semibold hover:text-brand-accent-on-dark">{{ $v }}</a>@else<span class="block text-body-sm font-semibold">{{ $v }}</span>@endif</span>
                         </li>
                     @endforeach
                 </ul>
-                <a href="https://wa.me/6281236300562" target="_blank" rel="noopener" class="mt-6 flex items-center justify-center gap-2 rounded-lg bg-success px-5 py-3.5 text-body-sm font-medium text-white transition hover:-translate-y-0.5 hover:brightness-110">Chat via WhatsApp <x-heroicon-o-arrow-top-right-on-square class="h-4 w-4" /></a>
+                <a href="https://wa.me/{{ $brand['whatsapp'] }}" target="_blank" rel="noopener" class="mt-6 flex items-center justify-center gap-2 rounded-lg bg-success px-5 py-3.5 text-body-sm font-medium text-white transition hover:-translate-y-0.5 hover:brightness-110">Chat via WhatsApp <x-heroicon-o-arrow-top-right-on-square class="h-4 w-4" /></a>
             </div>
 
             <div data-animate class="overflow-hidden rounded-panel border border-brand-border bg-white">
-                <iframe title="Peta lokasi Maiharta" src="https://www.google.com/maps?q=Jl.+Tukad+Ayung+No.5,+Denpasar+Selatan,+Kota+Denpasar,+Bali&output=embed" class="h-[200px] w-full border-0 grayscale-[30%]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe title="Peta lokasi Maiharta" src="https://www.google.com/maps?q={{ $mapQ }}&output=embed" class="h-[200px] w-full border-0 grayscale-[30%]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="flex items-center justify-between gap-3 px-5 py-4">
-                    <span><span class="block text-body-sm font-medium text-brand-dark">Kantor Maiharta</span><span class="block text-caption text-brand-muted">Jl. Tukad Ayung No.5, Denpasar Selatan, Kota Denpasar, Bali</span></span>
-                    <a href="https://maps.google.com/?q=Jl.+Tukad+Ayung+No.5,+Denpasar+Selatan,+Kota+Denpasar,+Bali" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-label font-medium text-brand-normal">Buka di Maps <x-heroicon-o-arrow-top-right-on-square class="h-3.5 w-3.5" /></a>
+                    <span><span class="block text-body-sm font-medium text-brand-dark">Kantor Maiharta</span><span class="block text-caption text-brand-muted">{{ $brand['address'] }}</span></span>
+                    <a href="https://maps.google.com/?q={{ $mapQ }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-label font-medium text-brand-normal">Buka di Maps <x-heroicon-o-arrow-top-right-on-square class="h-3.5 w-3.5" /></a>
                 </div>
             </div>
 
             <div data-animate class="flex items-center gap-3 rounded-panel bg-brand-light px-5 py-4">
                 <span class="flex-1 text-body-sm font-medium text-brand-dark">Media Sosial</span>
-                @foreach ([['Instagram', '#'], ['Facebook', '#'], ['LinkedIn', '#'], ['WhatsApp', 'https://wa.me/6281236300562']] as [$name, $href])
-                    <a href="{{ $href }}" aria-label="{{ $name }}" class="flex h-10 w-10 items-center justify-center rounded-full border border-brand-border bg-white text-brand-dark transition hover:-translate-y-0.5 hover:border-brand-normal hover:text-brand-normal">
-                        <span class="text-label font-semibold">{{ Str::substr($name, 0, 2) }}</span>
+                @foreach ($socials as [$name, $href, $abbr])
+                    <a href="{{ $href }}" target="_blank" rel="noopener" aria-label="{{ $name }}" class="flex h-10 w-10 items-center justify-center rounded-full border border-brand-border bg-white text-brand-dark transition hover:-translate-y-0.5 hover:border-brand-normal hover:text-brand-normal">
+                        <span class="text-label font-semibold">{{ $abbr }}</span>
                     </a>
                 @endforeach
             </div>

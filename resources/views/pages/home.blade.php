@@ -1,3 +1,4 @@
+@php $h = site('beranda.hero'); $st = site('umum.stats'); $sol = site('beranda.solusi'); $pf = site('beranda.portofolio'); $sf = site('beranda.sertifikasi'); $tt = site('beranda.tentang'); $cta = site('beranda.cta'); $values = site('tentang.nilai.items'); $valueIcons = ['check', 'value-collab', 'value-result']; @endphp
 <x-layout title="MaiHarta — Ngga Ada Habisnya">
 
     {{-- ============================================================ Hero --}}
@@ -10,26 +11,26 @@
                     <span class="flex h-6 w-6 items-center justify-center rounded-full bg-brand-light">
                         <x-heroicon-o-shield-check class="h-3.5 w-3.5 text-brand-normal" />
                     </span>
-                    Bersertifikasi ISO/IEC 27001
+                    {{ $h['badge'] }}
                 </span>
 
                 <h1 class="mt-6 font-heading font-semibold text-brand-dark">
-                    <span data-animate class="text-gradient-brand animate-shimmer block text-h2-lg md:text-[56px] md:leading-[64px] xl:text-display-sm xl:whitespace-nowrap">Ngga ada habisnya</span>
-                    <span data-animate class="block text-h2-lg md:text-[56px] md:leading-[64px] xl:text-display-sm">membangun produk digital untuk bisnis Anda</span>
+                    <span data-animate class="text-gradient-brand animate-shimmer block text-h2-lg md:text-[56px] md:leading-[64px] xl:text-display-sm xl:whitespace-nowrap">{{ $h['headline_gradient'] }}</span>
+                    <span data-animate class="block text-h2-lg md:text-[56px] md:leading-[64px] xl:text-display-sm">{{ $h['headline'] }}</span>
                 </h1>
 
                 <p data-animate class="mt-6 max-w-[620px] text-body-sm text-brand-muted md:text-body">
-                    MaiHarta membantu bisnis Anda berkembang cepat melalui jasa dan produk digital — dari sistem internal, aplikasi mobile, hingga marketplace — dengan standar keamanan internasional.
+                    {{ $h['description'] }}
                 </p>
 
                 <div data-animate class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                    <x-button :href="route('kontak')" variant="gradient" size="lg" icon="arrow-right">Mulai Konsultasi Gratis</x-button>
-                    <x-button :href="route('portofolio.index')" variant="outline" size="lg">Lihat Portofolio</x-button>
+                    <x-button :href="route('kontak')" variant="gradient" size="lg" icon="arrow-right">{{ $h['primary'] }}</x-button>
+                    <x-button :href="route('portofolio.index')" variant="outline" size="lg">{{ $h['secondary'] }}</x-button>
                 </div>
 
                 <ul data-animate class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-caption text-brand-muted">
-                    @foreach (['Konsultasi gratis', 'Tanpa biaya tersembunyi', 'Dukungan pascarilis'] as $bullet)
-                        <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span>{{ $bullet }}</li>
+                    @foreach ($h['bullets'] as $b)
+                        <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span>{{ $b['text'] }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -42,24 +43,24 @@
                 <div data-animate="scale" style="--float-dur:5s" class="animate-float absolute left-[28%] top-[8%] w-[72%] rounded-card bg-brand-dark p-4 text-white shadow-hero lg:left-[33%] lg:top-[12%] lg:w-[340px] lg:rounded-[18px] lg:p-5">
                     <div class="flex items-center gap-2">
                         <div class="flex-1">
-                            <p class="text-label font-medium lg:text-h5">Ringkasan Proyek</p>
+                            <p class="text-label font-medium lg:text-h5">{{ $h['card_title'] }}</p>
                             <p class="text-caption text-brand-on-dark">Semua klien · {{ date('Y') }}</p>
                         </div>
                         <x-chip variant="on-dark"><span class="h-1.5 w-1.5 rounded-full bg-success"></span>Live</x-chip>
                     </div>
                     <div class="mt-3 flex gap-4 lg:mt-4 lg:gap-5">
-                        <x-stat value="199" suffix="+" label="Proyek selesai" dark />
-                        <x-stat value="40" suffix="+" label="Instansi" dark />
-                        <x-stat value="8" suffix="+" label="Tahun" dark />
+                        <x-stat :value="rtrim($st['projects'], '+')" :suffix="str_ends_with($st['projects'], '+') ? '+' : ''" label="Proyek selesai" dark />
+                        <x-stat :value="rtrim($st['clients'], '+')" :suffix="str_ends_with($st['clients'], '+') ? '+' : ''" label="Instansi" dark />
+                        <x-stat :value="rtrim($st['years'], '+')" :suffix="str_ends_with($st['years'], '+') ? '+' : ''" label="Tahun" dark />
                     </div>
                     <div class="mt-3 flex h-[70px] items-end gap-1.5 lg:mt-4 lg:h-[120px]">
-                        @foreach ([28, 43, 33, 58, 48, 72, 53, 80, 65, 92, 75, 100] as $i => $h)
-                            <span style="height:{{ $h }}%;--bar-delay:{{ 0.5 + $i * 0.04 }}s" class="animate-bar flex-1 rounded {{ $i >= 9 ? 'bg-brand-normal' : 'bg-white/25' }}"></span>
+                        @foreach ([28, 43, 33, 58, 48, 72, 53, 80, 65, 92, 75, 100] as $i => $bar)
+                            <span style="height:{{ $bar }}%;--bar-delay:{{ 0.5 + $i * 0.04 }}s" class="animate-bar flex-1 rounded {{ $i >= 9 ? 'bg-brand-normal' : 'bg-white/25' }}"></span>
                         @endforeach
                     </div>
                     <div class="mt-3 flex items-center gap-2 lg:mt-4">
                         <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-brand-surface-on-dark"><span class="animate-fill block h-full w-full rounded-full bg-brand-normal"></span></div>
-                        <span class="text-caption text-brand-on-dark">12 proyek aktif</span>
+                        <span class="text-caption text-brand-on-dark">{{ $h['card_note'] }}</span>
                     </div>
                 </div>
 
@@ -90,12 +91,12 @@
                     <div class="flex items-center gap-2.5">
                         <span class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-light-hover text-chip font-medium text-brand-dark">NS</span>
                         <span class="flex-1">
-                            <span class="block text-label font-medium text-brand-dark">Helpdesk · Tiket #1042</span>
-                            <span class="block text-caption text-brand-muted">Nasabah · 2 jam lalu</span>
+                            <span class="block text-label font-medium text-brand-dark">{{ $h['bubble_title'] }}</span>
+                            <span class="block text-caption text-brand-muted">{{ $h['bubble_sub'] }}</span>
                         </span>
                         <x-chip variant="success"><x-heroicon-o-check class="h-3 w-3" />Selesai · SLA</x-chip>
                     </div>
-                    <p class="mt-2.5 text-caption text-brand-dark lg:text-body-sm">“Pengaduan sudah ditindaklanjuti unit terkait dan diselesaikan dalam 2 jam. Terima kasih!”</p>
+                    <p class="mt-2.5 text-caption text-brand-dark lg:text-body-sm">{{ $h['bubble_text'] }}</p>
                     <span class="animate-typing mt-2 flex gap-1 pl-0.5" aria-hidden="true">
                         <span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span>
                     </span>
@@ -105,8 +106,8 @@
                 <div data-animate="scale" style="--float-dur:6.5s;--float-delay:1.4s" class="animate-float absolute bottom-[4%] left-0 hidden items-center gap-2.5 rounded-[14px] bg-white p-3 pr-4 shadow-floating lg:flex">
                     <span class="flex h-9 w-9 items-center justify-center rounded-[10px] bg-brand-dark"><x-heroicon-o-lock-closed class="h-[18px] w-[18px] text-white" /></span>
                     <span>
-                        <span class="block text-body-sm font-semibold text-brand-dark">SSO + 2FA aktif</span>
-                        <span class="block text-caption text-brand-muted">Bank BPD Bali · 1 pintu login</span>
+                        <span class="block text-body-sm font-semibold text-brand-dark">{{ $h['sso_title'] }}</span>
+                        <span class="block text-caption text-brand-muted">{{ $h['sso_sub'] }}</span>
                     </span>
                 </div>
 
@@ -120,7 +121,7 @@
 
     {{-- ===================================================== Solusi Kita --}}
     <section class="container-site py-16 md:py-20">
-        <x-section-head eyebrow="Solusi Kita" title="Satu Mitra untuk Seluruh Kebutuhan Digital Anda" description="Solusi digital yang disesuaikan dengan kebutuhan bisnis Anda — dari sistem internal hingga identitas brand dan pemasaran.">
+        <x-section-head :eyebrow="$sol['eyebrow']" :title="$sol['title']" :description="$sol['description']">
             <x-slot:action><x-button :href="route('layanan.index')" variant="outline" size="sm" icon="arrow-right">Semua Layanan</x-button></x-slot:action>
         </x-section-head>
 
@@ -151,7 +152,7 @@
     {{-- ====================================================== Portofolio --}}
     <section class="bg-brand-light py-16 md:py-20">
         <div class="container-site">
-            <x-section-head eyebrow="Portofolio" title="Bukti Nyata Kapabilitas Kami">
+            <x-section-head :eyebrow="$pf['eyebrow']" :title="$pf['title']">
                 <x-slot:action><x-button :href="route('portofolio.index')" variant="outline" size="sm" icon="arrow-right">Lihat Semua Proyek</x-button></x-slot:action>
             </x-section-head>
 
@@ -178,20 +179,16 @@
     {{-- ===================================================== Sertifikasi --}}
     <section class="container-site grid grid-cols-1 items-center gap-10 py-16 md:py-20 lg:grid-cols-[1fr_520px] lg:gap-16">
         <div data-animate-group="0.07">
-            <p data-animate class="overline">Kredibilitas &amp; Keamanan</p>
-            <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-h2-lg">Standar Keamanan yang Terjamin</h2>
-            <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">Kami mengikuti standar keamanan informasi internasional ISO/IEC 27001 untuk memastikan data dan sistem klien kami terlindungi di setiap tahap kerja sama.</p>
+            <p data-animate class="overline">{{ $sf['eyebrow'] }}</p>
+            <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-h2-lg">{{ $sf['title'] }}</h2>
+            <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">{{ $sf['description'] }}</p>
             <ul class="mt-6 space-y-3">
-                @foreach ([
-                    ['Perlindungan data terenkripsi', 'Data klien dienkripsi saat disimpan maupun ditransmisikan.'],
-                    ['Akses sistem yang terkontrol', 'Hak akses berjenjang dan tercatat pada audit trail.'],
-                    ['Penilaian risiko berkala', 'Evaluasi keamanan rutin di setiap siklus pengembangan.'],
-                ] as [$pointTitle, $pointDesc])
+                @foreach ($sf['points'] as $pt)
                     <li data-animate class="flex items-start gap-3.5 rounded-xl bg-brand-light px-4 py-3.5">
                         <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-normal"><x-heroicon-o-check class="h-3.5 w-3.5 text-white" /></span>
                         <span>
-                            <span class="block text-[15px] font-medium leading-[22px] text-brand-dark">{{ $pointTitle }}</span>
-                            <span class="block text-label text-brand-muted">{{ $pointDesc }}</span>
+                            <span class="block text-[15px] font-medium leading-[22px] text-brand-dark">{{ $pt['title'] }}</span>
+                            <span class="block text-label text-brand-muted">{{ $pt['description'] }}</span>
                         </span>
                     </li>
                 @endforeach
@@ -202,10 +199,10 @@
             <span class="flex h-28 w-28 items-center justify-center rounded-full border border-brand-border-on-dark bg-brand-surface-on-dark">
                 <x-icons.shield class="h-12 w-12" />
             </span>
-            <p class="mt-5 font-heading text-h3 font-semibold md:text-[26px] md:leading-[34px]">ISO/IEC 27001</p>
-            <p class="mt-1 text-body-sm text-brand-on-dark">Information Security Management System</p>
+            <p class="mt-5 font-heading text-h3 font-semibold md:text-[26px] md:leading-[34px]">{{ $sf['panel_title'] }}</p>
+            <p class="mt-1 text-body-sm text-brand-on-dark">{{ $sf['panel_sub'] }}</p>
             <div class="mt-5 flex flex-wrap justify-center gap-2">
-                @foreach (['Tersertifikasi', 'Audit Berkala', 'Standar Internasional'] as $tag)
+                @foreach (site_list('beranda.sertifikasi.panel_tags') as $tag)
                     <x-chip variant="on-dark" class="text-label-sm">{{ $tag }}</x-chip>
                 @endforeach
             </div>
@@ -216,25 +213,22 @@
     <section class="bg-brand-light py-16 md:py-20">
         <div class="container-site grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-16">
             <div data-animate-group="0.07">
-                <p data-animate class="overline">Tentang Maiharta</p>
-                <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-h2-lg">Mitra Transformasi Digital Bisnis Anda</h2>
-                <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">Maiharta adalah tim yang berfokus membantu bisnis bertransformasi secara digital melalui solusi teknologi yang aman, scalable, dan berorientasi pada hasil — mulai dari perencanaan, desain, hingga pengembangan sistem.</p>
-                <div data-animate class="mt-6"><x-button :href="route('tentang')" icon="arrow-right">Kenali Kami Lebih Dekat</x-button></div>
+                <p data-animate class="overline">{{ $tt['eyebrow'] }}</p>
+                <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-h2-lg">{{ $tt['title'] }}</h2>
+                <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">{{ $tt['description'] }}</p>
+                <div data-animate class="mt-6"><x-button :href="route('tentang')" icon="arrow-right">{{ $tt['button'] }}</x-button></div>
             </div>
 
             <div data-animate-group class="space-y-3.5">
-                @foreach ([
-                    ['check', 'Profesional', 'Bekerja dengan standar dan proses yang konsisten di setiap proyek.'],
-                    ['value-collab', 'Kolaboratif', 'Melibatkan klien secara aktif dari perencanaan hingga peluncuran.'],
-                    ['value-result', 'Berorientasi Hasil', 'Setiap solusi dirancang untuk memberi dampak nyata pada bisnis Anda.'],
-                ] as [$icon, $valueTitle, $valueDesc])
+                @foreach (array_slice($values, 0, 3) as $vi => $v)
+                    @php $icon = $valueIcons[$vi] ?? 'check'; @endphp
                     <div data-animate class="flex items-center gap-4 rounded-[14px] border border-brand-border bg-white px-5 py-5">
                         <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand-normal">
                             <x-dynamic-component :component="'icons.' . $icon" class="h-5 w-5" />
                         </span>
                         <span>
-                            <span class="block font-heading text-[17px] font-medium leading-6 text-brand-dark">{{ $valueTitle }}</span>
-                            <span class="block text-body-sm text-brand-muted">{{ $valueDesc }}</span>
+                            <span class="block font-heading text-[17px] font-medium leading-6 text-brand-dark">{{ $v['title'] }}</span>
+                            <span class="block text-body-sm text-brand-muted">{{ $v['description'] }}</span>
                         </span>
                     </div>
                 @endforeach
@@ -245,12 +239,12 @@
     {{-- ============================================================= CTA --}}
     <div class="bg-brand-light">
         <x-cta-panel
-            eyebrow="Mulai Sekarang"
-            title="Siap Membangun Produk Digital Anda?"
-            description="Ceritakan kebutuhan bisnis Anda, tim kami akan membantu menemukan solusi digital yang tepat."
-            primary-label="Hubungi Kami Sekarang"
+            :eyebrow="$cta['eyebrow']"
+            :title="$cta['title']"
+            :description="$cta['description']"
+            :primary-label="$cta['primary']"
             :primary-href="route('kontak')"
-            secondary-label="Lihat Layanan"
+            :secondary-label="$cta['secondary']"
             :secondary-href="route('layanan.index')"
         />
     </div>

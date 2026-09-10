@@ -1,6 +1,8 @@
 @php
     $editing = $service->exists;
     $steps = old('steps', $service->process_steps ?: [['title' => '', 'description' => '']]);
+    $meta = old('meta', $service->meta ?: [['label' => 'Cocok untuk', 'value' => ''], ['label' => 'Deliverable', 'value' => ''], ['label' => 'Durasi tipikal', 'value' => ''], ['label' => 'Model kerja', 'value' => ''], ['label' => 'Standar', 'value' => 'ISO/IEC 27001']]);
+    $caps = old('capabilities', $service->capabilities ?: [['title' => '', 'description' => '']]);
     $tags = collect(old('tech_tags') !== null ? explode(',', old('tech_tags')) : ($service->tech_tags ?? []))->map(fn ($t) => trim($t))->filter()->values();
 @endphp
 
@@ -13,6 +15,8 @@
     <form id="service-form" method="POST" action="{{ $editing ? route('admin.services.update', $service) : route('admin.services.store') }}"
           x-data="{
               steps: @js(array_values($steps)),
+              meta: @js(array_values($meta)),
+              caps: @js(array_values($caps)),
               tags: @js($tags->all()),
               draft: '',
               icon: @js(old('icon', $service->icon ?? 'code')),
@@ -31,6 +35,35 @@
                     </div>
                     <x-admin.field class="mt-4" label="Deskripsi Singkat" name="short_description" type="textarea" rows="2" :value="$service->short_description" required maxlength="255" help="Tampil pada kartu layanan. Maks 255 karakter." />
                     <x-admin.field class="mt-4" label="Deskripsi Lengkap" name="description" type="textarea" rows="5" :value="$service->description" required />
+                </x-admin.card>
+
+                <x-admin.card title="Kartu Meta (hero detail)">
+                    <x-slot:action><x-admin.button variant="secondary" size="sm" icon="plus" @click="meta.push({ label: '', value: '' })">Tambah Baris</x-admin.button></x-slot:action>
+                    <p class="-mt-2 mb-3 text-caption text-brand-muted">Pasangan label–nilai di kartu kanan hero (mis. <em>Cocok untuk — Instansi pemerintah</em>). Baris kosong diabaikan.</p>
+                    <div class="space-y-2.5">
+                        <template x-for="(m, i) in meta" :key="i">
+                            <div class="flex items-center gap-2.5">
+                                <input type="text" :name="`meta[${i}][label]`" x-model="m.label" placeholder="Label" class="w-44 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
+                                <input type="text" :name="`meta[${i}][value]`" x-model="m.value" placeholder="Nilai" class="flex-1 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
+                                <button type="button" @click="meta.splice(i, 1)" class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-brand-light hover:bg-error-bg hover:text-error" title="Hapus"><x-heroicon-o-trash class="h-4 w-4" /></button>
+                            </div>
+                        </template>
+                    </div>
+                </x-admin.card>
+
+                <x-admin.card title="Tentang Layanan & Kapabilitas">
+                    <x-slot:action><x-admin.button variant="secondary" size="sm" icon="plus" @click="caps.push({ title: '', description: '' })">Tambah Kapabilitas</x-admin.button></x-slot:action>
+                    <x-admin.field class="mb-4" label="Judul section “Tentang Layanan Ini”" name="about_title" :value="$service->about_title" placeholder="Sistem yang dibangun mengikuti proses bisnis Anda, bukan sebaliknya" help="Kosongkan untuk memakai judul default." />
+                    <div class="space-y-2.5">
+                        <template x-for="(c, i) in caps" :key="i">
+                            <div class="flex items-center gap-2.5">
+                                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-light text-label font-semibold text-brand-normal" x-text="String(i + 1).padStart(2, '0')"></span>
+                                <input type="text" :name="`capabilities[${i}][title]`" x-model="c.title" placeholder="Judul kapabilitas" class="w-56 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
+                                <input type="text" :name="`capabilities[${i}][description]`" x-model="c.description" placeholder="Keterangan singkat" class="flex-1 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
+                                <button type="button" @click="caps.splice(i, 1)" class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-brand-light hover:bg-error-bg hover:text-error" title="Hapus"><x-heroicon-o-trash class="h-4 w-4" /></button>
+                            </div>
+                        </template>
+                    </div>
                 </x-admin.card>
 
                 <x-admin.card title="Teknologi & Skillset">

@@ -8,22 +8,18 @@
         'megaphone' => 'Pemasaran',
         default => 'Dukungan',
     };
-    $steps = [
-        ['Konsultasi', 'Memahami kebutuhan, tujuan bisnis, dan batasan proyek Anda.'],
-        ['Perencanaan & Desain', 'Menyusun arsitektur sistem, alur pengguna, dan desain antarmuka.'],
-        ['Pengembangan & QA', 'Membangun produk secara iteratif dengan pengujian berkelanjutan.'],
-        ['Peluncuran & Support', 'Rilis ke produksi, pelatihan pengguna, dan pemeliharaan.'],
-    ];
+    $hero = site('layanan.hero'); $pr = site('layanan.proses'); $cta = site('layanan.cta'); $st = site('umum.stats');
+    $steps = collect($pr['steps'])->map(fn ($s) => [$s['title'], $s['description']])->all();
 @endphp
 
 <x-layout title="Layanan — MaiHarta" description="Solusi digital untuk setiap kebutuhan bisnis: software development, desain, digital marketing, hingga maintenance.">
 <div x-data="{ active: 'Semua' }">
 
     <x-page-hero
-        eyebrow="Layanan Kami"
-        title="Solusi Digital untuk Setiap Kebutuhan Bisnis"
-        description="Kami membantu bisnis Anda merancang, membangun, dan mengembangkan produk digital — dari website hingga sistem internal yang kompleks."
-        :stats="[[$services->count(), 'Layanan'], ['199+', 'Proyek'], ['ISO', '27001']]"
+        :eyebrow="$hero['eyebrow']"
+        :title="$hero['title']"
+        :description="$hero['description']"
+        :stats="[[$services->count(), 'Layanan'], [$st['projects'], 'Proyek'], ['ISO', '27001']]"
     >
         <x-slot:footer><x-filter-tabs :items="$groups" /></x-slot:footer>
     </x-page-hero>
@@ -38,7 +34,7 @@
                         <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] bg-brand-surface-on-dark [&_svg]:text-white"><x-service-icon :icon="$featured->icon" class="h-7 w-7" /></span>
                         <h2 class="font-heading text-h3 font-semibold md:text-[28px] md:leading-9">{{ $featured->name }}</h2>
                     </div>
-                    <p class="mt-4 text-body-sm text-brand-on-dark md:text-[15px] md:leading-6">{{ $featured->short_description }} Termasuk sistem internal, portal publik, e-commerce, dan integrasi API.</p>
+                    <p class="mt-4 text-body-sm text-brand-on-dark md:text-[15px] md:leading-6">{{ $featured->short_description }} {{ $hero['featured_extra'] }}</p>
                     <div class="mt-4 flex flex-wrap gap-2">
                         @foreach (collect($featured->tech_tags ?? [])->take(5) as $tag)<x-chip variant="on-dark">{{ $tag }}</x-chip>@endforeach
                     </div>
@@ -78,7 +74,7 @@
     {{-- Proses kerja --}}
     <section class="bg-brand-light py-16 md:py-20">
         <div class="container-site">
-            <x-section-head eyebrow="Cara Kami Bekerja" title="Empat Langkah dari Ide ke Produk" align="center" />
+            <x-section-head :eyebrow="$pr['eyebrow']" :title="$pr['title']" align="center" />
             <div data-animate-group class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 @foreach ($steps as $i => [$t, $d])
                     <x-card data-animate :interactive="false" padding="p-6">
@@ -92,7 +88,7 @@
     </section>
 
     <div class="bg-brand-light">
-        <x-cta-panel eyebrow="Konsultasi Gratis" title="Tidak Yakin Layanan Mana yang Anda Butuhkan?" description="Ceritakan kebutuhan bisnis Anda, tim kami akan membantu menentukan solusi yang paling tepat." primary-label="Konsultasi Gratis" :primary-href="route('kontak')" secondary-label="Lihat Portofolio" :secondary-href="route('portofolio.index')" />
+        <x-cta-panel :eyebrow="$cta['eyebrow']" :title="$cta['title']" :description="$cta['description']" :primary-label="$cta['primary']" :primary-href="route('kontak')" :secondary-label="$cta['secondary']" :secondary-href="route('portofolio.index')" />
     </div>
 </div>
 </x-layout>

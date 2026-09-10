@@ -76,6 +76,13 @@ class ServiceController extends Controller
             'steps.*.title' => ['nullable', 'string', 'max:100'],
             'steps.*.description' => ['nullable', 'string', 'max:255'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
+            'about_title' => ['nullable', 'string', 'max:255'],
+            'meta' => ['nullable', 'array'],
+            'meta.*.label' => ['nullable', 'string', 'max:60'],
+            'meta.*.value' => ['nullable', 'string', 'max:255'],
+            'capabilities' => ['nullable', 'array'],
+            'capabilities.*.title' => ['nullable', 'string', 'max:100'],
+            'capabilities.*.description' => ['nullable', 'string', 'max:255'],
         ], [
             'name.required' => 'Nama layanan wajib diisi.',
             'short_description.required' => 'Deskripsi singkat wajib diisi.',
@@ -93,6 +100,12 @@ class ServiceController extends Controller
             ->map(fn ($s) => ['title' => $s['title'], 'description' => $s['description'] ?? ''])
             ->values()
             ->all();
+        $data['meta'] = collect($data['meta'] ?? [])
+            ->filter(fn ($m) => filled($m['label'] ?? null) && filled($m['value'] ?? null))
+            ->map(fn ($m) => ['label' => $m['label'], 'value' => $m['value']])->values()->all();
+        $data['capabilities'] = collect($data['capabilities'] ?? [])
+            ->filter(fn ($c) => filled($c['title'] ?? null))
+            ->map(fn ($c) => ['title' => $c['title'], 'description' => $c['description'] ?? ''])->values()->all();
         unset($data['steps']);
 
         return $data;

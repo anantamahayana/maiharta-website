@@ -40,6 +40,6 @@ class ContactController extends Controller
                 : $validated['message'],
         ]);
 
-        return back()->with('status', 'Pesan Anda telah terkirim. Tim kami akan merespons dalam 1x24 jam kerja.');
+        return back()->with('status', site('kontak.hero.success'));
     }
 }
