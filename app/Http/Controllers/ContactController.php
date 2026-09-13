@@ -19,6 +19,7 @@ class ContactController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'company' => ['nullable', 'string', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:32', 'regex:/^[0-9+()\s.-]{6,}$/'],
             'service' => ['nullable', 'string', 'max:100'],
             'message' => ['required', 'string', 'max:5000'],
             // honeypot field — real users never fill this in
@@ -29,12 +30,14 @@ class ContactController extends Controller
             'email.email' => 'Format email tidak valid.',
             'message.required' => 'Ceritakan kebutuhan Anda terlebih dahulu.',
             'message.max' => 'Pesan terlalu panjang (maks. 5000 karakter).',
+            'phone.regex' => 'Format nomor tidak valid (contoh: 0812-3456-7890).',
         ]);
 
         ContactSubmission::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'company' => $validated['company'] ?? null,
+            'phone' => $validated['phone'] ?? null,
             'message' => filled($validated['service'] ?? null)
                 ? '[Layanan: ' . $validated['service'] . '] ' . $validated['message']
                 : $validated['message'],

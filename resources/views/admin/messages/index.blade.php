@@ -53,7 +53,7 @@
                         <span class="flex h-12 w-12 items-center justify-center rounded-full bg-brand-light font-heading text-body-sm font-semibold text-brand-dark">{{ $initials($selected->name) }}</span>
                         <span>
                             <span class="block font-heading text-h4 font-medium">{{ $selected->name }}</span>
-                            <span class="block text-caption text-brand-muted"><a href="mailto:{{ $selected->email }}" class="text-brand-normal hover:underline">{{ $selected->email }}</a>{{ $selected->company ? ' · ' . $selected->company : '' }}</span>
+                            <span class="block text-caption text-brand-muted"><a href="mailto:{{ $selected->email }}" class="text-brand-normal hover:underline">{{ $selected->email }}</a>{{ $selected->company ? ' · ' . $selected->company : '' }}@if ($selected->phone) · <x-heroicon-o-phone class="inline h-3 w-3" /> {{ $selected->phone }}@endif</span>
                         </span>
                     </div>
                     <div class="flex items-center gap-2">
@@ -70,7 +70,11 @@
                     <div class="mt-5 whitespace-pre-line rounded-xl bg-brand-input p-5 text-body-sm leading-relaxed text-brand-dark">{{ $body }}</div>
                     <div class="mt-5 flex flex-wrap gap-2">
                         <x-admin.button href="mailto:{{ $selected->email }}?subject={{ rawurlencode('Re: Permintaan konsultasi — Maiharta') }}" icon="arrow-uturn-left">Balas via Email</x-admin.button>
-                        <x-admin.button href="https://wa.me/?text={{ rawurlencode('Halo ' . $selected->name . ', terima kasih telah menghubungi Maiharta.') }}" target="_blank" variant="secondary" icon="chat-bubble-left-right">Balas via WhatsApp</x-admin.button>
+                        @if ($selected->whatsapp_number)
+                            <x-admin.button href="https://wa.me/{{ $selected->whatsapp_number }}?text={{ rawurlencode('Halo ' . $selected->name . ', terima kasih telah menghubungi Maiharta.') }}" target="_blank" variant="secondary" icon="chat-bubble-left-right">Balas via WhatsApp</x-admin.button>
+                        @else
+                            <span class="inline-flex items-center gap-2 rounded-lg border border-dashed border-brand-border px-4 py-2.5 text-label text-brand-muted" title="Pengirim tidak mencantumkan nomor WhatsApp"><x-heroicon-o-chat-bubble-left-right class="h-4 w-4" />Tanpa nomor WhatsApp</span>
+                        @endif
                     </div>
                 </div>
             @else

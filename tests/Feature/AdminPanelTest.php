@@ -168,4 +168,19 @@ class AdminPanelTest extends TestCase
         $this->delete("/admin/messages/{$m->id}")->assertRedirect(route('admin.messages.index'));
         $this->assertDatabaseMissing('contact_submissions', ['id' => $m->id]);
     }
+
+    public function test_contact_phone_enables_whatsapp_reply(): void
+    {
+        $this->post('/kontak', ['name' => 'Wayan', 'email' => 'w@example.com', 'phone' => '0812-3456-7890', 'message' => 'Halo', 'website' => ''])->assertSessionHas('status');
+        $m = ContactSubmission::latest()->first();
+        $this->assertSame('0812-3456-7890', $m->phone);
+        $this->assertSame('6281234567890', $m->whatsapp_number);
+
+        $this->post('/kontak', ['name' => 'X', 'email' => 'x@example.com', 'phone' => 'abc', 'message' => 'Halo', 'website' => ''])->assertSessionHasErrors('phone');
+
+        $this->actingAs($this->admin);
+        $this->get("/admin/messages?open={$m->id}")->assertOk()->assertSee('wa.me/6281234567890', false);
+        $noPhone = ContactSubmission::create(['name' => 'Tanpa', 'email' => 't@example.com', 'message' => 'Hi']);
+        $this->get("/admin/messages?open={$noPhone->id}")->assertOk()->assertSee('Tanpa nomor WhatsApp')->assertDontSee('wa.me/', false);
+    }
 }
