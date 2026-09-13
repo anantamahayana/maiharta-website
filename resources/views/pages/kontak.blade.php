@@ -1,20 +1,19 @@
 @php
-    $serviceOptions = site_list('kontak.hero.services') ?: ['Lainnya'];
-    $brand = site('umum.brand');
-    $k = site('kontak.hero');
-    $mapQ = rawurlencode($k['map_query'] ?: $brand['address']);
-    $socials = array_filter([['Instagram', $brand['instagram'], 'IG'], ['Facebook', $brand['facebook'], 'FB'], ['LinkedIn', $brand['linkedin'], 'IN'], ['WhatsApp', 'https://wa.me/' . $brand['whatsapp'], 'WA']], fn ($x) => filled($x[1]));
+    $serviceOptions = ['Software Development', 'Graphics Design', 'Digital Marketing', 'UI/UX Design', 'Konsultasi', 'Lainnya'];
     $sent = session('status');
+    $brand = site('umum.brand');
+    $mapQ = rawurlencode($brand['address']);
+    $socials = array_filter([['Instagram', $brand['instagram'], 'IG'], ['Facebook', $brand['facebook'], 'FB'], ['LinkedIn', $brand['linkedin'], 'IN'], ['WhatsApp', 'https://wa.me/' . $brand['whatsapp'], 'WA']], fn ($x) => filled($x[1]));
     $inputClass = 'w-full rounded-[10px] border bg-brand-input px-3.5 py-3 text-body-sm text-brand-dark placeholder:text-brand-placeholder outline-none transition focus:border-brand-normal focus:bg-white focus:ring-[3px] focus:ring-brand-normal/20';
 @endphp
 
 <x-layout title="Kontak — MaiHarta" description="Hubungi tim Maiharta — kami merespons dalam 1×24 jam kerja.">
 
-    <x-page-hero :eyebrow="$k['eyebrow']" :title="$k['title']" :description="$k['description']">
+    <x-page-hero eyebrow="Kontak" title="Hubungi Kami" description="Ceritakan kebutuhan bisnis Anda — tim kami akan merespons dalam 1×24 jam kerja.">
         <x-slot:aside>
             <span class="inline-flex items-center gap-2.5 rounded-full border border-brand-border bg-white px-4 py-3 text-label font-medium text-brand-dark">
                 <span class="relative flex h-2.5 w-2.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60"></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-success"></span></span>
-                {{ $k['online'] }}
+                Tim kami online · Senin–Jumat 09.00–17.00 WITA
             </span>
         </x-slot:aside>
     </x-page-hero>
@@ -34,8 +33,8 @@
                     </div>
                 </div>
             @else
-                <h2 class="font-heading text-h3 font-semibold text-brand-dark">{{ $k['form_title'] }}</h2>
-                <p class="mt-1 text-body-sm text-brand-muted">{{ $k['form_sub'] }}</p>
+                <h2 class="font-heading text-h3 font-semibold text-brand-dark">Kirim Pesan</h2>
+                <p class="mt-1 text-body-sm text-brand-muted">Isi formulir di bawah, kami akan menghubungi Anda kembali.</p>
 
                 @if ($errors->any())
                     <div class="mt-5 flex items-start gap-3 rounded-[10px] border border-error/30 bg-error-bg px-4 py-3 text-body-sm text-error">
@@ -84,7 +83,7 @@
 
                     <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
                         <x-button type="submit" icon="arrow-right">Kirim Pesan</x-button>
-                        <p class="text-caption text-brand-muted">{{ $k['privacy'] }}</p>
+                        <p class="text-caption text-brand-muted">Dengan mengirim, Anda menyetujui kebijakan privasi kami.</p>
                     </div>
                 </form>
             @endif

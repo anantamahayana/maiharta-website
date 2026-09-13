@@ -1,9 +1,7 @@
 @php
     $steps = collect($service->process_steps ?? []);
     $tags = collect($service->tech_tags ?? []);
-    $d = site('layanan.detail');
-    $ctaC = site('layanan.cta');
-    $durations = site_list('layanan.detail.durations');
+    $durations = ['1–2 minggu', '2–3 minggu', '4–12 minggu', '1–2 minggu', 'Berkelanjutan'];
     $capabilities = collect($service->capabilities ?? [])->map(fn ($c) => [$c['title'], $c['description'] ?? ''])->all();
     $meta = collect($service->meta ?? [])->map(fn ($m) => [$m['label'], $m['value']])->all();
     $aboutTitle = $service->about_title ?: 'Sistem yang dibangun mengikuti proses bisnis Anda, bukan sebaliknya';
@@ -47,7 +45,7 @@
     {{-- Tentang layanan --}}
     <section class="container-site grid grid-cols-1 gap-10 py-16 md:py-20 {{ $capabilities ? 'lg:grid-cols-[1fr_520px]' : '' }} lg:gap-16">
         <div data-animate-group="0.07">
-            <p data-animate class="overline">{{ $d['about_eyebrow'] }}</p>
+            <p data-animate class="overline">Tentang Layanan Ini</p>
             <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-[32px] md:leading-[42px]">{{ $aboutTitle }}</h2>
             <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">{{ $service->description }}</p>
         </div>
@@ -67,7 +65,7 @@
     @if ($steps->isNotEmpty())
         <section class="bg-brand-light py-16 md:py-20">
             <div class="container-site">
-                <x-section-head eyebrow="Proses Kerja" :title="$d['process_title']" align="center" />
+                <x-section-head eyebrow="Proses Kerja" title="Lima Tahap Menuju Sistem yang Siap Pakai" align="center" />
                 <div data-animate-group class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
                     @foreach ($steps as $i => $step)
                         <x-card data-animate :interactive="false" padding="p-6">
@@ -85,7 +83,7 @@
     {{-- Teknologi --}}
     @if ($tags->isNotEmpty())
         <section class="container-site py-16 md:py-20">
-            <x-section-head eyebrow="Teknologi & Skillset" :title="$d['tech_title']" />
+            <x-section-head eyebrow="Teknologi & Skillset" title="Stack yang Terbukti di Produksi" />
             <div data-animate-group class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
                 @foreach ($techGroups as $g => $items)
                     @continue($items->isEmpty())
@@ -100,7 +98,7 @@
 
     {{-- Proyek terkait --}}
     <section id="proyek-terkait" class="container-site pb-16 md:pb-20 {{ $tags->isEmpty() ? 'pt-16 md:pt-20' : '' }}">
-        <x-section-head eyebrow="Proyek Terkait" :title="$d['related_title']">
+        <x-section-head eyebrow="Proyek Terkait" title="Yang Sudah Kami Bangun dengan Layanan Ini">
             <x-slot:action><x-button :href="route('portofolio.index')" variant="outline" size="sm" icon="arrow-right">Lihat Semua Portofolio</x-button></x-slot:action>
         </x-section-head>
         @if ($relatedProjects->isNotEmpty())
@@ -112,5 +110,5 @@
         @endif
     </section>
 
-    <x-cta-panel eyebrow="Mulai Proyek" :title="'Siap Memulai Proyek ' . $service->name . ' Anda?'" :description="$ctaC['description']" primary-label="Konsultasi Layanan Ini" :primary-href="route('kontak')" secondary-label="Lihat Layanan Lain" :secondary-href="route('layanan.index')" />
+    <x-cta-panel eyebrow="Mulai Proyek" :title="'Siap Memulai Proyek ' . $service->name . ' Anda?'" description="Ceritakan kebutuhan Anda, kami bantu rancang dari nol hingga siap dipakai." primary-label="Konsultasi Layanan Ini" :primary-href="route('kontak')" secondary-label="Lihat Layanan Lain" :secondary-href="route('layanan.index')" />
 </x-layout>
