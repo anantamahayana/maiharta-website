@@ -3,7 +3,7 @@
     $sent = session('status');
     $brand = site('umum.brand');
     $mapQ = rawurlencode($brand['address']);
-    $socials = array_filter([['Instagram', $brand['instagram'], 'IG'], ['Facebook', $brand['facebook'], 'FB'], ['LinkedIn', $brand['linkedin'], 'IN'], ['WhatsApp', 'https://wa.me/' . $brand['whatsapp'], 'WA']], fn ($x) => filled($x[1]));
+    $socials = array_filter([['Instagram', $brand['instagram'], 'instagram'], ['Facebook', $brand['facebook'], 'facebook'], ['LinkedIn', $brand['linkedin'], 'linkedin'], ['WhatsApp', 'https://wa.me/' . $brand['whatsapp'], 'whatsapp']], fn ($x) => filled($x[1]));
     $inputClass = 'w-full rounded-[10px] border bg-brand-input px-3.5 py-3 text-body-sm text-brand-dark placeholder:text-brand-placeholder outline-none transition focus:border-brand-normal focus:bg-white focus:ring-[3px] focus:ring-brand-normal/20';
 @endphp
 
@@ -114,9 +114,9 @@
 
             <div data-animate class="flex items-center gap-3 rounded-panel bg-brand-light px-5 py-4">
                 <span class="flex-1 text-body-sm font-medium text-brand-dark">Media Sosial</span>
-                @foreach ($socials as [$name, $href, $abbr])
+                @foreach ($socials as [$name, $href, $icon])
                     <a href="{{ $href }}" target="_blank" rel="noopener" aria-label="{{ $name }}" class="flex h-10 w-10 items-center justify-center rounded-full border border-brand-border bg-white text-brand-dark transition hover:-translate-y-0.5 hover:border-brand-normal hover:text-brand-normal">
-                        <span class="text-label font-semibold">{{ $abbr }}</span>
+                        <x-dynamic-component :component="'icons.social-' . $icon" class="h-[18px] w-[18px]" />
                     </a>
                 @endforeach
             </div>
