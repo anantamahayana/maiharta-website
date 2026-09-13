@@ -17,7 +17,8 @@ class Setting extends Model
     /** All groups merged with config defaults, cached until the next save. */
     public static function content(): array
     {
-        return Cache::rememberForever('site.content', function () {
+        // cache key includes a hash of the schema so config edits never serve stale defaults
+        return Cache::rememberForever(static::cacheKey(), function () {
             $stored = static::query()->pluck('value', 'key')->all();
             $content = [];
             foreach (config('content.pages') as $page => $pageDef) {
@@ -34,6 +35,11 @@ class Setting extends Model
         });
     }
 
+    public static function cacheKey(): string
+    {
+        return 'site.content.' . md5(serialize(config('content.pages')));
+    }
+
     public static function get(string $path, mixed $default = null): mixed
     {
         return Arr::get(static::content(), $path, $default);
@@ -42,12 +48,12 @@ class Setting extends Model
     public static function put(string $key, array $value): void
     {
         static::updateOrCreate(['key' => $key], ['value' => $value]);
-        Cache::forget('site.content');
+        Cache::forget(static::cacheKey());
     }
 
     protected static function booted(): void
     {
-        static::saved(fn () => Cache::forget('site.content'));
-        static::deleted(fn () => Cache::forget('site.content'));
+        static::saved(fn () => Cache::forget(static::cacheKey()));
+        static::deleted(fn () => Cache::forget(static::cacheKey()));
     }
 }
