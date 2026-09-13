@@ -61,9 +61,16 @@
                         </div>
                     </div>
 
-                    <div>
-                        <label for="company" class="mb-1.5 block text-label font-medium text-brand-dark">Nama Perusahaan <span class="font-normal text-brand-muted">(Opsional)</span></label>
-                        <input type="text" name="company" id="company" value="{{ old('company') }}" placeholder="Masukkan nama perusahaan" class="{{ $inputClass }}">
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div>
+                            <label for="company" class="mb-1.5 block text-label font-medium text-brand-dark">Nama Perusahaan <span class="font-normal text-brand-muted">(Opsional)</span></label>
+                            <input type="text" name="company" id="company" value="{{ old('company') }}" placeholder="Masukkan nama perusahaan" class="{{ $inputClass }}">
+                        </div>
+                        <div>
+                            <label for="phone" class="mb-1.5 block text-label font-medium text-brand-dark">Nomor WhatsApp <span class="font-normal text-brand-muted">(Opsional)</span></label>
+                            <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" placeholder="0812-3456-7890" autocomplete="tel" class="{{ $inputClass }} @error('phone') !border-error @enderror">
+                            @error('phone')<p class="mt-1.5 flex items-center gap-1 text-caption text-error"><x-heroicon-o-exclamation-circle class="h-3.5 w-3.5" />{{ $message }}</p>@else<p class="mt-1.5 text-caption text-brand-muted">Agar kami bisa membalas lewat WhatsApp.</p>@enderror
+                        </div>
                     </div>
 
                     <div>
