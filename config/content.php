@@ -30,6 +30,8 @@ return [
                         ['key' => 'whatsapp', 'label' => 'Nomor WhatsApp (angka saja, awali 62)', 'type' => 'text', 'default' => '6281236300562'],
                         ['key' => 'address', 'label' => 'Alamat kantor', 'type' => 'textarea', 'default' => 'Jl. Tukad Ayung No.5, Denpasar Selatan, Kota Denpasar, Bali'],
                         ['key' => 'hours', 'label' => 'Jam operasional', 'type' => 'text', 'default' => 'Senin–Jumat, 09.00–17.00 WITA'],
+                        ['key' => 'maps_link', 'label' => 'Tautan Google Maps (tombol “Buka di Maps”)', 'type' => 'text', 'default' => 'https://maps.app.goo.gl/d65RkJQM85h3SzYeA'],
+                        ['key' => 'maps_embed', 'label' => 'Kueri peta tersemat (nama tempat / koordinat)', 'type' => 'text', 'default' => 'Kantor MaiHarta@-8.6748883,115.2328203'],
                         ['key' => 'instagram', 'label' => 'URL Instagram', 'type' => 'text', 'default' => ''],
                         ['key' => 'facebook', 'label' => 'URL Facebook', 'type' => 'text', 'default' => ''],
                         ['key' => 'linkedin', 'label' => 'URL LinkedIn', 'type' => 'text', 'default' => ''],
