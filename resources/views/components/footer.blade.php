@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-[1440px] px-5 py-16 md:px-20">
         <div class="grid grid-cols-1 gap-10 md:grid-cols-[280px_1fr_1fr]">
             <div>
-                <img src="{{ asset('images/logo-maiharta-white.png') }}" alt="MaiHarta" class="h-9 w-auto">
+                <img src="{{ asset(site('umum.brand.logo_white')) }}" alt="MaiHarta" class="h-9 w-auto">
                 <p class="mt-3 text-sm text-white/60">
                     Mitra pengembangan produk digital yang profesional, aman, dan terpercaya.
                 </p>

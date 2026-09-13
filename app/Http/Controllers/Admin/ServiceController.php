@@ -75,6 +75,7 @@ class ServiceController extends Controller
             'steps' => ['nullable', 'array'],
             'steps.*.title' => ['nullable', 'string', 'max:100'],
             'steps.*.description' => ['nullable', 'string', 'max:255'],
+            'steps.*.duration' => ['nullable', 'string', 'max:40'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'about_title' => ['nullable', 'string', 'max:255'],
             'meta' => ['nullable', 'array'],
@@ -97,7 +98,7 @@ class ServiceController extends Controller
             ->map(fn ($t) => trim($t))->filter()->unique()->values()->all();
         $data['process_steps'] = collect($data['steps'] ?? [])
             ->filter(fn ($s) => filled($s['title'] ?? null))
-            ->map(fn ($s) => ['title' => $s['title'], 'description' => $s['description'] ?? ''])
+            ->map(fn ($s) => ['title' => $s['title'], 'description' => $s['description'] ?? '', 'duration' => $s['duration'] ?? ''])
             ->values()
             ->all();
         $data['meta'] = collect($data['meta'] ?? [])

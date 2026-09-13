@@ -4,6 +4,7 @@
         ['value-collab', 'Kolaboratif', 'Melibatkan klien secara aktif dari perencanaan hingga peluncuran.'],
         ['value-result', 'Berorientasi Hasil', 'Setiap solusi dirancang untuk memberi dampak nyata pada bisnis Anda.'],
     ];
+    $cerita = site('tentang.cerita');
     $partners = site('tentang.partner.partners', []);
     $clients = site('tentang.partner.clients', []);
 @endphp
@@ -16,12 +17,14 @@
     <section class="container-site grid grid-cols-1 gap-10 pb-16 md:pb-20 lg:grid-cols-[1fr_560px] lg:gap-16">
         <div data-animate-group="0.07">
             <p data-animate class="overline">Siapa Kami</p>
-            <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-[32px] md:leading-[42px]">Dibangun di Bali, melayani instansi di seluruh Indonesia</h2>
-            <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">Berawal dari tim kecil pengembang di Denpasar, Maiharta tumbuh menjadi mitra teknologi bagi perbankan daerah, pemerintah provinsi dan kabupaten, hingga pelaku usaha kreatif. Kami percaya produk digital yang baik lahir dari pemahaman mendalam terhadap proses bisnis klien — bukan sekadar kode.</p>
-            <blockquote data-animate class="mt-6 rounded-[14px] border-l-[3px] border-brand-normal bg-brand-light px-6 py-5">
-                <p class="font-heading text-body font-medium text-brand-dark">“Ngga ada habisnya” — semangat kami untuk terus berinovasi bersama setiap klien.</p>
-                <footer class="mt-2 text-label text-brand-muted">Tim Maiharta</footer>
-            </blockquote>
+            <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-[32px] md:leading-[42px]">{{ $cerita['title'] }}</h2>
+            <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">{{ $cerita['description'] }}</p>
+            @if ($cerita['quote'])
+                <blockquote data-animate class="mt-6 rounded-[14px] border-l-[3px] border-brand-normal bg-brand-light px-6 py-5">
+                    <p class="font-heading text-body font-medium text-brand-dark">{{ $cerita['quote'] }}</p>
+                    @if ($cerita['quote_by'])<footer class="mt-2 text-label text-brand-muted">{{ $cerita['quote_by'] }}</footer>@endif
+                </blockquote>
+            @endif
             <div data-animate class="mt-6"><x-button :href="route('kontak')" icon="arrow-right">Hubungi Tim Kami</x-button></div>
         </div>
         <div data-animate-group class="space-y-3.5">

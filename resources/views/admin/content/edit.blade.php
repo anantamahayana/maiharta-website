@@ -65,6 +65,20 @@
                                 </div>
                             </div>
 
+                        @elseif ($f['type'] === 'image')
+                            <div x-data="{ src: @js($val ? asset($val) : null), remove: false, pick(e) { const f = e.target.files[0]; if (!f) return; this.remove = false; this.src = URL.createObjectURL(f); } }">
+                                <span class="mb-1.5 block text-label font-medium">{{ $f['label'] }}</span>
+                                <input type="hidden" name="{{ $name }}_remove" :value="remove ? 1 : 0">
+                                <div class="flex items-center gap-4 rounded-lg border border-brand-border bg-brand-input p-3">
+                                    <span class="flex h-16 w-40 shrink-0 items-center justify-center rounded-md bg-white p-2 {{ str_contains($f['key'], 'white') ? '!bg-brand-dark' : '' }}"><img x-show="src && !remove" :src="src" alt="" class="max-h-full max-w-full object-contain"><span x-show="!src || remove" class="text-caption text-brand-muted">Belum ada</span></span>
+                                    <div class="flex flex-wrap gap-2">
+                                        <label class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-brand-border bg-white px-3 py-2 text-label font-medium hover:bg-brand-light"><input type="file" name="{{ $name }}" accept="image/png,image/svg+xml,image/webp,image/jpeg" class="sr-only" @change="pick"><x-heroicon-o-arrow-up-tray class="h-4 w-4" />Ganti</label>
+                                        <x-admin.button variant="secondary" size="sm" icon="arrow-uturn-left" x-show="src && !remove" @click="remove = true">Kembali ke default</x-admin.button>
+                                    </div>
+                                </div>
+                                <p class="mt-1.5 text-caption text-brand-muted">PNG/SVG transparan, tinggi ±40 px · maks 2 MB.</p>
+                            </div>
+
                         @elseif ($f['type'] === 'images')
                             <div class="md:col-span-2" x-data="{ items: @js(array_values($val ?: [])), files: [], pick(e) { this.files = [...e.target.files].map(f => ({ name: f.name, url: URL.createObjectURL(f) })); } }">
                                 <div class="mb-2 flex items-center justify-between">

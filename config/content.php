@@ -7,10 +7,10 @@
 | Setiap "page" menjadi satu tab di Admin → Konten Website. Setiap "group"
 | disimpan sebagai satu baris di tabel `settings` (key = "page.group").
 | Nilai default di sini = yang tampil bila admin belum mengubahnya.
-| Teks halaman (judul, deskripsi, CTA) sengaja TIDAK di sini — itu diedit
-| langsung di file Blade.
+| Teks halaman lain (hero, judul section, CTA) sengaja tetap statis di Blade.
 |
-| Tipe field: text | textarea | images (daftar logo)
+| Tipe field: text | textarea | image (satu gambar) | images (daftar logo)
+|             | repeater (fields + max)
 */
 
 return [
@@ -22,8 +22,10 @@ return [
             'groups' => [
                 'brand' => [
                     'label' => 'Identitas & Kontak',
-                    'help' => 'Dipakai di footer, halaman Kontak, dan tombol WhatsApp.',
+                    'help' => 'Logo dipakai di navbar, footer, dan panel admin. Kontak dipakai di footer, halaman Kontak, dan tombol WhatsApp.',
                     'fields' => [
+                        ['key' => 'logo', 'label' => 'Logo (untuk latar terang)', 'type' => 'image', 'default' => 'images/logo-maiharta.png'],
+                        ['key' => 'logo_white', 'label' => 'Logo putih (untuk latar gelap: footer & admin)', 'type' => 'image', 'default' => 'images/logo-maiharta-white.png'],
                         ['key' => 'email', 'label' => 'Email', 'type' => 'text', 'default' => 'info@maiharta.com'],
                         ['key' => 'phone', 'label' => 'Telepon / WhatsApp (tampil)', 'type' => 'text', 'default' => '+62 812-3630-0562'],
                         ['key' => 'whatsapp', 'label' => 'Nomor WhatsApp (angka saja, awali 62)', 'type' => 'text', 'default' => '6281236300562'],
@@ -46,13 +48,59 @@ return [
             ],
         ],
 
+        'sertifikasi' => [
+            'label' => 'Sertifikasi',
+            'icon' => 'shield-check',
+            'groups' => [
+                'praktik' => [
+                    'label' => 'Kartu Praktik Keamanan',
+                    'help' => 'Tag teknis (mis. AES-256 · TLS 1.3) tampil sebagai chip di bawah kartu — pastikan sesuai praktik nyata.',
+                    'fields' => [
+                        ['key' => 'items', 'label' => 'Kartu', 'type' => 'repeater', 'max' => 4, 'fields' => [
+                            ['key' => 'title', 'label' => 'Judul', 'type' => 'text'],
+                            ['key' => 'description', 'label' => 'Deskripsi', 'type' => 'textarea'],
+                            ['key' => 'tag', 'label' => 'Tag teknis', 'type' => 'text'],
+                        ], 'default' => [
+                            ['title' => 'Data Terenkripsi', 'description' => 'Seluruh data klien dienkripsi baik saat disimpan maupun saat dikirim antar sistem, menggunakan protokol standar industri.', 'tag' => 'AES-256 · TLS 1.3'],
+                            ['title' => 'Akses Terkontrol', 'description' => 'Akses ke sistem dan data dibatasi berdasarkan peran, dengan autentikasi berlapis dan pencatatan aktivitas.', 'tag' => 'RBAC · 2FA · Audit Trail'],
+                            ['title' => 'Audit Risiko Berkala', 'description' => 'Penilaian risiko keamanan dilakukan secara rutin untuk mengidentifikasi celah sebelum menjadi ancaman.', 'tag' => 'Penetration Test · Review'],
+                        ]],
+                    ],
+                ],
+                'lain' => [
+                    'label' => 'Sertifikasi & Penghargaan Lain',
+                    'help' => 'Hapus baris yang belum dimiliki (mis. ISO 9001) agar tidak tampil.',
+                    'fields' => [
+                        ['key' => 'items', 'label' => 'Sertifikasi', 'type' => 'repeater', 'max' => 6, 'fields' => [
+                            ['key' => 'name', 'label' => 'Nama (mis. ISO 9001:2015)', 'type' => 'text'],
+                            ['key' => 'sub', 'label' => 'Keterangan', 'type' => 'text'],
+                            ['key' => 'description', 'label' => 'Deskripsi', 'type' => 'text'],
+                        ], 'default' => [
+                            ['name' => 'ISO 9001:2015', 'sub' => 'Quality Management System', 'description' => 'Menjamin proses kerja yang konsisten dan berorientasi pada kepuasan klien.'],
+                            ['name' => 'ISO/IEC 27001', 'sub' => 'Information Security Management', 'description' => 'Perlindungan data dan sistem informasi klien di seluruh siklus proyek.'],
+                        ]],
+                    ],
+                ],
+            ],
+        ],
+
         'tentang' => [
-            'label' => 'Partner & Klien',
+            'label' => 'Tentang',
             'icon' => 'user-group',
             'groups' => [
+                'cerita' => [
+                    'label' => 'Narasi Perusahaan',
+                    'help' => 'Tampil di section “Siapa Kami” halaman Tentang.',
+                    'fields' => [
+                        ['key' => 'title', 'label' => 'Judul', 'type' => 'text', 'default' => 'Dibangun di Bali, melayani instansi di seluruh Indonesia'],
+                        ['key' => 'description', 'label' => 'Cerita', 'type' => 'textarea', 'default' => 'Berawal dari tim kecil pengembang di Denpasar, Maiharta tumbuh menjadi mitra teknologi bagi perbankan daerah, pemerintah provinsi dan kabupaten, hingga pelaku usaha kreatif. Kami percaya produk digital yang baik lahir dari pemahaman mendalam terhadap proses bisnis klien — bukan sekadar kode.'],
+                        ['key' => 'quote', 'label' => 'Kutipan (kosongkan untuk sembunyikan)', 'type' => 'text', 'default' => '“Ngga ada habisnya” — semangat kami untuk terus berinovasi bersama setiap klien.'],
+                        ['key' => 'quote_by', 'label' => 'Sumber kutipan', 'type' => 'text', 'default' => 'Tim Maiharta'],
+                    ],
+                ],
                 'partner' => [
                     'label' => 'Logo Partner & Klien',
-                    'help' => 'Tampil di halaman Tentang. Kelompok yang kosong otomatis disembunyikan.',
+                    'help' => 'Kelompok yang kosong otomatis disembunyikan.',
                     'fields' => [
                         ['key' => 'partners', 'label' => 'Logo partner', 'type' => 'images', 'default' => [['src' => 'images/partners/partner-1.png', 'caption' => 'Partner 1'], ['src' => 'images/partners/partner-2.png', 'caption' => 'Partner 2']]],
                         ['key' => 'clients', 'label' => 'Logo klien', 'type' => 'images', 'default' => [['src' => 'images/partners/client-1.png', 'caption' => 'Klien 1'], ['src' => 'images/partners/client-2.png', 'caption' => 'Klien 2'], ['src' => 'images/partners/client-3.png', 'caption' => 'Klien 3'], ['src' => 'images/partners/client-4.png', 'caption' => 'Klien 4'], ['src' => 'images/partners/client-5.png', 'caption' => 'Klien 5']]],
