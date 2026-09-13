@@ -43,10 +43,9 @@ class ContentEditorTest extends TestCase
         $this->put('/admin/content/umum', ['brand' => ['logo' => $png, 'email' => 'a@b.c', 'phone' => '1', 'whatsapp' => '62', 'address' => 'x', 'hours' => 'y', 'instagram' => '', 'facebook' => '', 'linkedin' => ''], 'stats' => ['years' => '1', 'projects' => '2', 'clients' => '3']])->assertRedirect();
         $logo = site('umum.brand.logo');
         $this->assertStringStartsWith('storage/content/', $logo);
-        $this->assertSame('images/logo-maiharta-white.png', site('umum.brand.logo_white'));
         $this->get('/')->assertOk()->assertSee($logo, false);
         $this->get('/admin/login')->assertRedirect(); // logged in → dashboard
-        $this->get('/admin')->assertOk()->assertSee('images/logo-maiharta-white.png', false);
+        $this->get('/admin')->assertOk()->assertSee($logo, false);
 
         $this->put('/admin/content/umum', ['brand' => ['logo_remove' => 1, 'email' => 'a@b.c', 'phone' => '1', 'whatsapp' => '62', 'address' => 'x', 'hours' => 'y', 'instagram' => '', 'facebook' => '', 'linkedin' => ''], 'stats' => ['years' => '1', 'projects' => '2', 'clients' => '3']]);
         $this->assertSame('images/logo-maiharta.png', site('umum.brand.logo'));
