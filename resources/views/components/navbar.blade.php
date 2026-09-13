@@ -16,7 +16,7 @@
 >
     <div class="mx-auto flex h-[84px] max-w-[1440px] items-center justify-between px-5 md:px-20">
         <a href="{{ route('home') }}" class="flex items-center">
-            <img src="{{ asset('images/logo-maiharta.png') }}" alt="MaiHarta" class="h-10 w-auto">
+            <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" class="h-10 w-auto">
         </a>
 
         <nav class="hidden items-center gap-6 lg:flex">

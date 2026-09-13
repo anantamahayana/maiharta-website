@@ -134,7 +134,7 @@ class AdminPanelTest extends TestCase
 
         $service = Service::where('slug', 'qa-testing')->firstOrFail();
         $this->assertSame(['Playwright', 'PHPUnit'], $service->tech_tags);
-        $this->assertSame([['title' => 'Rencana', 'description' => 'a']], $service->process_steps);
+        $this->assertSame([['title' => 'Rencana', 'description' => 'a', 'duration' => '']], $service->process_steps);
 
         $this->post('/admin/services', ['name' => 'Lain', 'icon' => 'tidak-ada', 'short_description' => 'x', 'description' => 'y'])
             ->assertSessionHasErrors('icon');

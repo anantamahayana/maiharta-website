@@ -45,6 +45,7 @@ class ContentController extends Controller
                         ->values()
                         ->all(),
                     'images' => $this->syncImages($request, "{$group}.{$key}", $current[$key] ?? []),
+                    'image' => $this->syncImage($request, "{$group}.{$key}", $current[$key] ?? '', $field['default'] ?? ''),
                     default => $input,
                 };
             }
@@ -53,6 +54,31 @@ class ContentController extends Controller
         }
 
         return redirect()->route('admin.content.edit', $page)->with('status', 'Konten ' . $pages[$page]['label'] . ' disimpan.');
+    }
+
+    /** Single image: new upload replaces (and deletes) the previous upload; "remove" falls back to the default file. */
+    private function syncImage(Request $request, string $path, string $current, string $default): string
+    {
+        $file = $request->file($path);
+        if ($file && $file->isValid()) {
+            $this->deleteUpload($current);
+
+            return 'storage/' . $file->store('content', 'public');
+        }
+        if ($request->boolean("{$path}_remove")) {
+            $this->deleteUpload($current);
+
+            return $default;
+        }
+
+        return $current ?: $default;
+    }
+
+    private function deleteUpload(?string $src): void
+    {
+        if ($src && str_starts_with($src, 'storage/')) {
+            Storage::disk('public')->delete(Str::after($src, 'storage/'));
+        }
     }
 
     /** Keep rows the admin left in place (with edited captions), delete removed uploads, append new files. */

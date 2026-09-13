@@ -1,18 +1,13 @@
 @php
-    $practices = [
-        ['lock-closed', 'Data Terenkripsi', 'Seluruh data klien dienkripsi baik saat disimpan maupun saat dikirim antar sistem, menggunakan protokol standar industri.', 'AES-256 · TLS 1.3'],
-        ['key', 'Akses Terkontrol', 'Akses ke sistem dan data dibatasi berdasarkan peran, dengan autentikasi berlapis dan pencatatan aktivitas.', 'RBAC · 2FA · Audit Trail'],
-        ['clipboard-document-check', 'Audit Risiko Berkala', 'Penilaian risiko keamanan dilakukan secara rutin untuk mengidentifikasi celah sebelum menjadi ancaman.', 'Penetration Test · Review'],
-    ];
-    $certs = [
-        ['ISO 9001:2015', 'Quality Management System', 'Menjamin proses kerja yang konsisten dan berorientasi pada kepuasan klien.'],
-        ['ISO/IEC 27001', 'Information Security Management', 'Perlindungan data dan sistem informasi klien di seluruh siklus proyek.'],
-    ];
+    $practiceIcons = ['lock-closed', 'key', 'clipboard-document-check', 'shield-check'];
+    $practices = collect(site('sertifikasi.praktik.items', []))->values()->map(fn ($p, $i) => [$practiceIcons[$i] ?? 'shield-check', $p['title'], $p['description'], $p['tag']])->all();
+    $certs = collect(site('sertifikasi.lain.items', []))->map(fn ($c) => [$c['name'], $c['sub'], $c['description']])->all();
+    $heroStats = array_merge([['ISO', '27001']], collect($certs)->filter(fn ($c) => ! str_contains($c[0], '27001'))->take(1)->map(fn ($c) => ['ISO', Str::after($c[0], 'ISO ')])->all(), [['100%', 'Proyek Terstandar']]);
 @endphp
 
 <x-layout title="Sertifikasi — MaiHarta" description="Komitmen Maiharta pada keamanan data: ISO/IEC 27001 dan praktik keamanan yang diterapkan di setiap proyek.">
 
-    <x-page-hero eyebrow="Sertifikasi & Keamanan" title="Komitmen Kami pada Keamanan Data" description="Kepercayaan klien dibangun di atas standar keamanan yang ketat dan dapat diverifikasi — bukan sekadar janji." :stats="[['ISO', '27001'], ['ISO', '9001:2015'], ['100%', 'Proyek Terstandar']]" />
+    <x-page-hero eyebrow="Sertifikasi & Keamanan" title="Komitmen Kami pada Keamanan Data" description="Kepercayaan klien dibangun di atas standar keamanan yang ketat dan dapat diverifikasi — bukan sekadar janji." :stats="$heroStats" />
 
     {{-- ISO panel --}}
     <section class="container-site pb-16 md:pb-20">
@@ -37,6 +32,7 @@
     </section>
 
     {{-- Praktik --}}
+    @if ($practices)
     <section class="bg-brand-light py-16 md:py-20">
         <div class="container-site">
             <x-section-head eyebrow="Praktik Keamanan Kami" title="Keamanan yang Diterapkan, Bukan Hanya Ditulis" description="Tiga pilar yang kami jalankan di setiap proyek, dari sistem perbankan hingga portal publik." />
@@ -46,14 +42,16 @@
                         <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-light text-brand-normal"><x-dynamic-component :component="'heroicon-o-' . $icon" class="h-5 w-5" /></span>
                         <h3 class="mt-4 font-heading text-[19px] font-medium leading-7 text-brand-dark">{{ $t }}</h3>
                         <p class="mt-3 text-body-sm text-brand-muted">{{ $d }}</p>
-                        <x-chip class="mt-4 bg-brand-light">{{ $tag }}</x-chip>
+                        @if ($tag)<x-chip class="mt-4 bg-brand-light">{{ $tag }}</x-chip>@endif
                     </x-card>
                 @endforeach
             </div>
         </div>
     </section>
+    @endif
 
     {{-- Sertifikasi lain --}}
+    @if ($certs)
     <section class="container-site py-16 md:py-20">
         <x-section-head eyebrow="Sertifikasi & Penghargaan Lain" title="Standar Lain yang Kami Penuhi" />
         <div data-animate-group class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
@@ -66,6 +64,7 @@
             @endforeach
         </div>
     </section>
+    @endif
 
     <x-cta-panel eyebrow="Hubungi Kami" title="Ingin Tahu Lebih Lanjut Tentang Standar Keamanan Kami?" description="Tim kami siap menjelaskan bagaimana standar ini diterapkan pada proyek Anda." primary-label="Hubungi Tim Kami" :primary-href="route('kontak')" secondary-label="Lihat Layanan" :secondary-href="route('layanan.index')" />
 </x-layout>

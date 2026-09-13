@@ -13,8 +13,8 @@
 <body class="bg-hero-gradient flex min-h-full items-center justify-center p-5 font-sans text-brand-dark antialiased">
     <div data-animate="scale" class="w-full max-w-[440px] rounded-panel border border-brand-border bg-white p-8 shadow-elevated md:p-10">
         <div class="flex flex-col items-center text-center">
-            <span class="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-dark font-heading text-h3 font-semibold text-white">M</span>
-            <h1 class="mt-4 font-heading text-h3 font-semibold">Panel Admin Maiharta</h1>
+            <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" class="h-10 w-auto">
+            <h1 class="mt-5 font-heading text-h3 font-semibold">Panel Admin</h1>
             <p class="mt-1 text-body-sm text-brand-muted">Masuk untuk mengelola konten website</p>
         </div>
 

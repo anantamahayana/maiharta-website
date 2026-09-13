@@ -27,12 +27,53 @@ class ContentEditorTest extends TestCase
         $this->assertCount(2, site('tentang.partner.partners'));
     }
 
-    public function test_only_two_content_tabs_exist_and_render(): void
+    public function test_content_tabs_render(): void
     {
-        $this->assertSame(['umum', 'tentang'], array_keys(config('content.pages')));
-        $this->get('/admin/content')->assertOk()->assertSee('Identitas & Kontak')->assertDontSee('Hero');
-        $this->get('/admin/content/tentang')->assertOk()->assertSee('Logo Partner');
+        $this->assertSame(['umum', 'sertifikasi', 'tentang'], array_keys(config('content.pages')));
+        $this->get('/admin/content')->assertOk()->assertSee('Identitas & Kontak')->assertSee('Logo (untuk latar terang)');
+        $this->get('/admin/content/sertifikasi')->assertOk()->assertSee('Kartu Praktik Keamanan');
+        $this->get('/admin/content/tentang')->assertOk()->assertSee('Narasi Perusahaan')->assertSee('Logo Partner');
         $this->get('/admin/content/beranda')->assertNotFound();
+    }
+
+    public function test_logo_upload_replaces_and_reset_returns_default(): void
+    {
+        $png = UploadedFile::fake()->createWithContent('logo.png', file_get_contents(public_path('images/logo-maiharta.png')));
+
+        $this->put('/admin/content/umum', ['brand' => ['logo' => $png, 'email' => 'a@b.c', 'phone' => '1', 'whatsapp' => '62', 'address' => 'x', 'hours' => 'y', 'instagram' => '', 'facebook' => '', 'linkedin' => ''], 'stats' => ['years' => '1', 'projects' => '2', 'clients' => '3']])->assertRedirect();
+        $logo = site('umum.brand.logo');
+        $this->assertStringStartsWith('storage/content/', $logo);
+        $this->assertSame('images/logo-maiharta-white.png', site('umum.brand.logo_white'));
+        $this->get('/')->assertOk()->assertSee($logo, false);
+        $this->get('/admin/login')->assertRedirect(); // logged in → dashboard
+        $this->get('/admin')->assertOk()->assertSee('images/logo-maiharta-white.png', false);
+
+        $this->put('/admin/content/umum', ['brand' => ['logo_remove' => 1, 'email' => 'a@b.c', 'phone' => '1', 'whatsapp' => '62', 'address' => 'x', 'hours' => 'y', 'instagram' => '', 'facebook' => '', 'linkedin' => ''], 'stats' => ['years' => '1', 'projects' => '2', 'clients' => '3']]);
+        $this->assertSame('images/logo-maiharta.png', site('umum.brand.logo'));
+        Storage::disk('public')->assertMissing(str_replace('storage/', '', $logo));
+    }
+
+    public function test_certification_cards_and_story_are_editable(): void
+    {
+        $this->get('/sertifikasi')->assertOk()->assertSee('AES-256')->assertSee('ISO 9001:2015');
+
+        $this->put('/admin/content/sertifikasi', [
+            'praktik' => ['items' => [['title' => 'Backup Harian', 'description' => 'd', 'tag' => '']]],
+            'lain' => ['items' => []],
+        ])->assertRedirect();
+        $this->get('/sertifikasi')->assertOk()->assertSee('Backup Harian')->assertDontSee('AES-256')->assertDontSee('ISO 9001:2015')->assertDontSee('Standar Lain yang Kami Penuhi');
+
+        $this->put('/admin/content/tentang', ['cerita' => ['title' => 'Judul Cerita Baru', 'description' => 'Narasi baru.', 'quote' => '', 'quote_by' => '']]);
+        $this->get('/tentang')->assertOk()->assertSee('Judul Cerita Baru')->assertSee('Narasi baru.')->assertDontSee('Ngga ada habisnya');
+    }
+
+    public function test_service_step_duration_is_editable(): void
+    {
+        Service::create(['name' => 'S', 'slug' => 's', 'icon' => 'code', 'short_description' => 'x', 'description' => 'y']);
+        $this->put('/admin/services/s', ['name' => 'S', 'icon' => 'code', 'short_description' => 'x', 'description' => 'y',
+            'steps' => [['title' => 'Kickoff', 'description' => 'k', 'duration' => '3 hari'], ['title' => 'Rilis', 'description' => 'r', 'duration' => '']]])->assertRedirect();
+        $this->assertSame('3 hari', Service::where('slug', 's')->first()->process_steps[0]['duration']);
+        $this->get('/layanan/s')->assertOk()->assertSee('3 hari');
     }
 
     public function test_brand_and_stats_flow_to_public_pages(): void

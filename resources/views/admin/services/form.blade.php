@@ -1,6 +1,6 @@
 @php
     $editing = $service->exists;
-    $steps = old('steps', $service->process_steps ?: [['title' => '', 'description' => '']]);
+    $steps = collect(old('steps', $service->process_steps ?: [['title' => '', 'description' => '']]))->map(fn ($s) => $s + ['duration' => ''])->values()->all();
     $meta = old('meta', $service->meta ?: [['label' => 'Cocok untuk', 'value' => ''], ['label' => 'Deliverable', 'value' => ''], ['label' => 'Durasi tipikal', 'value' => ''], ['label' => 'Model kerja', 'value' => ''], ['label' => 'Standar', 'value' => 'ISO/IEC 27001']]);
     $caps = old('capabilities', $service->capabilities ?: [['title' => '', 'description' => '']]);
     $tags = collect(old('tech_tags') !== null ? explode(',', old('tech_tags')) : ($service->tech_tags ?? []))->map(fn ($t) => trim($t))->filter()->values();
@@ -78,13 +78,14 @@
                 </x-admin.card>
 
                 <x-admin.card title="Proses Kerja">
-                    <x-slot:action><x-admin.button variant="secondary" size="sm" icon="plus" @click="steps.push({ title: '', description: '' })">Tambah Tahap</x-admin.button></x-slot:action>
+                    <x-slot:action><x-admin.button variant="secondary" size="sm" icon="plus" @click="steps.push({ title: '', description: '', duration: '' })">Tambah Tahap</x-admin.button></x-slot:action>
                     <div class="space-y-2.5">
                         <template x-for="(s, i) in steps" :key="i">
                             <div class="flex items-center gap-2.5">
                                 <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-light text-label font-semibold text-brand-normal" x-text="i + 1"></span>
                                 <input type="text" :name="`steps[${i}][title]`" x-model="s.title" placeholder="Judul tahap" class="w-44 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
                                 <input type="text" :name="`steps[${i}][description]`" x-model="s.description" placeholder="Deskripsi singkat" class="flex-1 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
+                                <input type="text" :name="`steps[${i}][duration]`" x-model="s.duration" placeholder="Durasi (1–2 minggu)" class="w-36 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
                                 <button type="button" @click="steps.splice(i, 1)" class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-brand-light hover:bg-error-bg hover:text-error" title="Hapus"><x-heroicon-o-trash class="h-4 w-4" /></button>
                             </div>
                         </template>

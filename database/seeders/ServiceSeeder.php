@@ -22,11 +22,11 @@ class ServiceSeeder extends Seeder
                 'description' => 'Kami membangun aplikasi dan sistem informasi custom yang tidak hanya fungsional, tetapi juga aman, efisien, dan mudah dikelola. Setiap proyek dimulai dengan memahami proses bisnis dan kebutuhan spesifik instansi Anda, dilanjutkan dengan perancangan sistem dan basis data, hingga pengembangan teknis yang mengikuti standar keamanan ISO/IEC 27001. Cocok untuk sistem kepegawaian, persuratan digital, hingga sistem informasi terintegrasi lainnya.',
                 'tech_tags' => ['PHP / Laravel', 'MySQL', 'JavaScript', 'Bootstrap', 'REST API', 'Sistem Informasi'],
                 'process_steps' => [
-                    ['title' => 'Discovery', 'description' => 'Memahami kebutuhan, target pengguna, dan tujuan bisnis Anda.'],
-                    ['title' => 'Design', 'description' => 'Merancang struktur informasi dan tampilan visual sesuai brand.'],
-                    ['title' => 'Development', 'description' => 'Membangun sistem dengan kode yang bersih dan performa optimal.'],
-                    ['title' => 'Testing', 'description' => 'Menguji fungsi, performa, dan keamanan di berbagai perangkat.'],
-                    ['title' => 'Launch', 'description' => 'Peluncuran sistem beserta dukungan pascarilis.'],
+                    ['title' => 'Discovery', 'description' => 'Memahami kebutuhan, target pengguna, dan tujuan bisnis Anda.', 'duration' => '1–2 minggu'],
+                    ['title' => 'Design', 'description' => 'Merancang struktur informasi dan tampilan visual sesuai brand.', 'duration' => '2–3 minggu'],
+                    ['title' => 'Development', 'description' => 'Membangun sistem dengan kode yang bersih dan performa optimal.', 'duration' => '4–12 minggu'],
+                    ['title' => 'Testing', 'description' => 'Menguji fungsi, performa, dan keamanan di berbagai perangkat.', 'duration' => '1–2 minggu'],
+                    ['title' => 'Launch', 'description' => 'Peluncuran sistem beserta dukungan pascarilis.', 'duration' => 'Berkelanjutan'],
                 ],
                 'meta' => [
                     ['label' => 'Cocok untuk', 'value' => 'Instansi pemerintah, perbankan, UMKM'],
@@ -51,9 +51,9 @@ class ServiceSeeder extends Seeder
                 'description' => 'Kami merancang identitas visual yang konsisten dan mudah dikenali, mulai dari logo, materi promosi, hingga tampilan antarmuka (UI) produk digital Anda. Setiap desain dibangun berdasarkan riset brand dan target audiens agar benar-benar merepresentasikan bisnis Anda.',
                 'tech_tags' => ['Figma', 'Adobe Illustrator', 'Adobe Photoshop', 'Brand Identity', 'UI Design'],
                 'process_steps' => [
-                    ['title' => 'Discovery', 'description' => 'Memahami brand, target pengguna, dan tujuan visual Anda.'],
+                    ['title' => 'Discovery', 'description' => 'Memahami brand, target pengguna, dan tujuan visual Anda.', 'duration' => '1–2 minggu'],
                     ['title' => 'Concept', 'description' => 'Eksplorasi konsep visual dan moodboard.'],
-                    ['title' => 'Design', 'description' => 'Produksi aset desain final yang siap pakai.'],
+                    ['title' => 'Design', 'description' => 'Produksi aset desain final yang siap pakai.', 'duration' => '2–3 minggu'],
                     ['title' => 'Review', 'description' => 'Revisi bersama klien hingga hasil sesuai.'],
                     ['title' => 'Delivery', 'description' => 'Penyerahan aset dalam berbagai format.'],
                 ],

@@ -1,7 +1,6 @@
 @php
     $steps = collect($service->process_steps ?? []);
     $tags = collect($service->tech_tags ?? []);
-    $durations = ['1–2 minggu', '2–3 minggu', '4–12 minggu', '1–2 minggu', 'Berkelanjutan'];
     $capabilities = collect($service->capabilities ?? [])->map(fn ($c) => [$c['title'], $c['description'] ?? ''])->all();
     $meta = collect($service->meta ?? [])->map(fn ($m) => [$m['label'], $m['value']])->all();
     $aboutTitle = $service->about_title ?: 'Sistem yang dibangun mengikuti proses bisnis Anda, bukan sebaliknya';
@@ -72,7 +71,7 @@
                             <span class="flex h-10 w-10 items-center justify-center rounded-full font-heading text-h5 font-semibold bg-brand-light text-brand-dark">{{ $i + 1 }}</span>
                             <h3 class="mt-3 font-heading text-[17px] font-medium leading-6 text-brand-dark">{{ $step['title'] }}</h3>
                             <p class="mt-2 text-label text-brand-muted">{{ $step['description'] }}</p>
-                            @if (!empty($durations[$i]))<x-chip class="mt-3">{{ $durations[$i] }}</x-chip>@endif
+                            @if (!empty($step['duration']))<x-chip class="mt-3">{{ $step['duration'] }}</x-chip>@endif
                         </x-card>
                     @endforeach
                 </div>
