@@ -22,10 +22,9 @@ return [
             'groups' => [
                 'brand' => [
                     'label' => 'Identitas & Kontak',
-                    'help' => 'Logo dipakai di navbar, footer, dan panel admin. Kontak dipakai di footer, halaman Kontak, dan tombol WhatsApp.',
+                    'help' => 'Logo dipakai di navbar, halaman login, dan sidebar admin. Kontak dipakai di footer, halaman Kontak, dan tombol WhatsApp.',
                     'fields' => [
                         ['key' => 'logo', 'label' => 'Logo (untuk latar terang)', 'type' => 'image', 'default' => 'images/logo-maiharta.png'],
-                        ['key' => 'logo_white', 'label' => 'Logo putih (untuk latar gelap: footer & admin)', 'type' => 'image', 'default' => 'images/logo-maiharta-white.png'],
                         ['key' => 'email', 'label' => 'Email', 'type' => 'text', 'default' => 'info@maiharta.com'],
                         ['key' => 'phone', 'label' => 'Telepon / WhatsApp (tampil)', 'type' => 'text', 'default' => '+62 812-3630-0562'],
                         ['key' => 'whatsapp', 'label' => 'Nomor WhatsApp (angka saja, awali 62)', 'type' => 'text', 'default' => '6281236300562'],

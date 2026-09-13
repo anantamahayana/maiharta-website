@@ -27,9 +27,9 @@
 
     {{-- Sidebar --}}
     <aside :class="sidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'" class="fixed left-0 top-0 z-40 flex h-dvh w-[248px] flex-col overflow-y-auto bg-brand-dark p-4 pb-6 text-white transition-transform duration-300">
-        <a href="{{ route('admin.dashboard') }}" class="block px-2 pb-5">
-            <img src="{{ asset(site('umum.brand.logo_white')) }}" alt="MaiHarta" class="h-8 w-auto">
-            <span class="mt-1.5 block text-caption text-brand-on-dark">Panel Admin</span>
+        <a href="{{ route('admin.dashboard') }}" class="mb-5 block rounded-xl bg-white px-4 py-3">
+            <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" class="h-7 w-auto">
+            <span class="mt-1 block text-caption text-brand-muted">Panel Admin</span>
         </a>
         <p class="overline mb-2 px-2 text-brand-accent-on-dark">Menu</p>
         <nav class="space-y-1.5">
