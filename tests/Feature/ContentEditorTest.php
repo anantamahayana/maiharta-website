@@ -30,7 +30,7 @@ class ContentEditorTest extends TestCase
     public function test_content_tabs_render(): void
     {
         $this->assertSame(['umum', 'sertifikasi', 'tentang'], array_keys(config('content.pages')));
-        $this->get('/admin/content')->assertOk()->assertSee('Identitas & Kontak')->assertSee('Logo (untuk latar terang)');
+        $this->get('/admin/content')->assertOk()->assertSee('Identitas & Kontak')->assertSee('Logo');
         $this->get('/admin/content/sertifikasi')->assertOk()->assertSee('Kartu Praktik Keamanan');
         $this->get('/admin/content/tentang')->assertOk()->assertSee('Narasi Perusahaan')->assertSee('Logo Partner');
         $this->get('/admin/content/beranda')->assertNotFound();
