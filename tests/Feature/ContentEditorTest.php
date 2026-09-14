@@ -29,11 +29,11 @@ class ContentEditorTest extends TestCase
 
     public function test_content_tabs_render(): void
     {
-        $this->assertSame(['umum', 'sertifikasi', 'tentang'], array_keys(config('content.pages')));
+        $this->assertSame(['umum', 'beranda', 'sertifikasi', 'tentang'], array_keys(config('content.pages')));
         $this->get('/admin/content')->assertOk()->assertSee('Identitas & Kontak')->assertSee('Logo');
         $this->get('/admin/content/sertifikasi')->assertOk()->assertSee('Kartu Praktik Keamanan');
         $this->get('/admin/content/tentang')->assertOk()->assertSee('Narasi Perusahaan')->assertSee('Logo Partner');
-        $this->get('/admin/content/beranda')->assertNotFound();
+        $this->get('/admin/content/tidak-ada')->assertNotFound();
     }
 
     public function test_logo_upload_replaces_and_reset_returns_default(): void
@@ -50,6 +50,14 @@ class ContentEditorTest extends TestCase
         $this->put('/admin/content/umum', ['brand' => ['logo_remove' => 1, 'email' => 'a@b.c', 'phone' => '1', 'whatsapp' => '62', 'address' => 'x', 'hours' => 'y', 'instagram' => '', 'facebook' => '', 'linkedin' => ''], 'stats' => ['years' => '1', 'projects' => '2', 'clients' => '3']]);
         $this->assertSame('images/logo-maiharta.png', site('umum.brand.logo'));
         Storage::disk('public')->assertMissing(str_replace('storage/', '', $logo));
+    }
+
+    public function test_hero_composition_is_editable(): void
+    {
+        $this->get('/')->assertOk()->assertSee('Ringkasan Proyek')->assertSee('SSO + 2FA aktif');
+        $photo = UploadedFile::fake()->createWithContent('tim.jpg', file_get_contents(public_path('images/hero-team.jpg')));
+        $this->put('/admin/content/beranda', ['hero' => ['card_title' => 'Statistik Klien', 'card_sub' => 'Update {tahun}', 'card_badge' => '', 'card_note' => 'n', 'iso_title' => 'i', 'iso_sub' => 'is', 'bubble_title' => 'Tiket 7', 'bubble_sub' => 'bs', 'bubble_status' => 'bst', 'bubble_text' => 'bt', 'sso_title' => 'Login Tunggal', 'sso_sub' => 'ss', 'photo_1' => $photo]])->assertRedirect();
+        $this->get('/')->assertOk()->assertSee('Statistik Klien')->assertSee('Update ' . date('Y'))->assertSee('Login Tunggal')->assertDontSee('Ringkasan Proyek')->assertSee('storage/content/', false);
     }
 
     public function test_certification_cards_and_story_are_editable(): void

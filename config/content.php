@@ -49,6 +49,33 @@ return [
             ],
         ],
 
+        'beranda' => [
+            'label' => 'Beranda',
+            'icon' => 'home',
+            'groups' => [
+                'hero' => [
+                    'label' => 'Komposisi Hero (kartu melayang)',
+                    'help' => 'Angka proyek/instansi/tahun di kartu dashboard mengikuti “Angka Perusahaan” di tab Umum.',
+                    'fields' => [
+                        ['key' => 'card_title', 'label' => 'Kartu dashboard — judul', 'type' => 'text', 'default' => 'Ringkasan Proyek'],
+                        ['key' => 'card_sub', 'label' => 'Kartu dashboard — sub-judul ({tahun} = tahun berjalan)', 'type' => 'text', 'default' => 'Semua klien · {tahun}'],
+                        ['key' => 'card_badge', 'label' => 'Kartu dashboard — badge (kosongkan untuk sembunyikan)', 'type' => 'text', 'default' => 'Live'],
+                        ['key' => 'card_note', 'label' => 'Kartu dashboard — catatan progres', 'type' => 'text', 'default' => '12 proyek aktif'],
+                        ['key' => 'iso_title', 'label' => 'Badge ISO — judul', 'type' => 'text', 'default' => 'ISO/IEC 27001'],
+                        ['key' => 'iso_sub', 'label' => 'Badge ISO — keterangan', 'type' => 'text', 'default' => 'Keamanan informasi tersertifikasi'],
+                        ['key' => 'bubble_title', 'label' => 'Gelembung helpdesk — judul', 'type' => 'text', 'default' => 'Helpdesk · Tiket #1042'],
+                        ['key' => 'bubble_sub', 'label' => 'Gelembung helpdesk — sub-judul', 'type' => 'text', 'default' => 'Nasabah · 2 jam lalu'],
+                        ['key' => 'bubble_status', 'label' => 'Gelembung helpdesk — chip status', 'type' => 'text', 'default' => 'Selesai · SLA'],
+                        ['key' => 'bubble_text', 'label' => 'Gelembung helpdesk — isi', 'type' => 'textarea', 'default' => '“Pengaduan sudah ditindaklanjuti unit terkait dan diselesaikan dalam 2 jam. Terima kasih!”'],
+                        ['key' => 'sso_title', 'label' => 'Kartu SSO — judul', 'type' => 'text', 'default' => 'SSO + 2FA aktif'],
+                        ['key' => 'sso_sub', 'label' => 'Kartu SSO — keterangan', 'type' => 'text', 'default' => 'Bank BPD Bali · 1 pintu login'],
+                        ['key' => 'photo_1', 'label' => 'Foto kiri atas (tim)', 'type' => 'image', 'default' => 'images/hero-team.jpg'],
+                        ['key' => 'photo_2', 'label' => 'Foto kanan bawah (dashboard)', 'type' => 'image', 'default' => 'images/hero-dashboard.jpg'],
+                    ],
+                ],
+            ],
+        ],
+
         'sertifikasi' => [
             'label' => 'Sertifikasi',
             'icon' => 'shield-check',
