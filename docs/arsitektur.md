@@ -92,6 +92,6 @@ Nama layer di Figma (`Float → Dashboard Card`, dst.) sama dengan komentar di `
 ## Pekerjaan yang belum ada
 
 - Notifikasi email untuk pesan kontak masuk.
-- Sitemap/robots/Open Graph image, halaman Kebijakan Privasi, favicon.
+- Sitemap/robots/Open Graph image, halaman Kebijakan Privasi.
 - Multi-user / peran admin (saat ini satu akun).
 - API (belum ada konsumen eksternal).
