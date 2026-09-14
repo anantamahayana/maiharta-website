@@ -28,5 +28,7 @@
 
     <x-bottom-nav />
 
+    <x-whatsapp-fab />
+
 </body>
 </html>
