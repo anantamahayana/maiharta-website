@@ -120,7 +120,7 @@
     <section class="container-site py-16 md:py-20 {{ $gallery->isEmpty() ? 'pt-0 md:pt-0' : '' }}">
         <div data-animate="scale" class="flex flex-col gap-8 rounded-panel bg-brand-dark p-8 text-white md:flex-row md:items-center md:p-12">
             <div class="flex-1">
-                <p class="overline text-brand-accent-on-dark">Hasil & Outcome</p>
+                <p class="eyebrow text-brand-accent-on-dark">Hasil & Outcome</p>
                 <h2 class="mt-3 font-heading text-h3 font-semibold md:text-[28px] md:leading-[38px]">Dampak nyata bagi {{ $project->client_type ? explode('—', $project->client_type)[0] : 'klien' }}</h2>
                 <p class="mt-3 text-body-sm text-brand-on-dark md:text-[15px] md:leading-6">{{ $project->description }}</p>
             </div>

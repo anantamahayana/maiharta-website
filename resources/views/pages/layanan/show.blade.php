@@ -17,7 +17,7 @@
         <div class="flex items-center gap-5">
             <span data-animate class="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-card border border-brand-border bg-white"><x-service-icon :icon="$service->icon" class="h-8 w-8" /></span>
             <div>
-                <p data-animate class="overline">Layanan Utama</p>
+                <p data-animate class="eyebrow">Layanan Utama</p>
                 <h1 data-animate class="mt-1 font-heading text-h2 font-semibold text-brand-dark md:text-h1-hero">{{ $service->name }}</h1>
             </div>
         </div>
@@ -44,7 +44,7 @@
     {{-- Tentang layanan --}}
     <section class="container-site grid grid-cols-1 gap-10 py-16 md:py-20 {{ $capabilities ? 'lg:grid-cols-[1fr_520px]' : '' }} lg:gap-16">
         <div data-animate-group="0.07">
-            <p data-animate class="overline">Tentang Layanan Ini</p>
+            <p data-animate class="eyebrow">Tentang Layanan Ini</p>
             <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-[32px] md:leading-[42px]">{{ $aboutTitle }}</h2>
             <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">{{ $service->description }}</p>
         </div>

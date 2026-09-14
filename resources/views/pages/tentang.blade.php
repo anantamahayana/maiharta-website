@@ -16,7 +16,7 @@
     {{-- Cerita + nilai --}}
     <section class="container-site grid grid-cols-1 gap-10 pb-16 md:pb-20 lg:grid-cols-[1fr_560px] lg:gap-16">
         <div data-animate-group="0.07">
-            <p data-animate class="overline">Siapa Kami</p>
+            <p data-animate class="eyebrow">Siapa Kami</p>
             <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-[32px] md:leading-[42px]">{{ $cerita['title'] }}</h2>
             <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">{{ $cerita['description'] }}</p>
             @if ($cerita['quote'])
@@ -28,7 +28,7 @@
             <div data-animate class="mt-6"><x-button :href="route('kontak')" icon="arrow-right">Hubungi Tim Kami</x-button></div>
         </div>
         <div data-animate-group class="space-y-3.5">
-            <p data-animate class="overline">Nilai Kerja Kami</p>
+            <p data-animate class="eyebrow">Nilai Kerja Kami</p>
             @foreach ($values as [$icon, $t, $d])
                 <x-card data-animate :interactive="false" padding="px-5 py-5" class="flex items-center gap-4 !rounded-[14px]">
                     <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand-normal"><x-dynamic-component :component="'icons.' . $icon" class="h-5 w-5" /></span>

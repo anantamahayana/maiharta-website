@@ -23,7 +23,7 @@
 
         <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
             <div data-animate-group="0.07" class="max-w-[760px]">
-                @if ($eyebrow)<p data-animate class="overline">{{ $eyebrow }}</p>@endif
+                @if ($eyebrow)<p data-animate class="eyebrow">{{ $eyebrow }}</p>@endif
                 @if ($title)<h1 data-animate class="mt-3 font-heading text-h2 font-semibold text-brand-dark md:text-h1-hero">{{ $title }}</h1>@endif
                 @if ($description)<p data-animate class="mt-4 text-body-sm text-brand-muted md:text-body">{{ $description }}</p>@endif
                 {{ $slot }}

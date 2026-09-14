@@ -179,7 +179,7 @@
     {{-- ===================================================== Sertifikasi --}}
     <section class="container-site grid grid-cols-1 items-center gap-10 py-16 md:py-20 lg:grid-cols-[1fr_520px] lg:gap-16">
         <div data-animate-group="0.07">
-            <p data-animate class="overline">Kredibilitas &amp; Keamanan</p>
+            <p data-animate class="eyebrow">Kredibilitas &amp; Keamanan</p>
             <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-h2-lg">Standar Keamanan yang Terjamin</h2>
             <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">Kami mengikuti standar keamanan informasi internasional ISO/IEC 27001 untuk memastikan data dan sistem klien kami terlindungi di setiap tahap kerja sama.</p>
             <ul class="mt-6 space-y-3">
@@ -217,7 +217,7 @@
     <section class="bg-brand-light py-16 md:py-20">
         <div class="container-site grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-16">
             <div data-animate-group="0.07">
-                <p data-animate class="overline">Tentang Maiharta</p>
+                <p data-animate class="eyebrow">Tentang Maiharta</p>
                 <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-h2-lg">Mitra Transformasi Digital Bisnis Anda</h2>
                 <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">Maiharta adalah tim yang berfokus membantu bisnis bertransformasi secara digital melalui solusi teknologi yang aman, scalable, dan berorientasi pada hasil — mulai dari perencanaan, desain, hingga pengembangan sistem.</p>
                 <div data-animate class="mt-6"><x-button :href="route('tentang')" icon="arrow-right">Kenali Kami Lebih Dekat</x-button></div>
