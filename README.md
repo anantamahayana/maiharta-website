@@ -8,7 +8,7 @@ Website profil perusahaan MaiHarta ("Ngga Ada Habisnya") beserta panel admin unt
 | Front end | Blade + Tailwind CSS v4 + Alpine.js 3, Vite 7 |
 | Ikon | Heroicons (blade-heroicons), Simple Icons / Bootstrap Icons untuk logo medsos |
 | Database | MySQL (dev: Laragon), SQLite in-memory untuk test |
-| Repo | https://github.com/NantaPakeAI/maiharta-website |
+| Repo | https://github.com/anantamahayana/maiharta-website |
 
 Dokumen terkait:
 - [docs/panduan-admin.md](docs/panduan-admin.md) — panduan pemakaian panel admin untuk pengelola konten.
@@ -21,7 +21,7 @@ Dokumen terkait:
 Prasyarat: PHP ≥ 8.2 (ekstensi `fileinfo`, `pdo_mysql`), Composer, Node ≥ 20, MySQL.
 
 ```bash
-git clone https://github.com/NantaPakeAI/maiharta-website.git
+git clone https://github.com/anantamahayana/maiharta-website.git
 cd maiharta-website
 composer install
 npm install
