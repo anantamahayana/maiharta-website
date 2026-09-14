@@ -15,27 +15,27 @@
     --font-heading: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 
     /* --- Core palette ------------------------------------------------ */
-    --color-brand-light: #eaf6fb;
-    --color-brand-light-hover: #c9e7f3;
-    --color-brand-light-active: #a6d8ec;
-    --color-brand-normal: #0aa1dd;
-    --color-brand-normal-hover: #0882b3;
-    --color-brand-normal-active: #06648a;
-    --color-brand-dark: #1a5d78;
-    --color-brand-dark-hover: #124356;
-    --color-brand-dark-active: #0b2833;
-    --color-brand-darker: #051217;
-    --color-brand-border: #cce6f0;
+    --color-brand-light: #eef3fc;
+    --color-brand-light-hover: #d6e2f8;
+    --color-brand-light-active: #b7ccf3;
+    --color-brand-normal: #2155cd;
+    --color-brand-normal-hover: #1b47ad;
+    --color-brand-normal-active: #153a8c;
+    --color-brand-dark: #12306f;
+    --color-brand-dark-hover: #0e2555;
+    --color-brand-dark-active: #0a1b3e;
+    --color-brand-darker: #050d1f;
+    --color-brand-border: #d3def5;
     --color-brand-border-on-dark: rgb(255 255 255 / 0.12);
 
     /* --- Semantic additions ------------------------------------------ */
-    --color-brand-muted: #4f7a8e;          /* color/text-muted */
-    --color-brand-on-dark: #c9e7f3;        /* color/text-on-dark */
-    --color-brand-accent-on-dark: #7dd3f5; /* color/accent-on-dark */
+    --color-brand-muted: #5a6c8f;          /* color/text-muted */
+    --color-brand-on-dark: #d6e2f8;        /* color/text-on-dark */
+    --color-brand-accent-on-dark: #8fb0f5; /* color/accent-on-dark */
     --color-brand-surface-on-dark: rgb(255 255 255 / 0.08);
-    --color-brand-input: #f7fbfd;          /* color/surface-input */
-    --color-brand-placeholder: #9ab3bf;
-    --color-brand-gradient-end: #0e6f95;
+    --color-brand-input: #f7f9fe;          /* color/surface-input */
+    --color-brand-placeholder: #97a6c2;
+    --color-brand-gradient-end: #1e4ab5;
     --color-success: #1fa85a;
     --color-success-bg: #e3f8ec;
     --color-success-text: #167a41;
