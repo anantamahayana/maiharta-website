@@ -83,7 +83,7 @@
                     <x-heroicon-o-sparkles class="h-4 w-4 text-brand-normal lg:h-5 lg:w-5" />
                 </div>
                 <svg class="animate-draw absolute left-[20%] top-[56%] hidden h-[60px] w-[120px] lg:left-[20%] lg:top-[49%] lg:block" viewBox="0 0 120 60" fill="none" aria-hidden="true">
-                    <path d="M0 0C40 0 60 60 120 60" stroke="#0aa1dd" stroke-width="1.5" stroke-dasharray="4 4" />
+                    <path d="M0 0C40 0 60 60 120 60" stroke="#2155cd" stroke-width="1.5" stroke-dasharray="4 4" />
                 </svg>
 
                 {{-- Float → Helpdesk Bubble --}}
