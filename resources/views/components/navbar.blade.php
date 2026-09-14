@@ -8,34 +8,54 @@
     ];
 @endphp
 
+{{-- Navbar — pill melayang; mengecil & lebih pekat setelah scroll --}}
 <header
     x-data="{ scrolled: false }"
-    x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 8, { passive: true })"
-    :class="scrolled ? 'shadow-sm shadow-brand-darker/5' : ''"
-    class="sticky top-0 z-30 border-b border-brand-border bg-white transition-shadow duration-300"
+    x-init="scrolled = window.scrollY > 8; window.addEventListener('scroll', () => scrolled = window.scrollY > 8, { passive: true })"
+    class="navbar fixed inset-x-4 top-4 z-30 md:inset-x-6 md:top-5"
 >
-    <div class="mx-auto flex h-[84px] max-w-[1440px] items-center justify-between px-5 md:px-20">
+    <div
+        :class="scrolled ? 'h-[60px] bg-white/90 shadow-floating lg:h-[68px]' : 'h-[64px] bg-white/75 shadow-card lg:h-[76px]'"
+        class="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-white/70 pr-2 pl-5 backdrop-blur-xl transition-[height,background-color,box-shadow] duration-500 ease-out-expo md:pr-2.5 md:pl-7"
+    >
         <a href="{{ route('home') }}" class="flex items-center">
-            <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" class="h-10 w-auto">
+            <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" :class="scrolled ? 'h-8 lg:h-9' : 'h-9 lg:h-10'" class="w-auto transition-[height] duration-500 ease-out-expo">
         </a>
 
-        <nav class="hidden items-center gap-6 lg:flex">
+        <nav class="hidden items-center gap-1 rounded-full bg-brand-light/60 p-1 lg:flex" aria-label="Navigasi utama">
             @foreach ($navLinks as $link)
                 <a
                     href="{{ route($link['route']) }}"
-                    class="group relative py-1 text-sm font-medium transition-colors {{ $link['active'] ? 'text-brand-normal' : 'text-brand-darker/80 hover:text-brand-normal' }}"
+                    @class([
+                        'relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300',
+                        'bg-white text-brand-normal shadow-card' => $link['active'],
+                        'text-brand-dark/75 hover:bg-white/70 hover:text-brand-normal' => ! $link['active'],
+                    ])
+                    @if ($link['active']) aria-current="page" @endif
                 >
                     {{ $link['label'] }}
-                    <span class="absolute inset-x-0 -bottom-0.5 h-px bg-brand-normal transition-transform duration-300 {{ $link['active'] ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }}"></span>
                 </a>
             @endforeach
         </nav>
 
-        <a
-            href="{{ route('kontak') }}"
-            class="hidden items-center rounded-lg bg-brand-normal px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-normal-hover hover:shadow-md hover:shadow-brand-normal/30 active:translate-y-0 lg:inline-flex"
-        >
-            Kontak Kami
-        </a>
+        <div class="flex items-center gap-2">
+            <a
+                href="{{ route('kontak') }}"
+                class="hidden items-center gap-2 rounded-full bg-brand-normal py-3 pr-5 pl-6 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-normal-hover hover:shadow-lg hover:shadow-brand-normal/30 active:translate-y-0 lg:inline-flex"
+            >
+                Kontak Kami
+                <x-heroicon-o-arrow-right class="size-4" />
+            </a>
+            <a
+                href="{{ route('kontak') }}"
+                class="grid size-11 place-items-center rounded-full bg-brand-normal text-white shadow-card transition active:scale-95 lg:hidden"
+                aria-label="Kontak Kami"
+            >
+                <x-heroicon-o-chat-bubble-left-right class="size-5" />
+            </a>
+        </div>
     </div>
 </header>
+
+{{-- Ruang untuk navbar melayang --}}
+<div class="h-[96px] bg-brand-light lg:h-[112px]" aria-hidden="true"></div>
