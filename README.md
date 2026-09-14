@@ -129,7 +129,7 @@ resources/views/components/*                komponen publik (button, chip, card,
 resources/views/components/admin/*          komponen admin (layout, field, button, confirm-delete, …)
 resources/views/pages/*                     halaman publik
 resources/views/admin/*                     halaman admin
-public/images/                              aset statis (logo, foto hero, proyek seeder, logo partner)
+public/images/                              aset statis (logo, ikon, foto hero, proyek seeder, logo partner)
 storage/app/public/{projects,content}/      unggahan dari admin (di-symlink ke public/storage)
 tests/Feature/*                             AdminPanelTest, ContentEditorTest
 ```

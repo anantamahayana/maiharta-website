@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? 'MaiHarta — Ngga Ada Habisnya' }}</title>
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+    <link rel="icon" type="image/png" href="{{ asset('images/icon-maiharta.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     <meta name="description" content="{{ $description ?? 'Mitra pengembangan produk digital yang profesional, aman, dan terpercaya.' }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
