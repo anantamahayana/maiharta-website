@@ -20,7 +20,7 @@
 
     <x-navbar />
 
-    <main class="pb-20 lg:pb-0">
+    <main class="pb-24 lg:pb-0">
         {{ $slot }}
     </main>
 
