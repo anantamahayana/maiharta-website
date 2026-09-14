@@ -149,6 +149,14 @@
 
 [x-cloak] { display: none !important; }
 
+/* Bottom nav mobile — pill melayang */
+@keyframes nav-glow-in {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.bottom-nav__glow { animation: nav-glow-in 0.45s var(--ease-out-expo) both; }
+.bottom-nav__dot { animation: nav-glow-in 0.45s var(--ease-out-expo) 0.15s both; }
+
 /* Floating WhatsApp button — pojok kanan bawah */
 @keyframes fab-pop {
     0% { transform: translateY(24px) scale(0.6); opacity: 0; }
@@ -281,6 +289,8 @@
         transform: none;
         transition: none;
     }
+    .bottom-nav__glow,
+    .bottom-nav__dot,
     .fab-wa__btn,
     .fab-wa__ring,
     .fab-wa__icon,

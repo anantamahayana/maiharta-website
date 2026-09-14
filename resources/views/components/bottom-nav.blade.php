@@ -1,48 +1,50 @@
 @php
     $tabs = [
-        [
-            'label' => 'Beranda',
-            'route' => 'home',
-            'active' => request()->routeIs('home'),
-            'icon' => 'M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8.5Z',
-        ],
-        [
-            'label' => 'Solusi Kita',
-            'route' => 'layanan.index',
-            'active' => request()->routeIs('layanan.*'),
-            'icon' => 'M4 7a2 2 0 0 1 2-2h3l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z',
-        ],
-        [
-            'label' => 'Portofolio',
-            'route' => 'portofolio.index',
-            'active' => request()->routeIs('portofolio.*'),
-            'icon' => 'M4 5h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5Zm3-2h10l1 2H6l1-2Z',
-        ],
-        [
-            'label' => 'Tentang',
-            'route' => 'tentang',
-            'active' => request()->routeIs('tentang'),
-            'icon' => 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9a7 7 0 0 1 14 0',
-        ],
-        [
-            'label' => 'Kontak',
-            'route' => 'kontak',
-            'active' => request()->routeIs('kontak'),
-            'icon' => 'M4 6h16v12H4V6Zm0 0 8 7 8-7',
-        ],
+        ['label' => 'Beranda',    'route' => 'home',             'active' => request()->routeIs('home'),         'icon' => 'home'],
+        ['label' => 'Solusi',     'route' => 'layanan.index',    'active' => request()->routeIs('layanan.*'),    'icon' => 'squares-2x2'],
+        ['label' => 'Portofolio', 'route' => 'portofolio.index', 'active' => request()->routeIs('portofolio.*'), 'icon' => 'rectangle-stack'],
+        ['label' => 'Tentang',    'route' => 'tentang',          'active' => request()->routeIs('tentang'),      'icon' => 'user-circle'],
+        ['label' => 'Kontak',     'route' => 'kontak',           'active' => request()->routeIs('kontak'),       'icon' => 'envelope'],
     ];
 @endphp
 
-<nav class="fixed inset-x-0 bottom-0 z-30 flex h-[78px] border-t border-brand-border bg-white lg:hidden">
-    @foreach ($tabs as $tab)
-        <a
-            href="{{ route($tab['route']) }}"
-            class="flex flex-1 flex-col items-center justify-center gap-1 text-[11px] font-medium {{ $tab['active'] ? 'text-brand-normal' : 'text-brand-darker/50' }}"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-[22px] w-[22px]">
-                <path d="{{ $tab['icon'] }}" />
-            </svg>
-            {{ $tab['label'] }}
-        </a>
-    @endforeach
+{{-- Bottom nav mobile — pill melayang, sembunyi saat scroll ke bawah, muncul lagi saat scroll ke atas --}}
+<nav
+    x-data="{
+        hidden: false, last: 0,
+        init() { window.addEventListener('scroll', () => this.onScroll(), { passive: true }); },
+        onScroll() {
+            const y = window.scrollY;
+            this.hidden = y > this.last && y > 120;
+            this.last = y;
+        },
+    }"
+    :class="hidden ? 'translate-y-[calc(100%+24px)]' : 'translate-y-0'"
+    class="bottom-nav fixed inset-x-4 bottom-4 z-30 transition-transform duration-500 ease-out-expo lg:hidden"
+    aria-label="Navigasi utama"
+>
+    <div class="mx-auto flex h-[68px] max-w-md items-center justify-between rounded-full border border-white/70 bg-white/85 px-2 shadow-floating backdrop-blur-xl">
+        @foreach ($tabs as $tab)
+            <a
+                href="{{ route($tab['route']) }}"
+                @class([
+                    'group relative flex h-14 flex-1 flex-col items-center justify-center gap-0.5 rounded-full text-[11px] font-medium transition-colors',
+                    'text-brand-normal' => $tab['active'],
+                    'text-brand-muted active:text-brand-dark' => ! $tab['active'],
+                ])
+                @if ($tab['active']) aria-current="page" @endif
+            >
+                @if ($tab['active'])
+                    <span class="bottom-nav__glow absolute inset-x-2 inset-y-1 rounded-full bg-brand-light" aria-hidden="true"></span>
+                @endif
+                <span @class(['relative grid size-7 place-items-center transition-transform duration-300 ease-out-expo', '-translate-y-0.5' => $tab['active'], 'group-active:scale-90' => ! $tab['active']])>
+                    @svg('heroicon-' . ($tab['active'] ? 's' : 'o') . '-' . $tab['icon'], 'size-[22px]')
+                </span>
+                <span class="relative leading-none">{{ $tab['label'] }}</span>
+                @if ($tab['active'])
+                    <span class="bottom-nav__dot absolute -bottom-0.5 size-1 rounded-full bg-brand-normal" aria-hidden="true"></span>
+                @endif
+            </a>
+        @endforeach
+    </div>
 </nav>

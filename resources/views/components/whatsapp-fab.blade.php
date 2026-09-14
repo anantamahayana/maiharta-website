@@ -24,7 +24,7 @@
     }"
     x-cloak
     x-show="shown"
-    class="fab-wa fixed right-4 bottom-24 z-40 flex flex-col items-end gap-3 md:right-6 lg:bottom-6"
+    class="fab-wa fixed right-4 bottom-[100px] z-40 flex flex-col items-end gap-3 md:right-6 lg:bottom-6"
 >
     {{-- Bubble ajakan --}}
     <div
