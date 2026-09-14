@@ -100,7 +100,7 @@
         {{-- Sidebar --}}
         <div data-animate-group class="space-y-5">
             <div data-animate class="rounded-panel bg-brand-dark p-7 text-white">
-                <p class="overline text-brand-accent-on-dark">Info Kontak Langsung</p>
+                <p class="eyebrow text-brand-accent-on-dark">Info Kontak Langsung</p>
                 <ul class="mt-5 space-y-4">
                     @foreach ([['envelope', 'Email', $brand['email'], 'mailto:' . $brand['email']], ['phone', 'Telepon / WhatsApp', $brand['phone'], 'tel:+' . $brand['whatsapp']], ['map-pin', 'Alamat Kantor', $brand['address'], $mapLink], ['clock', 'Jam Operasional', $brand['hours'], null]] as [$icon, $l, $v, $href])
                         <li class="flex items-center gap-3.5">

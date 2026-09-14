@@ -35,7 +35,7 @@
             <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" class="h-7 w-auto">
             <span class="mt-1 block text-caption text-brand-muted">Panel Admin</span>
         </a>
-        <p class="overline mb-2 px-2 text-brand-accent-on-dark">Menu</p>
+        <p class="eyebrow mb-2 px-2 text-brand-accent-on-dark">Menu</p>
         <nav class="space-y-1.5">
             @foreach ($nav as [$icon, $label, $href, $active, $badge])
                 <a href="{{ $href }}" class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-label font-medium transition {{ $active ? 'border border-brand-border-on-dark bg-brand-surface-on-dark text-white' : 'text-brand-on-dark hover:bg-brand-surface-on-dark hover:text-white' }}">

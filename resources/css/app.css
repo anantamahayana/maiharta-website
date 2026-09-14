@@ -84,11 +84,11 @@
     --radius-cta: 24px;
 
     /* --- Shadows (Maiharta/Shadow …) — all tinted with color/dark ----- */
-    --shadow-card: 0 8px 24px rgb(26 93 120 / 0.05);
-    --shadow-elevated: 0 12px 32px rgb(26 93 120 / 0.08);
-    --shadow-floating: 0 12px 28px rgb(26 93 120 / 0.14);
-    --shadow-hero: 0 20px 40px rgb(26 93 120 / 0.18);
-    --shadow-showcase: 0 24px 48px -8px rgb(26 93 120 / 0.14);
+    --shadow-card: 0 8px 24px rgb(18 48 111 / 0.05);
+    --shadow-elevated: 0 12px 32px rgb(18 48 111 / 0.08);
+    --shadow-floating: 0 12px 28px rgb(18 48 111 / 0.14);
+    --shadow-hero: 0 20px 40px rgb(18 48 111 / 0.18);
+    --shadow-showcase: 0 24px 48px -8px rgb(18 48 111 / 0.14);
 
     /* --- Easing ------------------------------------------------------- */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -137,8 +137,8 @@
     margin-bottom: -0.14em;
 }
 
-/* Overline / eyebrow label */
-@utility overline {
+/* Eyebrow label (di atas judul section) */
+@utility eyebrow {
     font-size: var(--text-overline);
     line-height: var(--text-overline--line-height);
     font-weight: 500;

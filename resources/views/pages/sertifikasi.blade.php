@@ -19,7 +19,7 @@
                 <span class="mt-4 inline-flex items-center gap-1.5 rounded-full border border-success/50 bg-success/20 px-3 py-1.5 text-label-sm font-medium"><span class="h-1.5 w-1.5 rounded-full bg-[#5ee59a]"></span>Tersertifikasi &amp; Aktif</span>
             </div>
             <div class="p-8 md:p-14">
-                <p class="overline text-brand-accent-on-dark">Apa Artinya Bagi Anda</p>
+                <p class="eyebrow text-brand-accent-on-dark">Apa Artinya Bagi Anda</p>
                 <h2 class="mt-3 font-heading text-h3 font-semibold md:text-[28px] md:leading-[38px]">Standar internasional untuk melindungi data Anda di setiap tahap</h2>
                 <p class="mt-4 text-body-sm text-brand-on-dark md:text-[15px] md:leading-6">ISO/IEC 27001 adalah standar internasional untuk sistem manajemen keamanan informasi. Sertifikasi ini menegaskan bahwa Maiharta menerapkan kontrol keamanan yang konsisten dalam mengelola data dan sistem klien di setiap tahap kerja sama — dari perencanaan hingga pascapeluncuran.</p>
                 <ul class="mt-6 space-y-2.5">
