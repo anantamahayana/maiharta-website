@@ -1,3 +1,4 @@
+@php $h = site('beranda.hero'); @endphp
 <x-layout title="MaiHarta — Ngga Ada Habisnya">
 
     {{-- ============================================================ Hero --}}
@@ -42,10 +43,10 @@
                 <div data-animate="scale" style="--float-dur:5s" class="animate-float absolute left-[28%] top-[8%] w-[72%] rounded-card bg-brand-dark p-4 text-white shadow-hero lg:left-[33%] lg:top-[12%] lg:w-[340px] lg:rounded-[18px] lg:p-5">
                     <div class="flex items-center gap-2">
                         <div class="flex-1">
-                            <p class="text-label font-medium lg:text-h5">Ringkasan Proyek</p>
-                            <p class="text-caption text-brand-on-dark">Semua klien · {{ date('Y') }}</p>
+                            <p class="text-label font-medium lg:text-h5">{{ $h['card_title'] }}</p>
+                            <p class="text-caption text-brand-on-dark">{{ str_replace('{tahun}', date('Y'), $h['card_sub']) }}</p>
                         </div>
-                        <x-chip variant="on-dark"><span class="h-1.5 w-1.5 rounded-full bg-success"></span>Live</x-chip>
+                        @if ($h['card_badge'])<x-chip variant="on-dark"><span class="h-1.5 w-1.5 rounded-full bg-success"></span>{{ $h['card_badge'] }}</x-chip>@endif
                     </div>
                     <div class="mt-3 flex gap-4 lg:mt-4 lg:gap-5">
                         <x-stat :value="rtrim(site('umum.stats.projects'), '+')" :suffix="str_ends_with(site('umum.stats.projects'), '+') ? '+' : ''" label="Proyek selesai" dark />
@@ -59,21 +60,21 @@
                     </div>
                     <div class="mt-3 flex items-center gap-2 lg:mt-4">
                         <div class="h-1.5 flex-1 overflow-hidden rounded-full bg-brand-surface-on-dark"><span class="animate-fill block h-full w-full rounded-full bg-brand-normal"></span></div>
-                        <span class="text-caption text-brand-on-dark">12 proyek aktif</span>
+                        <span class="text-caption text-brand-on-dark">{{ $h['card_note'] }}</span>
                     </div>
                 </div>
 
                 {{-- Float → Photo Tile 1 --}}
                 <div data-animate="scale" style="--float-dur:6s;--float-delay:0.6s" class="animate-float absolute left-0 top-[26%] w-[34%] overflow-hidden rounded-[14px] border-[3px] border-white shadow-hero lg:top-[16%] lg:w-[180px] lg:rounded-card lg:border-4">
-                    <img src="{{ asset('images/hero-team.jpg') }}" alt="Tim MaiHarta" class="aspect-[18/13] w-full object-cover">
+                    <img src="{{ asset($h['photo_1']) }}" alt="Tim MaiHarta" class="aspect-[18/13] w-full object-cover">
                 </div>
 
                 {{-- Float → ISO Badge --}}
                 <div data-animate="scale" style="--float-dur:4.5s;--float-delay:1.1s" class="animate-float absolute right-0 top-0 flex items-center gap-2.5 rounded-xl bg-white p-2.5 pr-4 shadow-floating lg:right-[10px] lg:top-[1%] lg:rounded-[14px] lg:p-3">
                     <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-light lg:h-9 lg:w-9"><x-heroicon-o-shield-check class="h-5 w-5 text-brand-normal" /></span>
                     <span>
-                        <span class="block text-label font-semibold text-brand-dark lg:text-body-sm">ISO/IEC 27001</span>
-                        <span class="block text-caption text-brand-muted">Keamanan informasi tersertifikasi</span>
+                        <span class="block text-label font-semibold text-brand-dark lg:text-body-sm">{{ $h['iso_title'] }}</span>
+                        <span class="block text-caption text-brand-muted">{{ $h['iso_sub'] }}</span>
                     </span>
                 </div>
 
@@ -90,12 +91,12 @@
                     <div class="flex items-center gap-2.5">
                         <span class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-light-hover text-chip font-medium text-brand-dark">NS</span>
                         <span class="flex-1">
-                            <span class="block text-label font-medium text-brand-dark">Helpdesk · Tiket #1042</span>
-                            <span class="block text-caption text-brand-muted">Nasabah · 2 jam lalu</span>
+                            <span class="block text-label font-medium text-brand-dark">{{ $h['bubble_title'] }}</span>
+                            <span class="block text-caption text-brand-muted">{{ $h['bubble_sub'] }}</span>
                         </span>
-                        <x-chip variant="success"><x-heroicon-o-check class="h-3 w-3" />Selesai · SLA</x-chip>
+                        @if ($h['bubble_status'])<x-chip variant="success"><x-heroicon-o-check class="h-3 w-3" />{{ $h['bubble_status'] }}</x-chip>@endif
                     </div>
-                    <p class="mt-2.5 text-caption text-brand-dark lg:text-body-sm">“Pengaduan sudah ditindaklanjuti unit terkait dan diselesaikan dalam 2 jam. Terima kasih!”</p>
+                    <p class="mt-2.5 text-caption text-brand-dark lg:text-body-sm">{{ $h['bubble_text'] }}</p>
                     <span class="animate-typing mt-2 flex gap-1 pl-0.5" aria-hidden="true">
                         <span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span>
                     </span>
@@ -105,14 +106,14 @@
                 <div data-animate="scale" style="--float-dur:6.5s;--float-delay:1.4s" class="animate-float absolute bottom-[4%] left-0 hidden items-center gap-2.5 rounded-[14px] bg-white p-3 pr-4 shadow-floating lg:flex">
                     <span class="flex h-9 w-9 items-center justify-center rounded-[10px] bg-brand-dark"><x-heroicon-o-lock-closed class="h-[18px] w-[18px] text-white" /></span>
                     <span>
-                        <span class="block text-body-sm font-semibold text-brand-dark">SSO + 2FA aktif</span>
-                        <span class="block text-caption text-brand-muted">Bank BPD Bali · 1 pintu login</span>
+                        <span class="block text-body-sm font-semibold text-brand-dark">{{ $h['sso_title'] }}</span>
+                        <span class="block text-caption text-brand-muted">{{ $h['sso_sub'] }}</span>
                     </span>
                 </div>
 
                 {{-- Float → Photo Tile 2 (desktop only) --}}
                 <div data-animate="scale" style="--float-dur:5.2s;--float-delay:0.4s" class="animate-float absolute bottom-0 right-0 hidden w-[180px] overflow-hidden rounded-card border-4 border-white shadow-hero lg:block">
-                    <img src="{{ asset('images/hero-dashboard.jpg') }}" alt="Dashboard analitik" class="aspect-[18/13] w-full object-cover">
+                    <img src="{{ asset($h['photo_2']) }}" alt="Dashboard analitik" class="aspect-[18/13] w-full object-cover">
                 </div>
             </div>
         </div>
