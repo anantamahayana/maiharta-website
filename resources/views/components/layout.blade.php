@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? 'MaiHarta — Ngga Ada Habisnya' }}</title>
     <meta name="theme-color" content="#2155cd">
+    {{-- Penanda "bukan halaman pertama di sesi ini" — dipakai CSS agar elemen persisten tidak beranimasi ulang saat navigasi --}}
+    <script>try{if(sessionStorage.getItem('wa-seen'))document.documentElement.classList.add('wa-seen');sessionStorage.setItem('wa-seen','1')}catch(e){}</script>
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
     <link rel="icon" type="image/png" href="{{ asset('images/icon-maiharta.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">

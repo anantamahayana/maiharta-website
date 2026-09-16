@@ -169,15 +169,23 @@
 
 /* Transisi antar-halaman (View Transitions API, cross-document). Browser lain: navigasi biasa. */
 @view-transition { navigation: auto; }
-@keyframes vt-out { to { opacity: 0; transform: translateY(-8px); } }
+@keyframes vt-out { to { opacity: 0; } }
 @keyframes vt-in { from { opacity: 0; transform: translateY(10px); } }
-::view-transition-old(root) { animation: vt-out 0.18s var(--ease-out-expo) both; }
-::view-transition-new(root) { animation: vt-in 0.32s var(--ease-out-expo) both; }
-/* Navbar, bottom nav, dan FAB tetap diam saat halaman berganti */
+::view-transition-old(root) { animation: vt-out 0.2s ease-out both; }
+::view-transition-new(root) { animation: vt-in 0.34s var(--ease-out-expo) both; }
+/* Elemen persisten: dipisahkan dari root supaya tidak ikut memudar. Snapshot lama & baru
+   identik, jadi cross-fade default tidak terlihat -> terasa tidak pernah reload. */
 .navbar { view-transition-name: navbar; }
 .bottom-nav { view-transition-name: bottom-nav; }
 .fab-wa { view-transition-name: fab-wa; }
-::view-transition-group(navbar), ::view-transition-group(bottom-nav), ::view-transition-group(fab-wa) { animation-duration: 0s; }
+::view-transition-old(navbar), ::view-transition-old(bottom-nav), ::view-transition-old(fab-wa) { animation: none; opacity: 0; }
+::view-transition-new(navbar), ::view-transition-new(bottom-nav), ::view-transition-new(fab-wa) { animation: none; }
+/* Indikator link aktif meluncur dari posisi lama ke posisi baru */
+.navbar__active { view-transition-name: nav-active; }
+.bottom-nav__active { view-transition-name: bottom-nav-active; }
+::view-transition-group(nav-active), ::view-transition-group(bottom-nav-active) { animation-duration: 0.4s; animation-timing-function: var(--ease-out-expo); }
+::view-transition-old(nav-active), ::view-transition-old(bottom-nav-active) { animation: none; opacity: 0; }
+::view-transition-new(nav-active), ::view-transition-new(bottom-nav-active) { animation: none; }
 
 /* Bottom nav mobile — pill melayang */
 @keyframes nav-glow-in {
@@ -204,7 +212,11 @@
     94% { transform: rotate(-8deg); }
     97% { transform: rotate(6deg); }
 }
-.fab-wa__btn { animation: fab-pop 0.7s var(--ease-out-expo) both; }
+/* Halaman pertama dalam sesi: pop-in setelah 0.9s. Halaman berikutnya (html.wa-seen): langsung tampil
+   tanpa animasi supaya tidak berkedip saat navigasi. Visibilitas diatur CSS, bukan JS, agar snapshot
+   View Transition sudah memuat tombol. */
+.fab-wa__btn { animation: fab-pop 0.7s var(--ease-out-expo) 0.9s both; }
+html.wa-seen .fab-wa__btn { animation: none; }
 .fab-wa__ring {
     position: absolute; inset: 0; width: 3.5rem; border-radius: 9999px;
     background: #25d366; pointer-events: none;

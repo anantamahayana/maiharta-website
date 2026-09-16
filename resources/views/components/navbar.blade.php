@@ -28,7 +28,7 @@
                     href="{{ route($link['route']) }}"
                     @class([
                         'relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300',
-                        'bg-white text-brand-normal shadow-card' => $link['active'],
+                        'navbar__active bg-white text-brand-normal shadow-card' => $link['active'],
                         'text-brand-dark/75 hover:bg-white/70 hover:text-brand-normal' => ! $link['active'],
                     ])
                     @if ($link['active']) aria-current="page" @endif
