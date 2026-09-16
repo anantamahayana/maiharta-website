@@ -9,25 +9,23 @@
 {{-- Floating WhatsApp — Float → WhatsApp FAB (pojok kanan bawah) --}}
 <div
     x-data="{
-        shown: false,
         bubble: false,
         dismissed: false,
         init() {
             try { this.dismissed = sessionStorage.getItem('wa-bubble') === '1'; } catch (e) {}
-            setTimeout(() => this.shown = true, 900);
-            if (!this.dismissed) setTimeout(() => this.bubble = true, 3800);
+            // Bubble hanya di halaman pertama sesi (kelas html.wa-seen dipasang skrip inline di <head>)
+            if (!this.dismissed && !document.documentElement.classList.contains('wa-seen')) setTimeout(() => this.bubble = true, 3800);
         },
         close() {
             this.bubble = false; this.dismissed = true;
             try { sessionStorage.setItem('wa-bubble', '1'); } catch (e) {}
         },
     }"
-    x-cloak
-    x-show="shown"
     class="fab-wa fixed right-4 bottom-[100px] z-40 flex flex-col items-end gap-3 md:right-6 lg:bottom-6"
 >
     {{-- Bubble ajakan --}}
     <div
+        x-cloak
         x-show="bubble"
         x-transition:enter="transition duration-500 ease-out-expo"
         x-transition:enter-start="translate-y-3 scale-95 opacity-0"

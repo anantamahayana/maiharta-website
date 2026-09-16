@@ -35,7 +35,7 @@
                 @if ($tab['active']) aria-current="page" @endif
             >
                 @if ($tab['active'])
-                    <span class="bottom-nav__glow absolute inset-x-2 inset-y-1 rounded-full bg-brand-light" aria-hidden="true"></span>
+                    <span class="bottom-nav__glow bottom-nav__active absolute inset-x-2 inset-y-1 rounded-full bg-brand-light" aria-hidden="true"></span>
                 @endif
                 <span @class(['relative grid size-7 place-items-center transition-transform duration-300 ease-out-expo', '-translate-y-0.5' => $tab['active'], 'group-active:scale-90' => ! $tab['active']])>
                     @svg('heroicon-' . ($tab['active'] ? 's' : 'o') . '-' . $tab['icon'], 'size-[22px]')
