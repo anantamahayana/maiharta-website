@@ -187,6 +187,16 @@
 ::view-transition-old(nav-active), ::view-transition-old(bottom-nav-active) { animation: none; opacity: 0; }
 ::view-transition-new(nav-active), ::view-transition-new(bottom-nav-active) { animation: none; }
 
+/* Navbar — pill indikator yang meluncur (lihat slidingNav di app.js) */
+.sliding-nav__pill {
+    position: absolute; top: 4px; bottom: 4px; left: 0;
+    border-radius: 9999px; background: #fff; box-shadow: var(--shadow-card);
+    will-change: transform, width;
+}
+.sliding-nav__pill.is-ready {
+    transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1), width 0.42s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.2s;
+}
+
 /* Bottom nav mobile — pill melayang */
 @keyframes nav-glow-in {
     from { transform: scale(0.6); opacity: 0; }
@@ -333,6 +343,7 @@ html.wa-seen .fab-wa__btn { animation: none; }
     }
     ::view-transition-old(root),
     ::view-transition-new(root),
+    .sliding-nav__pill,
     .bottom-nav__glow,
     .bottom-nav__dot,
     .fab-wa__btn,
@@ -349,5 +360,8 @@ html.wa-seen .fab-wa__btn { animation: none; }
     }
     .animate-bar {
         transform: none;
+    }
+    .sliding-nav__pill.is-ready {
+        transition: none;
     }
 }
