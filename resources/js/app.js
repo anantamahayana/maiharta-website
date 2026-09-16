@@ -20,15 +20,20 @@ Alpine.data('slidingNav', () => ({
         e.preventDefault();
         const href = el.href;
         if (matchMedia('(prefers-reduced-motion: reduce)').matches) { window.location.href = href; return; }
-        // 1) letakkan pill JS tepat di atas highlight aktif, 2) sembunyikan highlight statis,
-        // 3) frame berikutnya: aktifkan transisi & geser ke tujuan, 4) navigasi setelah animasi.
-        this.pillStyle = current ? this.rect(current) : `${this.rect(el)};opacity:0`;
+        // 1) letakkan pill tepat di atas highlight aktif & sembunyikan highlight statis (tanpa transisi),
+        // 2) paksa reflow agar posisi awal ter-commit, 3) nyalakan transisi & geser ke tujuan,
+        // 4) navigasi setelah animasi hampir selesai.
+        const pill = this.$el.querySelector('.sliding-nav__pill');
+        pill.classList.remove('is-ready');
+        pill.style.cssText = current ? this.rect(current) : `${this.rect(el)};opacity:0`;
+        this.$el.classList.add('is-moving');
+        void pill.offsetWidth; // reflow
+        pill.classList.add('is-ready');
+        pill.style.cssText = this.rect(el);
         this.moving = true;
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-            this.ready = true;
-            this.target = el;
-            this.pillStyle = this.rect(el);
-        }));
+        this.ready = true;
+        this.target = el;
+        this.pillStyle = this.rect(el);
         setTimeout(() => (window.location.href = href), 340);
     },
 }));
