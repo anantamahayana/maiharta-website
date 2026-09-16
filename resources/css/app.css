@@ -233,7 +233,7 @@
 .fab-wa__btn { animation: fab-pop 0.7s var(--ease-out-expo) 0.9s both; }
 html.wa-seen .fab-wa__btn { animation: none; }
 .fab-wa__ring {
-    position: absolute; inset: 0; width: 3.5rem; border-radius: 9999px;
+    position: absolute; inset: 0; width: 4rem; border-radius: 9999px;
     background: #25d366; pointer-events: none;
     animation: fab-ring 2.4s ease-out infinite;
 }
