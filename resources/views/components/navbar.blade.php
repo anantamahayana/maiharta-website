@@ -22,16 +22,21 @@
             <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" class="navbar__logo w-auto transition-[height] duration-500 ease-out-expo">
         </a>
 
-        <nav class="hidden items-center gap-1 rounded-full bg-brand-light/60 p-1 lg:flex" aria-label="Navigasi utama">
+        {{-- Grup link dengan pill indikator yang meluncur ke link yang diklik sebelum halaman berganti --}}
+        <nav
+            x-data="slidingNav()"
+            class="sliding-nav relative hidden items-center gap-1 rounded-full bg-brand-light/60 p-1 lg:flex"
+            aria-label="Navigasi utama"
+        >
+            <span class="sliding-nav__pill navbar__active" :class="ready && 'is-ready'" :style="pillStyle" aria-hidden="true"></span>
             @foreach ($navLinks as $link)
                 <a
                     href="{{ route($link['route']) }}"
-                    @class([
-                        'relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300',
-                        'navbar__active bg-white text-brand-normal shadow-card' => $link['active'],
-                        'text-brand-dark/75 hover:bg-white/70 hover:text-brand-normal' => ! $link['active'],
-                    ])
-                    @if ($link['active']) aria-current="page" @endif
+                    data-nav-link
+                    @if ($link['active']) data-nav-active aria-current="page" @endif
+                    @click="go($event, $el)"
+                    :class="active === $el ? 'text-brand-normal' : 'text-brand-dark/75 hover:text-brand-normal'"
+                    class="relative z-10 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300"
                 >
                     {{ $link['label'] }}
                 </a>
