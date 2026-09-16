@@ -15,11 +15,11 @@
     class="navbar fixed inset-x-4 top-4 z-30 md:inset-x-6 md:top-5"
 >
     <div
-        :class="scrolled ? 'h-[60px] bg-white/90 shadow-floating lg:h-[68px]' : 'h-[64px] bg-white/75 shadow-card lg:h-[76px]'"
-        class="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-white/70 pr-2 pl-5 backdrop-blur-xl transition-[height,background-color,box-shadow] duration-500 ease-out-expo md:pr-2.5 md:pl-7"
+        :class="scrolled && 'is-scrolled'"
+        class="navbar__pill mx-auto flex max-w-[1320px] bg-white/75 shadow-card items-center justify-between rounded-full border border-white/70 pr-2 pl-5 backdrop-blur-xl transition-[height,background-color,box-shadow] duration-500 ease-out-expo md:pr-2.5 md:pl-7"
     >
         <a href="{{ route('home') }}" class="flex items-center">
-            <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" :class="scrolled ? 'h-8 lg:h-9' : 'h-9 lg:h-10'" class="w-auto transition-[height] duration-500 ease-out-expo">
+            <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" class="navbar__logo w-auto transition-[height] duration-500 ease-out-expo">
         </a>
 
         <nav class="hidden items-center gap-1 rounded-full bg-brand-light/60 p-1 lg:flex" aria-label="Navigasi utama">

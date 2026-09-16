@@ -149,6 +149,36 @@
 
 [x-cloak] { display: none !important; }
 
+/* Navbar — state setelah scroll (kelas statis di markup = state awal, jadi tidak ada flash sebelum Alpine siap) */
+.navbar__pill { height: 64px; }
+.navbar__logo { height: 2.25rem; }
+.navbar__pill.is-scrolled {
+    height: 60px;
+    background-color: rgb(255 255 255 / 0.9);
+    box-shadow: var(--shadow-floating);
+}
+.navbar__pill.is-scrolled .navbar__logo { height: 2rem; }
+@media (width >= 64rem) {
+    .navbar__pill { height: 76px; }
+    .navbar__logo { height: 2.5rem; }
+    .navbar__pill.is-scrolled { height: 68px; }
+    .navbar__pill.is-scrolled .navbar__logo { height: 2.25rem; }
+}
+/* Logo tidak pernah melebihi tinggi navbar, bahkan sebelum CSS utilitas/JS aktif */
+.navbar img { max-height: 2.5rem; }
+
+/* Transisi antar-halaman (View Transitions API, cross-document). Browser lain: navigasi biasa. */
+@view-transition { navigation: auto; }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-8px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(10px); } }
+::view-transition-old(root) { animation: vt-out 0.18s var(--ease-out-expo) both; }
+::view-transition-new(root) { animation: vt-in 0.32s var(--ease-out-expo) both; }
+/* Navbar, bottom nav, dan FAB tetap diam saat halaman berganti */
+.navbar { view-transition-name: navbar; }
+.bottom-nav { view-transition-name: bottom-nav; }
+.fab-wa { view-transition-name: fab-wa; }
+::view-transition-group(navbar), ::view-transition-group(bottom-nav), ::view-transition-group(fab-wa) { animation-duration: 0s; }
+
 /* Bottom nav mobile — pill melayang */
 @keyframes nav-glow-in {
     from { transform: scale(0.6); opacity: 0; }
@@ -289,6 +319,8 @@
         transform: none;
         transition: none;
     }
+    ::view-transition-old(root),
+    ::view-transition-new(root),
     .bottom-nav__glow,
     .bottom-nav__dot,
     .fab-wa__btn,
