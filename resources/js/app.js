@@ -15,7 +15,7 @@ Alpine.data('slidingNav', () => ({
     },
     rect(el) { return `transform:translateX(${el.offsetLeft}px);width:${el.offsetWidth}px`; },
     go(e, el) {
-        const current = this.$el.querySelector('[data-nav-active]');
+        const current = this.$root.querySelector('[data-nav-active]');
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || el === current) return;
         e.preventDefault();
         const href = el.href;
@@ -23,10 +23,10 @@ Alpine.data('slidingNav', () => ({
         // 1) letakkan pill tepat di atas highlight aktif & sembunyikan highlight statis (tanpa transisi),
         // 2) paksa reflow agar posisi awal ter-commit, 3) nyalakan transisi & geser ke tujuan,
         // 4) navigasi setelah animasi hampir selesai.
-        const pill = this.$el.querySelector('.sliding-nav__pill');
+        const pill = this.$root.querySelector('.sliding-nav__pill');
         pill.classList.remove('is-ready');
         pill.style.cssText = current ? this.rect(current) : `${this.rect(el)};opacity:0`;
-        this.$el.classList.add('is-moving');
+        this.$root.classList.add('is-moving');
         void pill.offsetWidth; // reflow
         pill.classList.add('is-ready');
         pill.style.cssText = this.rect(el);
