@@ -187,14 +187,19 @@
 ::view-transition-old(nav-active), ::view-transition-old(bottom-nav-active) { animation: none; opacity: 0; }
 ::view-transition-new(nav-active), ::view-transition-new(bottom-nav-active) { animation: none; }
 
-/* Navbar — pill indikator yang meluncur (lihat slidingNav di app.js) */
+/* Navbar — pill indikator yang meluncur (lihat slidingNav di app.js).
+   Highlight aktif dirender server di <a>; pill JS hanya tampil saat animasi (.is-moving). */
 .sliding-nav__pill {
-    position: absolute; top: 4px; bottom: 4px; left: 0;
+    position: absolute; top: 4px; bottom: 4px; left: 0; opacity: 0;
     border-radius: 9999px; background: #fff; box-shadow: var(--shadow-card);
     will-change: transform, width;
 }
+.sliding-nav.is-moving .sliding-nav__pill { opacity: 1; }
+.sliding-nav.is-moving .sliding-nav__link { background: transparent; box-shadow: none; transition: color 0.3s; }
+.sliding-nav.is-moving .sliding-nav__link.is-leaving { color: rgb(from var(--color-brand-dark) r g b / 0.75); }
+.sliding-nav.is-moving .sliding-nav__link.is-target { color: var(--color-brand-normal); }
 .sliding-nav__pill.is-ready {
-    transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1), width 0.42s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.2s;
+    transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1), width 0.42s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 /* Bottom nav mobile — pill melayang */

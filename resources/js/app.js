@@ -6,30 +6,30 @@ window.Alpine = Alpine;
 // Halaman baru merender pill langsung di posisi link aktif (tanpa animasi), sehingga
 // dikombinasikan dengan View Transitions terasa seperti satu aplikasi.
 Alpine.data('slidingNav', () => ({
-    active: null,
+    moving: false,   // true saat pill JS mengambil alih highlight dari link aktif
+    target: null,    // link tujuan (teksnya jadi biru saat pill tiba)
     ready: false,
     pillStyle: '',
     init() {
-        this.active = this.$el.querySelector('[data-nav-active]') || null;
-        this.place(this.active);
-        // aktifkan transisi setelah posisi awal terpasang (hindari pill meluncur dari 0 saat load)
-        requestAnimationFrame(() => requestAnimationFrame(() => (this.ready = true)));
-        window.addEventListener('resize', () => this.place(this.active), { passive: true });
-        // kembali ke tab ini (tombol back) → pastikan pill di link aktif
-        window.addEventListener('pageshow', () => this.place(this.active));
+        window.addEventListener('pageshow', () => { this.moving = false; this.target = null; this.ready = false; });
     },
-    place(el) {
-        if (!el) { this.pillStyle = 'opacity:0'; return; }
-        this.pillStyle = `transform:translateX(${el.offsetLeft}px);width:${el.offsetWidth}px;opacity:1`;
-    },
+    rect(el) { return `transform:translateX(${el.offsetLeft}px);width:${el.offsetWidth}px`; },
     go(e, el) {
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || el === this.active) return;
+        const current = this.$el.querySelector('[data-nav-active]');
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0 || el === current) return;
         e.preventDefault();
-        this.active = el;
-        this.place(el);
         const href = el.href;
-        const delay = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 320;
-        setTimeout(() => (window.location.href = href), delay);
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { window.location.href = href; return; }
+        // 1) letakkan pill JS tepat di atas highlight aktif, 2) sembunyikan highlight statis,
+        // 3) frame berikutnya: aktifkan transisi & geser ke tujuan, 4) navigasi setelah animasi.
+        this.pillStyle = current ? this.rect(current) : `${this.rect(el)};opacity:0`;
+        this.moving = true;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            this.ready = true;
+            this.target = el;
+            this.pillStyle = this.rect(el);
+        }));
+        setTimeout(() => (window.location.href = href), 340);
     },
 }));
 
