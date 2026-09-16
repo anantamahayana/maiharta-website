@@ -21,7 +21,7 @@
             try { sessionStorage.setItem('wa-bubble', '1'); } catch (e) {}
         },
     }"
-    class="fab-wa fixed right-4 bottom-[100px] z-40 flex flex-col items-end gap-3 md:right-6 lg:bottom-6"
+    class="fab-wa fixed right-4 bottom-[108px] z-40 flex flex-col items-end gap-3 md:right-7 lg:bottom-8"
 >
     {{-- Bubble ajakan --}}
     <div
@@ -57,14 +57,14 @@
         target="_blank"
         rel="noopener"
         @click="close()"
-        class="fab-wa__btn group relative flex h-14 items-center gap-0 rounded-full bg-[#25d366] pl-0 text-white shadow-floating transition-[padding,box-shadow,transform] duration-300 ease-out-expo hover:pr-5 hover:shadow-hero focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25d366]/40 active:scale-95"
+        class="fab-wa__btn group relative flex h-16 items-center gap-0 rounded-full bg-[#25d366] pl-0 text-white shadow-floating transition-[padding,box-shadow,transform] duration-300 ease-out-expo hover:pr-5 hover:shadow-hero focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25d366]/40 active:scale-95"
         aria-label="Chat via WhatsApp"
     >
         <span class="fab-wa__ring" aria-hidden="true"></span>
         <span class="fab-wa__ring fab-wa__ring--late" aria-hidden="true"></span>
-        <span class="relative grid size-14 shrink-0 place-items-center">
-            <x-icons.social-whatsapp class="fab-wa__icon size-7" />
-            <span class="absolute top-3 right-3 size-2.5 rounded-full border-2 border-[#25d366] bg-white"></span>
+        <span class="relative grid size-16 shrink-0 place-items-center">
+            <x-icons.social-whatsapp class="fab-wa__icon size-8" />
+            <span class="absolute top-3.5 right-3.5 size-3 rounded-full border-2 border-[#25d366] bg-white"></span>
         </span>
         <span class="max-w-0 overflow-hidden text-label font-semibold whitespace-nowrap opacity-0 transition-[max-width,opacity] duration-300 ease-out-expo group-hover:max-w-[160px] group-hover:opacity-100">
             Chat via WhatsApp
