@@ -147,4 +147,17 @@ class ContentEditorTest extends TestCase
         $this->assertSame([['label' => 'Cocok untuk', 'value' => 'Brand UMKM']], $service->meta);
         $this->get('/layanan/desain')->assertOk()->assertSee('Cocok untuk')->assertSee('Brand UMKM')->assertSee('Logo & Identitas')->assertSee('Judul Tentang Khusus');
     }
+
+    /** Regression: suffixed names must nest inside the group (PHP drops anything after a closing bracket). */
+    public function test_image_field_names_are_nested_inside_group(): void
+    {
+        $html = $this->get('/admin/content/tentang')->assertOk()->getContent();
+
+        $this->assertStringContainsString('partner[partners_keep][${i}][src]', $html);
+        $this->assertStringContainsString('name="partner[partners_files][]"', $html);
+        $this->assertStringNotContainsString('partner[partners]_keep', $html);
+
+        $html = $this->get('/admin/content/umum')->assertOk()->getContent();
+        $this->assertStringContainsString('name="brand[logo_remove]"', $html);
+    }
 }
