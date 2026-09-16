@@ -13,6 +13,7 @@ Website profil perusahaan MaiHarta ("Ngga Ada Habisnya") beserta panel admin unt
 Dokumen terkait:
 - [docs/panduan-admin.md](docs/panduan-admin.md) — panduan pemakaian panel admin untuk pengelola konten.
 - [docs/arsitektur.md](docs/arsitektur.md) — struktur kode, skema data, sistem desain, dan cara memperluas.
+- [docs/testing-manual.md](docs/testing-manual.md) — modul testing manual (114 kasus uji publik + admin, matriks perangkat, log defect).
 
 ---
 
