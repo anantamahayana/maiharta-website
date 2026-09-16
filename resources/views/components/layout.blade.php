@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     <meta name="description" content="{{ $description ?? 'Mitra pengembangan produk digital yang profesional, aman, dan terpercaya.' }}">
 
+    <link rel="preload" as="image" href="{{ asset(site('umum.brand.logo')) }}" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
