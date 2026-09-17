@@ -125,10 +125,17 @@
                 <p class="mt-3 text-body-sm text-brand-on-dark md:text-[15px] md:leading-6">{{ $project->description }}</p>
             </div>
             @if ($stats->isNotEmpty())
-                <div class="grid shrink-0 grid-cols-3 gap-3 md:grid-cols-1 lg:grid-cols-3">
+                {{-- Nilai panjang (mis. "1.000.000", "Responsif") mengecil otomatis & dibungkus, tidak meluber keluar kotak --}}
+                <div class="grid w-full shrink-0 grid-cols-3 gap-3 lg:w-auto lg:grid-cols-3">
                     @foreach ($stats->take(3) as $stat)
-                        <div class="rounded-[14px] border border-brand-border-on-dark bg-brand-surface-on-dark px-4 py-4 md:w-[150px]">
-                            <p class="font-heading text-h3 font-semibold text-brand-normal md:text-[32px] md:leading-10">{{ $stat['value'] }}</p>
+                        @php $len = mb_strlen($stat['value']); @endphp
+                        <div class="min-w-0 rounded-[14px] border border-brand-border-on-dark bg-brand-surface-on-dark px-4 py-4 lg:w-[150px]">
+                            <p @class([
+                                'font-heading font-semibold leading-tight text-brand-normal break-words',
+                                'text-[28px] md:text-[32px]' => $len <= 5,
+                                'text-[22px] md:text-[24px]' => $len > 5 && $len <= 8,
+                                'text-[17px] md:text-[18px]' => $len > 8,
+                            ])>{{ $stat['value'] }}</p>
                             <p class="mt-1 text-caption text-brand-on-dark">{{ $stat['label'] }}</p>
                         </div>
                     @endforeach

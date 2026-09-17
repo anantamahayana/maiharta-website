@@ -23,7 +23,7 @@
                 <ul class="mt-4 space-y-3 text-sm text-white/60">
                     <li><a href="mailto:{{ site('umum.brand.email') }}" class="hover:text-white">{{ site('umum.brand.email') }}</a></li>
                     <li><a href="https://wa.me/{{ site('umum.brand.whatsapp') }}" class="hover:text-white">{{ site('umum.brand.phone') }}</a></li>
-                    <li>{{ site('umum.brand.address') }}</li>
+                    <li>@if (site('umum.brand.maps_link'))<a href="{{ site('umum.brand.maps_link') }}" target="_blank" rel="noopener" class="hover:text-white">{{ site('umum.brand.address') }}</a>@else{{ site('umum.brand.address') }}@endif</li>
                 </ul>
             </div>
         </div>

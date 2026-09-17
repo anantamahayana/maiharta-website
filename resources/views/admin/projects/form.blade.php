@@ -61,7 +61,7 @@
                         <template x-for="(s, i) in stats" :key="i">
                             <div class="flex items-center gap-2.5">
                                 <x-heroicon-o-bars-3 class="h-4 w-4 shrink-0 text-brand-muted" />
-                                <input type="text" :name="`stats[${i}][value]`" x-model="s.value" placeholder="Nilai (8, 100%, 2FA)" class="w-40 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
+                                <input type="text" :name="`stats[${i}][value]`" x-model="s.value" placeholder="Nilai (8, 100%, 1 jt)" maxlength="12" class="w-40 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
                                 <input type="text" :name="`stats[${i}][label]`" x-model="s.label" placeholder="Label" class="flex-1 rounded-lg border border-brand-border bg-brand-input px-3.5 py-2.5 text-body-sm outline-none focus:border-brand-normal focus:bg-white">
                                 <button type="button" @click="stats.splice(i, 1)" class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-lg bg-brand-light hover:bg-error-bg hover:text-error" title="Hapus baris"><x-heroicon-o-trash class="h-4 w-4" /></button>
                             </div>

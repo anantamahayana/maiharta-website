@@ -109,7 +109,7 @@ class ProjectController extends Controller
             'external_url' => ['nullable', 'url', 'max:255'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'stats' => ['nullable', 'array'],
-            'stats.*.value' => ['nullable', 'string', 'max:50'],
+            'stats.*.value' => ['nullable', 'string', 'max:12'],
             'stats.*.label' => ['nullable', 'string', 'max:100'],
             'cover' => ['nullable', 'image', 'max:2048'],
             'gallery_files' => ['nullable', 'array'],
