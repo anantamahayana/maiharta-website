@@ -149,6 +149,9 @@
 
 [x-cloak] { display: none !important; }
 
+/* Validasi inline (app.js) — wrapper field yang gagal validasi */
+.is-invalid { border-color: var(--color-error) !important; }
+
 /* Navbar — state setelah scroll (kelas statis di markup = state awal, jadi tidak ada flash sebelum Alpine siap) */
 .navbar__pill { height: 64px; }
 .navbar__logo { height: 2.25rem; }

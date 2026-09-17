@@ -10,7 +10,7 @@
         <x-admin.button type="submit" form="project-form" icon="check">{{ $editing ? 'Simpan Perubahan' : 'Simpan Proyek' }}</x-admin.button>
     </x-slot:actions>
 
-    <form id="project-form" method="POST" action="{{ $editing ? route('admin.projects.update', $project) : route('admin.projects.store') }}" enctype="multipart/form-data"
+    <form novalidate id="project-form" method="POST" action="{{ $editing ? route('admin.projects.update', $project) : route('admin.projects.store') }}" enctype="multipart/form-data"
           x-data="{
               stats: @js(array_values($stats)),
               gallery: @js($gallery->all()),

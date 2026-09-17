@@ -18,7 +18,7 @@
         @endforeach
     </div>
 
-    <form id="content-form" method="POST" action="{{ route('admin.content.update', $page) }}" enctype="multipart/form-data" class="mt-5 space-y-5">
+    <form novalidate id="content-form" method="POST" action="{{ route('admin.content.update', $page) }}" enctype="multipart/form-data" class="mt-5 space-y-5">
         @csrf @method('PUT')
 
         @foreach ($def['groups'] as $group => $g)

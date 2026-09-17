@@ -1,7 +1,7 @@
 <x-admin.layouts.app title="Pengaturan Akun" crumb="Pengaturan">
     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <x-admin.card title="Profil">
-            <form method="POST" action="{{ route('admin.settings.profile') }}" class="space-y-4">
+            <form novalidate method="POST" action="{{ route('admin.settings.profile') }}" class="space-y-4">
                 @csrf @method('PUT')
                 <div class="flex items-center gap-4">
                     <span class="flex h-16 w-16 items-center justify-center rounded-full bg-brand-normal font-heading text-h4 font-semibold text-white">{{ Str::of($user->name)->explode(' ')->map(fn ($w) => Str::substr($w, 0, 1))->take(2)->implode('') }}</span>
@@ -14,7 +14,7 @@
         </x-admin.card>
 
         <x-admin.card title="Ubah Kata Sandi">
-            <form method="POST" action="{{ route('admin.settings.password') }}" class="space-y-4">
+            <form novalidate method="POST" action="{{ route('admin.settings.password') }}" class="space-y-4">
                 @csrf @method('PUT')
                 <x-admin.field label="Kata Sandi Saat Ini" name="current_password" type="password" required autocomplete="current-password" />
                 <x-admin.field label="Kata Sandi Baru" name="password" type="password" required autocomplete="new-password" help="Minimal 8 karakter." />

@@ -173,7 +173,7 @@ class AdminPanelTest extends TestCase
     {
         $this->post('/kontak', ['name' => 'Wayan', 'email' => 'w@example.com', 'phone' => '0812-3456-7890', 'message' => 'Halo', 'website' => ''])->assertSessionHas('status');
         $m = ContactSubmission::latest()->first();
-        $this->assertSame('0812-3456-7890', $m->phone);
+        $this->assertSame('081234567890', $m->phone); // dinormalisasi ke angka saja
         $this->assertSame('6281234567890', $m->whatsapp_number);
 
         $this->post('/kontak', ['name' => 'X', 'email' => 'x@example.com', 'phone' => 'abc', 'message' => 'Halo', 'website' => ''])->assertSessionHasErrors('phone');

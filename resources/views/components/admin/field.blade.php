@@ -7,7 +7,7 @@
 @endphp
 <div {{ $attributes->only('class') }}>
     <label for="{{ $name }}" class="mb-1.5 block text-label font-medium text-brand-dark">{{ $label }}@if ($required) <span class="text-error">*</span>@endif</label>
-    <div class="flex items-center overflow-hidden rounded-lg border bg-brand-input transition focus-within:border-brand-normal focus-within:bg-white focus-within:ring-[3px] focus-within:ring-brand-normal/20 {{ $hasError ? 'border-error' : 'border-brand-border' }}">
+    <div data-field class="flex items-center overflow-hidden rounded-lg border bg-brand-input transition focus-within:border-brand-normal focus-within:bg-white focus-within:ring-[3px] focus-within:ring-brand-normal/20 {{ $hasError ? 'border-error' : 'border-brand-border' }}">
         @if ($prefix)<span class="pl-3.5 text-body-sm text-brand-muted">{{ $prefix }}</span>@endif
         @if ($type === 'textarea')
             <textarea name="{{ $name }}" id="{{ $name }}" rows="{{ $rows }}" placeholder="{{ $placeholder }}" @required($required) {{ $attributes->except('class') }} class="{{ $inputClass }}">{{ old($name, $value) }}</textarea>

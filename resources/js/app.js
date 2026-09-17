@@ -126,3 +126,72 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initCounters();
 });
+
+// ---------------------------------------------------------------------------
+// Validasi inline (laporan bug #3 & #5): form dengan atribut `novalidate` tidak lagi memakai
+// tooltip bawaan browser ("Harap isi bidang ini"). Saat submit, field wajib/email/telepon
+// diperiksa di sini dan pesan tampil di bawah field — gaya sama dengan error dari server.
+// Validasi server tetap berjalan sebagai jaring pengaman.
+const ICON = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-3.5 w-3.5 shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg>';
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PHONE_RE = /^\+?[0-9]{8,15}$/;
+
+function fieldMessage(el) {
+    const v = el.value.trim();
+    if (el.required && !v) return el.dataset.msgRequired || 'Wajib diisi.';
+    if (!v) return '';
+    if (el.type === 'email' && !EMAIL_RE.test(v)) return el.dataset.msgEmail || 'Format email tidak valid (contoh: nama@domain.com).';
+    if (el.type === 'tel' && !PHONE_RE.test(v.replace(/[\s().-]/g, ''))) return el.dataset.msgTel || 'Nomor telepon hanya boleh angka (8–15 digit).';
+    if (el.minLength > 0 && v.length < el.minLength) return `Minimal ${el.minLength} karakter.`;
+    if (el.dataset.match) {
+        const other = el.form.querySelector(`[name="${el.dataset.match}"]`);
+        if (other && other.value !== el.value) return el.dataset.msgMatch || 'Konfirmasi tidak cocok.';
+    }
+    return '';
+}
+
+function fieldWrap(el) {
+    // komponen admin membungkus input dengan [data-field]; form publik memakai input langsung
+    return el.closest('[data-field]') || el;
+}
+
+function showError(el, msg) {
+    const wrap = fieldWrap(el);
+    let p = wrap.nextElementSibling?.classList.contains('js-error') ? wrap.nextElementSibling : null;
+    wrap.classList.toggle('is-invalid', !!msg);
+    if (!msg) { p?.remove(); return; }
+    if (!p) {
+        p = document.createElement('p');
+        p.className = 'js-error mt-1.5 flex items-center gap-1 text-caption text-error';
+        wrap.insertAdjacentElement('afterend', p);
+    }
+    p.innerHTML = ICON + '<span></span>';
+    p.lastChild.textContent = msg;
+}
+
+function validateForm(form) {
+    let first = null;
+    for (const el of form.querySelectorAll('input, textarea, select')) {
+        if (el.disabled || ['hidden', 'checkbox', 'radio', 'file', 'submit'].includes(el.type) || el.closest('.hidden')) continue;
+        const msg = fieldMessage(el);
+        showError(el, msg);
+        if (msg && !first) first = el;
+    }
+    if (first) {
+        first.focus({ preventScroll: true });
+        first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+    return !first;
+}
+
+document.addEventListener('submit', (e) => {
+    const form = e.target;
+    if (!(form instanceof HTMLFormElement) || !form.hasAttribute('novalidate')) return;
+    if (!validateForm(form)) { e.preventDefault(); e.stopImmediatePropagation(); }
+}, true);
+
+// hapus pesan begitu pengguna memperbaiki isian
+document.addEventListener('input', (e) => {
+    const el = e.target;
+    if (el.form?.hasAttribute('novalidate') && fieldWrap(el)?.classList.contains('is-invalid')) showError(el, fieldMessage(el));
+});

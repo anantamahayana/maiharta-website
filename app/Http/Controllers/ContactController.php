@@ -15,11 +15,16 @@ class ContactController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        // Nomor telepon dinormalisasi ke angka saja (spasi/strip/kurung dibuang) sebelum divalidasi
+        if ($request->filled('phone')) {
+            $request->merge(['phone' => preg_replace('/[\s().-]/', '', (string) $request->phone)]);
+        }
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'company' => ['nullable', 'string', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:32', 'regex:/^[0-9+()\s.-]{6,}$/'],
+            'phone' => ['nullable', 'string', 'max:20', 'regex:/^\+?[0-9]{8,15}$/'],
             'service' => ['nullable', 'string', 'max:100'],
             'message' => ['required', 'string', 'max:5000'],
             // honeypot field — real users never fill this in
@@ -27,10 +32,10 @@ class ContactController extends Controller
         ], [
             'name.required' => 'Nama wajib diisi.',
             'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
+            'email.email' => 'Format email tidak valid (contoh: nama@domain.com).',
             'message.required' => 'Ceritakan kebutuhan Anda terlebih dahulu.',
             'message.max' => 'Pesan terlalu panjang (maks. 5000 karakter).',
-            'phone.regex' => 'Format nomor tidak valid (contoh: 0812-3456-7890).',
+            'phone.regex' => 'Nomor telepon hanya boleh angka, 8–15 digit (contoh: 081234567890).',
         ]);
 
         ContactSubmission::create([

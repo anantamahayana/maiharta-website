@@ -22,12 +22,12 @@
             <p class="mt-1 text-body-sm text-brand-muted">Masuk untuk mengelola konten website</p>
         </div>
 
-        <form method="POST" action="{{ route('admin.login.store') }}" class="mt-7 space-y-4" x-data="{ show: false }">
+        <form novalidate method="POST" action="{{ route('admin.login.store') }}" class="mt-7 space-y-4" x-data="{ show: false }">
             @csrf
             <x-admin.field label="Email" name="email" type="email" placeholder="admin@maiharta.com" required autofocus autocomplete="email" />
             <div>
                 <label for="password" class="mb-1.5 block text-label font-medium">Kata Sandi</label>
-                <div class="flex items-center overflow-hidden rounded-lg border bg-brand-input transition focus-within:border-brand-normal focus-within:bg-white focus-within:ring-[3px] focus-within:ring-brand-normal/20 {{ $errors->has('password') ? 'border-error' : 'border-brand-border' }}">
+                <div data-field class="flex items-center overflow-hidden rounded-lg border bg-brand-input transition focus-within:border-brand-normal focus-within:bg-white focus-within:ring-[3px] focus-within:ring-brand-normal/20 {{ $errors->has('password') ? 'border-error' : 'border-brand-border' }}">
                     <input :type="show ? 'text' : 'password'" name="password" id="password" required autocomplete="current-password" placeholder="••••••••••" class="w-full bg-transparent px-3.5 py-2.5 text-body-sm outline-none placeholder:text-brand-placeholder">
                     <button type="button" @click="show = !show" class="px-3 text-brand-muted hover:text-brand-dark" :aria-label="show ? 'Sembunyikan' : 'Tampilkan'">
                         <x-heroicon-o-eye x-show="!show" class="h-4 w-4" /><x-heroicon-o-eye-slash x-show="show" x-cloak class="h-4 w-4" />

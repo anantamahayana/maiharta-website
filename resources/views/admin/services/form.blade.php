@@ -12,7 +12,7 @@
         <x-admin.button type="submit" form="service-form" icon="check">{{ $editing ? 'Simpan Perubahan' : 'Simpan Layanan' }}</x-admin.button>
     </x-slot:actions>
 
-    <form id="service-form" method="POST" action="{{ $editing ? route('admin.services.update', $service) : route('admin.services.store') }}"
+    <form novalidate id="service-form" method="POST" action="{{ $editing ? route('admin.services.update', $service) : route('admin.services.store') }}"
           x-data="{
               steps: @js(array_values($steps)),
               meta: @js(array_values($meta)),
