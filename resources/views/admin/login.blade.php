@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html lang="id" class="h-full">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex">
-    <title>Masuk — Panel Admin MaiHarta</title>
-    <meta name="theme-color" content="#2155cd">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
-    <link rel="icon" type="image/png" href="{{ asset('images/icon-maiharta.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-hero-gradient flex min-h-full items-center justify-center p-5 font-sans text-brand-dark antialiased">
-    <div data-animate="scale" class="w-full max-w-[440px] rounded-panel border border-brand-border bg-white p-8 shadow-elevated md:p-10">
-        <div class="flex flex-col items-center text-center">
-            <img src="{{ asset(site('umum.brand.logo')) }}" alt="MaiHarta" class="h-10 w-auto">
-            <h1 class="mt-5 font-heading text-h3 font-semibold">Panel Admin</h1>
-            <p class="mt-1 text-body-sm text-brand-muted">Masuk untuk mengelola konten website</p>
-        </div>
-
+<x-admin.layouts.guest title="Masuk" heading="Panel Admin" subheading="Masuk untuk mengelola konten website">
         <form novalidate method="POST" action="{{ route('admin.login.store') }}" class="mt-7 space-y-4" x-data="{ show: false }">
             @csrf
             <x-admin.field label="Email" name="email" type="email" placeholder="admin@maiharta.com" required autofocus autocomplete="email" />
@@ -37,11 +14,9 @@
             </div>
             <div class="flex items-center justify-between">
                 <label class="flex items-center gap-2 text-body-sm"><input type="checkbox" name="remember" class="h-[18px] w-[18px] rounded border-brand-border text-brand-normal focus:ring-brand-normal">Ingat saya</label>
-                <a href="mailto:info@maiharta.com?subject=Reset%20kata%20sandi%20admin" class="text-label font-medium text-brand-normal hover:text-brand-normal-hover">Lupa kata sandi?</a>
+                <a href="{{ route('admin.password.request') }}" class="text-label font-medium text-brand-normal hover:text-brand-normal-hover">Lupa kata sandi?</a>
             </div>
             <x-admin.button type="submit" class="w-full py-3">Masuk</x-admin.button>
         </form>
         <p class="mt-6 text-center text-caption text-brand-muted">Akses terbatas untuk administrator. Aktivitas login tercatat.</p>
-    </div>
-</body>
-</html>
+</x-admin.layouts.guest>

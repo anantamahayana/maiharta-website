@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\PasswordResetController;
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MessageController;
@@ -38,6 +39,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('login', [AuthController::class, 'show'])->name('login');
         Route::post('login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.store');
+        Route::get('lupa-sandi', [PasswordResetController::class, 'request'])->name('password.request');
+        Route::post('lupa-sandi', [PasswordResetController::class, 'email'])->middleware('throttle:3,1')->name('password.email');
+        Route::get('reset-sandi/{token}', [PasswordResetController::class, 'reset'])->name('password.reset');
+        Route::post('reset-sandi', [PasswordResetController::class, 'update'])->middleware('throttle:5,1')->name('password.update');
     });
 
     Route::middleware('auth')->group(function () {

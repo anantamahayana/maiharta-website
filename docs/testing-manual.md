@@ -32,7 +32,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | Tombol WhatsApp melayang | 5 | WA |
 | Responsif & mobile | 8 | RESP |
 | Aksesibilitas & performa | 6 | A11Y |
-| Admin — Autentikasi | 6 | AUTH |
+| Admin — Autentikasi | 7 | AUTH |
 | Admin — Dashboard | 2 | DASH |
 | Admin — Proyek | 9 | APRJ |
 | Admin — Layanan | 6 | ASVC |
@@ -40,7 +40,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | Admin — Konten Website | 12 | ACNT |
 | Admin — Pengaturan | 5 | ASET |
 | Halaman error & state | 4 | ERR |
-| **Total** | **114** | |
+| **Total** | **115** | |
 
 ---
 
@@ -175,6 +175,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | AUTH-04 | Proteksi rute | Logout lalu buka `/admin/projects` | Redirect ke login | | |
 | AUTH-05 | Logout | Klik ikon power di sidebar | Sesi berakhir, kembali ke login | | |
 | AUTH-06 | Ingat saya | Login dengan centang, tutup & buka browser | Masih login | | |
+| AUTH-07 | Lupa kata sandi | Klik "Lupa kata sandi?" → isi email → buka tautan di email → isi sandi baru | Email terkirim (cek `storage/logs` bila MAIL_MAILER=log); sandi baru bisa dipakai login; tautan salah/kedaluwarsa ditolak | | |
 
 ### DASH — Dashboard
 
@@ -275,6 +276,16 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 |---|---|---|---|---|---|---|---|
 | 1 | ACNT-02 | Logo partner/klien hilang saat Simpan tanpa perubahan (nama field `group[key]_keep` dipotong PHP) | Kritis | Fixed | Pengembang | 16/09/2026 | `1b50833` |
 | 2 | NAV-08 | Garis muncul di atas label subjudul (bentrok utilitas `overline` Tailwind) | Minor | Fixed | Klien | 16/09/2026 | `5292ba8` |
+| 3 | NAV-06 | Alamat di footer tidak bisa diklik | Minor | Fixed | Tim testing | 17/09/2026 | `bb50099` |
+| 4 | ABOUT-02 | Section logo partner/klien kosong di kanan; diminta marquee | Minor | Open (menunggu keputusan bentuk) | Tim testing | 17/09/2026 | — |
+| 5 | CONTACT-02/03 | Validasi form kontak memakai popup browser | Mayor | Fixed | Tim testing | 17/09/2026 | `2685e6f` |
+| 6 | AMSG-02 | "Balas via Email" tidak membuka Gmail | Minor | Fixed | Tim testing | 17/09/2026 | `bb50099` |
+| 7 | APRJ-02 dkk | Validasi admin tidak konsisten | Minor | Fixed | Tim testing | 17/09/2026 | `2685e6f` |
+| 8 | AUTH-07 | Lupa kata sandi belum berfungsi | Kritis | Fixed (perlu SMTP produksi) | Tim testing | 17/09/2026 | lihat log |
+| 9 | AUTH-05 | Logout → 419 Page Expired | Kritis | Fixed | Tim testing | 17/09/2026 | `3ae38ca` |
+| 10 | AMSG-01 | Label "Baru" → "Belum dibaca" | Minor | Fixed | Tim testing | 17/09/2026 | `3ae38ca` |
+| 11 | AMSG-02 | Waktu admin tampil UTC dengan label WITA | Kritis | Fixed | Tim testing | 17/09/2026 | `3ae38ca` |
+| 12 | PORT-04 | Teks kartu Hasil & Outcome meluber | Mayor | Fixed | Tim testing | 17/09/2026 | `bb50099` |
 | | | | | | | | |
 
 ---

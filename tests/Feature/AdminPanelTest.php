@@ -8,7 +8,11 @@ use App\Models\Service;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\AdminResetPassword;
 use Tests\TestCase;
 
 class AdminPanelTest extends TestCase
@@ -206,5 +210,30 @@ class AdminPanelTest extends TestCase
         $this->get('/admin')->assertOk()->assertSee('Belum dibaca');
         $this->get("/admin/messages?open={$m->id}")->assertOk()
             ->assertSee($m->created_at->translatedFormat('H:i') . ' WITA');
+    }
+
+    /** Laporan bug #6: alur lupa kata sandi lengkap. */
+    public function test_password_reset_flow(): void
+    {
+        Notification::fake();
+
+        $this->get('/admin/lupa-sandi')->assertOk()->assertSee('Lupa Kata Sandi');
+        $this->post('/admin/lupa-sandi', ['email' => $this->admin->email])->assertSessionHas('status');
+        Notification::assertSentTo($this->admin, AdminResetPassword::class);
+
+        // email tak terdaftar -> pesan generik yang sama (tidak membocorkan akun)
+        $this->post('/admin/lupa-sandi', ['email' => 'tidak-ada@example.com'])->assertSessionHas('status');
+
+        $token = Password::createToken($this->admin);
+        $this->get("/admin/reset-sandi/{$token}?email={$this->admin->email}")->assertOk()->assertSee('Buat Kata Sandi Baru');
+
+        $this->post('/admin/reset-sandi', ['token' => 'salah', 'email' => $this->admin->email, 'password' => 'sandi-baru-123', 'password_confirmation' => 'sandi-baru-123'])
+            ->assertSessionHasErrors('email');
+
+        $this->post('/admin/reset-sandi', ['token' => $token, 'email' => $this->admin->email, 'password' => 'sandi-baru-123', 'password_confirmation' => 'sandi-baru-123'])
+            ->assertRedirect(route('admin.login'));
+        $this->assertTrue(Hash::check('sandi-baru-123', $this->admin->fresh()->password));
+
+        $this->post('/admin/login', ['email' => $this->admin->email, 'password' => 'sandi-baru-123'])->assertRedirect(route('admin.dashboard'));
     }
 }
