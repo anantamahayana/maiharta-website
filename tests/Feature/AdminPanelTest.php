@@ -183,4 +183,28 @@ class AdminPanelTest extends TestCase
         $noPhone = ContactSubmission::create(['name' => 'Tanpa', 'email' => 't@example.com', 'message' => 'Hi']);
         $this->get("/admin/messages?open={$noPhone->id}")->assertOk()->assertSee('Tanpa nomor WhatsApp')->assertDontSee('wa.me/', false);
     }
+
+    /** Laporan bug #7: logout dengan token CSRF basi harus tetap keluar, bukan 419. */
+    public function test_logout_with_stale_csrf_token_still_logs_out(): void
+    {
+        $this->actingAs($this->admin);
+
+        $response = $this->withoutExceptionHandling()->withMiddleware()
+            ->call('POST', '/admin/logout', ['_token' => 'basi']);
+
+        $response->assertRedirect(route('admin.login'));
+        $this->assertGuest();
+    }
+
+    /** Laporan bug #9: waktu admin ditampilkan dalam WITA, bukan UTC. */
+    public function test_admin_times_are_shown_in_wita(): void
+    {
+        $this->assertSame('Asia/Makassar', config('app.timezone'));
+        $this->actingAs($this->admin);
+        $m = ContactSubmission::create(['name' => 'Ani', 'email' => 'ani@example.com', 'message' => 'Hai']);
+
+        $this->get('/admin')->assertOk()->assertSee('Belum dibaca');
+        $this->get("/admin/messages?open={$m->id}")->assertOk()
+            ->assertSee($m->created_at->translatedFormat('H:i') . ' WITA');
+    }
 }

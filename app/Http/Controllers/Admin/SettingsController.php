@@ -47,6 +47,8 @@ class SettingsController extends Controller
         ]);
 
         $request->user()->update(['password' => Hash::make($request->password)]);
+        // Sesi & token CSRF disegarkan supaya aksi berikutnya (mis. logout) tidak ditolak 419
+        $request->session()->regenerate();
 
         return back()->with('status', 'Kata sandi berhasil diubah.');
     }

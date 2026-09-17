@@ -31,7 +31,7 @@
                         <span class="flex items-center gap-2"><span class="truncate {{ $m->is_read ? 'text-body-sm' : 'text-body-sm font-semibold' }}">{{ $m->name }}</span>@if ($m->company)<span class="truncate text-caption text-brand-muted">· {{ $m->company }}</span>@endif</span>
                         <span class="block truncate text-caption text-brand-muted">{{ Str::limit($m->message, 90) }}</span>
                     </span>
-                    <span class="flex shrink-0 flex-col items-end gap-1.5"><span class="text-caption text-brand-muted">{{ $m->created_at->diffForHumans(short: true) }}</span>@unless ($m->is_read)<x-chip>Baru</x-chip>@endunless</span>
+                    <span class="flex shrink-0 flex-col items-end gap-1.5"><span class="text-caption text-brand-muted">{{ $m->created_at->diffForHumans(short: true) }}</span>@unless ($m->is_read)<x-chip variant="accent">Belum dibaca</x-chip>@endunless</span>
                 </a>
             @empty
                 <x-admin.empty icon="envelope" title="Belum ada pesan masuk" description="Pesan dari formulir kontak akan muncul di sini." />

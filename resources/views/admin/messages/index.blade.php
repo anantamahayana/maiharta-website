@@ -63,9 +63,9 @@
                 </div>
                 <div class="px-6 py-5">
                     <div class="flex flex-wrap items-center gap-2 text-caption text-brand-muted">
-                        <x-heroicon-o-clock class="h-3.5 w-3.5" /> {{ $selected->created_at->translatedFormat('l, d F Y · H:i') }} WITA
+                        <x-heroicon-o-clock class="h-3.5 w-3.5" /> {{ $selected->created_at->translatedFormat('l, d F Y · H:i T') }}
                         @if ($serviceTag)<x-chip class="ml-2">{{ $serviceTag }}</x-chip>@endif
-                        <x-chip :variant="$selected->is_read ? 'light' : 'accent'" class="ml-auto">{{ $selected->is_read ? 'Sudah dibaca' : 'Baru' }}</x-chip>
+                        <x-chip :variant="$selected->is_read ? 'light' : 'accent'" class="ml-auto">{{ $selected->is_read ? 'Sudah dibaca' : 'Belum dibaca' }}</x-chip>
                     </div>
                     <div class="mt-5 whitespace-pre-line rounded-xl bg-brand-input p-5 text-body-sm leading-relaxed text-brand-dark">{{ $body }}</div>
                     <div class="mt-5 flex flex-wrap gap-2">
