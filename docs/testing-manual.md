@@ -26,7 +26,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | Beranda | 8 | HOME |
 | Layanan & Detail Layanan | 6 | SVC |
 | Portofolio & Detail Proyek | 7 | PORT |
-| Sertifikasi | 3 | CERT |
+| Blog (publik) | 7 | BLOG |
 | Tentang | 4 | ABOUT |
 | Kontak (form) | 8 | CONTACT |
 | Tombol WhatsApp melayang | 5 | WA |
@@ -36,11 +36,12 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | Admin — Dashboard | 2 | DASH |
 | Admin — Proyek | 9 | APRJ |
 | Admin — Layanan | 6 | ASVC |
+| Admin — Blog | 8 | ABLOG |
 | Admin — Pesan Kontak | 5 | AMSG |
-| Admin — Konten Website | 12 | ACNT |
+| Admin — Konten Website | 11 | ACNT |
 | Admin — Pengaturan | 5 | ASET |
 | Halaman error & state | 4 | ERR |
-| **Total** | **115** | |
+| **Total** | **127** | |
 
 ---
 
@@ -53,7 +54,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | NAV-01 | Navbar tampil sebagai pill melayang | Buka halaman apa pun di desktop | Navbar berbentuk kapsul rounded, mengambang ±20 px dari atas, latar putih transparan + blur, tidak menutupi konten | | |
 | NAV-02 | Navbar mengecil saat scroll | Scroll ke bawah > 8 px | Tinggi pill berkurang (76→68 px), logo mengecil, latar lebih pekat, bayangan lebih kuat; kembali saat scroll ke atas | | |
 | NAV-03 | Link aktif | Buka tiap halaman utama | Link halaman aktif berbentuk pill putih dengan teks biru; link lain abu-abu, hover memutih | | |
-| NAV-04 | Semua link navbar berfungsi | Klik Beranda, Solusi Kita, Portofolio, Sertifikasi, Tentang, Kontak Kami | Setiap link membuka halaman yang benar tanpa error | | |
+| NAV-04 | Semua link navbar berfungsi | Klik Beranda, Solusi Kita, Portofolio, Blog, Tentang, Kontak Kami | Setiap link membuka halaman yang benar tanpa error | | |
 | NAV-05 | Logo mengarah ke Beranda | Klik logo dari halaman lain | Kembali ke `/` | | |
 | NAV-06 | Footer lengkap | Scroll ke footer semua halaman | Logo putih, deskripsi, navigasi, email/telepon/alamat sesuai admin, tahun copyright benar | | |
 | NAV-07 | Link footer berfungsi | Klik semua link footer | Halaman sesuai; email = `mailto:`, telepon = `tel:` | | |
@@ -65,13 +66,13 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
 |---|---|---|---|---|---|
-| HOME-01 | Hero tampil lengkap | Buka `/` | Badge ISO, judul dengan kata bergradien, deskripsi, 2 tombol CTA, daftar keunggulan | | |
+| HOME-01 | Hero tampil lengkap | Buka `/` | Badge "Dipercaya N instansi & bisnis", judul dengan kata bergradien, deskripsi, 2 tombol CTA, daftar keunggulan | | |
 | HOME-02 | Animasi hero | Muat ulang halaman | Judul shimmer, kartu melayang naik-turun, bar chart tumbuh dari bawah, angka berhitung naik (counter), garis putus-putus tergambar | | |
 | HOME-03 | Isi kartu hero dari admin | Ubah teks kartu di Admin → Konten Website → Beranda, simpan | Teks di kartu hero berubah sesuai input | | |
 | HOME-04 | Angka perusahaan | Bandingkan angka Proyek/Instansi/Tahun dengan Admin → Umum & Kontak | Sama; `{tahun}` diganti tahun berjalan | | |
 | HOME-05 | Section Solusi | Scroll ke "Satu Mitra untuk Seluruh Kebutuhan Digital Anda" | 3 kartu layanan unggulan, link "Pelajari Lebih Lanjut" ke detail layanan | | |
 | HOME-06 | Section Portofolio | Scroll ke "Bukti Nyata Kapabilitas Kami" | 3 proyek unggulan dengan gambar, kategori, link ke detail; "Lihat Semua Proyek" ke `/portofolio` | | |
-| HOME-07 | Section Sertifikasi & Tentang | Scroll lanjut | Kartu ISO 27001 gelap, 3 poin keamanan, 3 nilai kerja, tombol "Kenali Kami Lebih Dekat" | | |
+| HOME-07 | Section Blog & Tentang | Scroll lanjut | 3 artikel terbaru + "Lihat Semua Artikel" (section hilang bila belum ada artikel), 3 nilai kerja, tombol "Kenali Kami Lebih Dekat" | | |
 | HOME-08 | CTA akhir | Klik "Hubungi Kami Sekarang" dan "Lihat Layanan" | Menuju `/kontak` dan `/layanan` | | |
 
 ### SVC — Layanan
@@ -97,13 +98,17 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | PORT-06 | Proyek unggulan | Tandai proyek sebagai unggulan di admin | Muncul di Beranda & kartu besar Portofolio | | |
 | PORT-07 | Proyek draft tersembunyi | Set status draft di admin | Tidak tampil publik; URL langsung → 404 | | |
 
-### CERT — Sertifikasi
+### BLOG — Blog (Publik)
 
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
 |---|---|---|---|---|---|
-| CERT-01 | Halaman sertifikasi | Buka `/sertifikasi` | Hero, kartu ISO/IEC 27001, kartu praktik keamanan (maks 4), sertifikasi lain | | |
-| CERT-02 | Konten dari admin | Ubah/hapus kartu di Admin → Konten Website → Sertifikasi | Halaman mengikuti; kelompok kosong disembunyikan | | |
-| CERT-03 | Animasi masuk | Scroll perlahan | Elemen muncul fade + slide sekali saat masuk viewport | | |
+| BLOG-01 | Halaman daftar | Buka `/blog` | Hero "MaiHarta Insights" + statistik, filter kategori dengan jumlah, kartu unggulan berlabel *Pilihan* (3:1), grid kartu 16:9 (kategori, judul, ringkasan, tanggal · menit baca), teks "Menampilkan a–b dari N artikel" | | |
+| BLOG-02 | Filter kategori | Klik tiap chip kategori | URL `?kategori=…`, daftar terfilter, chip aktif gelap; kategori tanpa artikel → state "Belum ada artikel di kategori ini" + tombol kembali | | |
+| BLOG-03 | Paginasi | Buat > 9 artikel tayang | Paginasi tampil (9/halaman), halaman 2 tidak menampilkan kartu unggulan | | |
+| BLOG-04 | Detail artikel | Klik kartu | `/blog/{slug}`: breadcrumb, kategori, judul, ringkasan, meta (tanggal · menit baca · penulis), sampul, isi dengan sub-judul/daftar/kutipan/gambar rapi, tag, tombol bagikan, sidebar Artikel Terkait + CTA | | |
+| BLOG-05 | Bagikan | Klik WhatsApp / LinkedIn / Salin tautan | WA & LinkedIn buka tab baru dengan judul+URL; Salin → tulisan "Tersalin" | | |
+| BLOG-06 | Draft & terjadwal tersembunyi | Set artikel draft / tanggal mendatang di admin | Tidak ada di daftar & Beranda; URL langsung → 404 (kecuali admin login: tampil banner Pratinjau) | | |
+| BLOG-07 | Tautan lama | Buka `/sertifikasi` | Redirect 301 ke `/blog`; tidak ada teks ISO/sertifikasi di seluruh website | | |
 
 ### ABOUT — Tentang
 
@@ -142,7 +147,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
 |---|---|---|---|---|---|
 | RESP-01 | Navbar mobile | Buka di ≤ 1024 px | Pill atas berisi logo + tombol bulat chat; tidak ada link teks | | |
-| RESP-02 | Bottom nav pill | Lihat bawah layar | Pill melayang dengan 5 tab; tab aktif ikon solid + glow + titik | | |
+| RESP-02 | Bottom nav pill | Lihat bawah layar | Pill melayang dengan 5 tab (Beranda · Solusi · Portofolio · Blog · Kontak); tab aktif ikon solid + glow + titik | | |
 | RESP-03 | Bottom nav auto-hide | Scroll ke bawah lalu ke atas | Sembunyi saat scroll turun (>120 px), muncul saat scroll naik, transisi halus | | |
 | RESP-04 | Bottom nav navigasi | Ketuk tiap tab | Halaman berpindah; tab aktif berubah | | |
 | RESP-05 | FAB tidak bertabrakan | Lihat kanan bawah mobile | Tombol WhatsApp berada di atas bottom nav, tidak menutupi tab | | |
@@ -209,6 +214,19 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | ASVC-05 | Nonaktifkan | Set nonaktif | Hilang dari publik, tetap di admin | | |
 | ASVC-06 | Hapus | Hapus layanan yang punya proyek terkait | Dikonfirmasi; proyek tidak ikut terhapus / relasi ditangani | | |
 
+### ABLOG — Blog (Admin)
+
+| ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
+|---|---|---|---|---|---|
+| ABLOG-01 | Daftar | Buka `/admin/articles` | Tabel: sampul mini, judul (+ bintang unggulan), kategori, status (Draft/Terjadwal/Tayang), tanggal, dilihat; pencarian, filter status & kategori, paginasi | | |
+| ABLOG-02 | Tulis — validasi | Simpan form kosong / isi editor kosong | Error inline judul, ringkasan, isi; tidak tersimpan | | |
+| ABLOG-03 | Tulis — valid | Isi judul, ringkasan, isi (H2, tebal, daftar, kutipan), kategori, tag, sampul; status Tayang | Redirect ke edit dengan pesan sukses; slug otomatis; tampil di `/blog` dan Beranda | | |
+| ABLOG-04 | Gambar di isi | Klik ikon gambar di editor, pilih file | Gambar terunggah & tersisip; tersimpan setelah Simpan; file > 2 MB ditolak | | |
+| ABLOG-05 | Jadwal tayang | Status Tayang + tanggal mendatang | Status "Terjadwal"; tidak tampil publik sampai waktunya | | |
+| ABLOG-06 | Unggulan | Centang unggulan pada 2 artikel | Yang terbaru jadi kartu Pilihan di `/blog` | | |
+| ABLOG-07 | Ganti/hapus sampul | Ganti sampul lalu hapus | Preview berubah; file lama terhapus dari storage | | |
+| ABLOG-08 | Hapus | Hapus artikel dengan gambar di isi | Modal konfirmasi; artikel, sampul, dan gambar isi terhapus | | |
+
 ### AMSG — Pesan Kontak
 
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
@@ -223,14 +241,13 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
 |---|---|---|---|---|---|
-| ACNT-01 | Tab | Buka `/admin/content` | 4 tab: Umum & Kontak, Beranda, Sertifikasi, Tentang; tab aktif jelas | | |
+| ACNT-01 | Tab | Buka `/admin/content` | 3 tab: Umum & Kontak, Beranda, Tentang; tab aktif jelas | | |
 | ACNT-02 | Simpan tanpa perubahan | Buka tiap tab, langsung Simpan | Tidak ada data yang hilang (khususnya logo partner/klien & logo brand) | | |
 | ACNT-03 | Ganti logo | Unggah PNG/SVG | Preview berubah; navbar, login, sidebar memakai logo baru | | |
 | ACNT-04 | Kembali ke default logo | Klik "Kembali ke default" lalu Simpan | Logo default kembali; file unggahan lama terhapus | | |
 | ACNT-05 | Kontak & sosial | Ubah email, telepon, WhatsApp (angka saja), alamat, jam, Instagram/Facebook/LinkedIn | Footer, halaman kontak, FAB WhatsApp mengikuti; sosial kosong disembunyikan | | |
 | ACNT-06 | Angka perusahaan | Ubah 3 angka | Hero, Layanan, Portofolio, Tentang berubah | | |
 | ACNT-07 | Komposisi hero | Ubah teks kartu, unggah 2 foto hero | Hero Beranda berubah; foto rasio 4:3 tidak terdistorsi | | |
-| ACNT-08 | Repeater sertifikasi | Tambah, ubah, hapus baris; coba > 4 kartu | Maks 4 kartu diterapkan; baris kosong diabaikan | | |
 | ACNT-09 | Logo partner — tambah | Unggah beberapa logo sekaligus | Semua muncul dengan caption dari nama file; hitungan `(n)` benar | | |
 | ACNT-10 | Logo partner — ubah nama & hapus | Ubah caption, hapus satu, Simpan | Caption tersimpan; hanya yang dihapus yang hilang; sisanya tetap | | |
 | ACNT-11 | Narasi tentang | Ubah judul, cerita, kutipan, sumber | `/tentang` berubah | | |
@@ -294,7 +311,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 
 - Semua kasus **Kritis/Mayor** berstatus Pass.
 - Tidak ada error di konsol browser dan `storage/logs/laravel.log` selama sesi uji.
-- `php artisan test` hijau (saat ini 21 tes / 171 assertion).
+- `php artisan test` hijau (saat ini 30 tes / 239 assertion).
 - Diuji minimal pada 1 desktop + 1 Android + 1 iOS.
 
 | Peran | Nama | Tanda tangan | Tanggal |

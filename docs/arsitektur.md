@@ -26,11 +26,12 @@ Guest yang membuka `/admin/*` diarahkan ke `admin.login`, user yang sudah login 
 |---|---|
 | `services` | `name, slug (unik), icon (code\|palette\|megaphone\|uiux\|consulting\|qa\|maintenance), short_description, description, tech_tags JSON[], process_steps JSON[{title,description,duration}], meta JSON[{label,value}], capabilities JSON[{title,description}], about_title, sort_order` |
 | `projects` | `service_id FK nullable, name, slug (unik), category, client_type, short_description, description, challenge, solution, tech_summary, outcome_stats JSON[{value,label}], cover_image, gallery JSON[{src,caption}], external_url, sort_order` |
+| `articles` | `user_id FK nullable, title, slug (unik), category (kunci di config/content.php article_categories), excerpt, body (HTML dari Quill), cover, tags JSON[], status (draft\|published), published_at, is_featured, views` — publik hanya `published` dengan `published_at <= now()` (scope `published`) |
 | `contact_submissions` | `name, email, phone, company, message, is_read` — pilihan layanan disimpan sebagai prefix `[Layanan: …]` di `message` |
 | `settings` | `key (PK, "tab.grup"), value JSON` — hanya grup yang pernah disimpan admin |
 | `users` | admin (satu akun dari `UserSeeder`) |
 
-Model `Project` dan `Service` memakai `slug` sebagai route key. Path gambar disimpan relatif terhadap `public/` (`images/...` untuk aset seeder, `storage/...` untuk unggahan) sehingga `asset($path)` bekerja untuk keduanya.
+Model `Project`, `Service`, dan `Article` memakai `slug` sebagai route key. Path gambar disimpan relatif terhadap `public/` (`images/...` untuk aset seeder, `storage/...` untuk unggahan) sehingga `asset($path)` bekerja untuk keduanya.
 
 ## Konten yang bisa diedit (`settings`)
 
@@ -75,17 +76,22 @@ Nama layer di Figma (`Float → Dashboard Card`, dst.) sama dengan komentar di `
 ## Unggahan file
 
 - Disk `public` (`storage/app/public`), disajikan lewat symlink `public/storage` (`php artisan storage:link`).
-- Proyek: `projects/` (sampul) dan `projects/gallery/`; konten: `content/`. Maks 2 MB, validasi `image`.
+- Proyek: `projects/` (sampul) dan `projects/gallery/`; konten: `content/`; artikel: `articles/` (sampul & gambar di isi via `POST admin/articles/upload`). Maks 2 MB, validasi `image`.
+- Menghapus artikel juga menghapus gambar `storage/articles/*` yang dirujuk di `body`.
 - Saat mengganti/menghapus, file lama yang berawalan `storage/` dihapus; aset seeder di `images/` tidak pernah dihapus.
+
+## Editor artikel (Quill)
+
+`resources/js/app.js` mendaftarkan komponen Alpine `articleForm`: memuat Quill (dibundel dari npm, tema *snow*), menyalin HTML editor ke input tersembunyi `body` setiap perubahan, dan menangani tombol gambar → `POST admin/articles/upload` → menyisipkan URL hasil unggahan. Di server, `&nbsp;` dari `getSemanticHTML()` dinormalisasi ke spasi dan isi kosong (`<p><br></p>`) ditolak. Gaya tampilan isi artikel: kelas `.prose-brand` di `app.css`; gaya editor: `.article-editor`.
 
 ## Pengujian
 
-`tests/Feature/AdminPanelTest.php` (auth, CRUD, inbox, pengaturan, nomor WA) dan `tests/Feature/ContentEditorTest.php` (default, tab, logo, hero, sertifikasi/narasi, durasi tahap, angka & identitas, logo partner, meta/kapabilitas layanan). Konfigurasi `phpunit.xml`: SQLite `:memory:`, `Storage::fake('public')` di `setUp`.
+`tests/Feature/AdminPanelTest.php` (auth, CRUD, inbox, pengaturan, nomor WA, reset sandi), `tests/Feature/ArticleTest.php` (blog publik, draft/terjadwal, CRUD + unggah, redirect /sertifikasi) dan `tests/Feature/ContentEditorTest.php` (default, tab, logo, hero, narasi, durasi tahap, angka & identitas, logo partner, meta/kapabilitas layanan). Konfigurasi `phpunit.xml`: SQLite `:memory:`, `Storage::fake('public')` di `setUp`.
 
 ## Konvensi
 
 - Bahasa antarmuka & pesan validasi: Indonesia. Nama variabel/kode: Inggris.
-- Route admin diberi nama `admin.*`; route publik `home`, `layanan.*`, `portofolio.*`, `sertifikasi`, `tentang`, `kontak`.
+- Route admin diberi nama `admin.*`; route publik `home`, `layanan.*`, `portofolio.*`, `blog.*`, `tentang`, `kontak` (`/sertifikasi` → redirect 301 ke `/blog`).
 - Commit: pesan berbahasa Indonesia dengan prefix `feat/fix/chore/refactor(scope)`.
 - File dari Windows memakai CRLF; Git akan menormalkan ke LF (peringatan `CRLF will be replaced` aman diabaikan).
 

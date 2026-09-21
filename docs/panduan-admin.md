@@ -48,6 +48,21 @@ Menu **Layanan** → kartu tiap layanan. Layanan dengan urutan terkecil tampil s
 
 Menghapus layanan **tidak** menghapus proyeknya — proyek hanya kehilangan relasi.
 
+## Blog
+
+Menu **Blog** → daftar artikel dengan pencarian judul, filter status (Semua / Tayang / Terjadwal / Draft) dan kategori.
+
+**Tulis / edit artikel**
+- **Judul** — slug (`/blog/...`) dibuat otomatis, bisa diubah sebelum tayang.
+- **Ringkasan** (maks 300 karakter) — tampil di kartu, hasil pencarian Google, dan saat dibagikan.
+- **Isi artikel** — editor teks: Heading 2/3 untuk sub-judul, tebal/miring, daftar, kutipan, tautan, dan **gambar** (ikon gambar → pilih file, maks 2 MB; langsung diunggah dan disisipkan).
+- **Status** — *Draft* tidak tampil di website; *Tayang* langsung tampil. Isi **Tanggal Tayang** mendatang untuk menjadwalkan (status jadi *Terjadwal* dan otomatis tampil pada waktunya).
+- **Artikel unggulan** — tampil sebagai kartu besar berlabel *Pilihan* di halaman Blog; jika lebih dari satu, yang terbaru dipakai.
+- **Kategori** — Wawasan Digital, Tips & Panduan, Studi Kasus, Berita MaiHarta (daftar bisa ditambah developer di `config/content.php`). **Tag** dipisah koma.
+- **Gambar sampul** — rasio 16:9, maks 2 MB; dipakai di kartu, halaman artikel, dan pratinjau saat dibagikan.
+- Tombol **Pratinjau** membuka artikel di website — draft/terjadwal hanya terlihat oleh admin yang sedang login (ada banner "Pratinjau").
+- Tiga artikel terbaru otomatis tampil di Beranda; section disembunyikan bila belum ada artikel tayang.
+
 ## Pesan Kontak
 
 Menu **Pesan Kontak** → daftar di kiri, isi pesan di kanan.
@@ -60,7 +75,7 @@ Menu **Pesan Kontak** → daftar di kiri, isi pesan di kanan.
 
 ## Konten Website
 
-Menu **Konten Website** → 4 tab. Semua field punya nilai bawaan; kosongkan/hapus untuk kembali ke bawaan hanya bila dijelaskan di labelnya.
+Menu **Konten Website** → 3 tab. Semua field punya nilai bawaan; kosongkan/hapus untuk kembali ke bawaan hanya bila dijelaskan di labelnya.
 
 ### Umum & Kontak
 - **Logo** — unggah PNG/SVG transparan (tinggi ±40 px). Dipakai di navbar, halaman login, sidebar admin. *Kembali ke default* memakai logo bawaan.
@@ -72,10 +87,6 @@ Menu **Konten Website** → 4 tab. Semua field punya nilai bawaan; kosongkan/hap
 
 ### Beranda
 **Komposisi Hero** — teks pada kartu-kartu melayang: kartu dashboard (judul, sub-judul — `{tahun}` otomatis jadi tahun berjalan, badge *Live*, catatan progres), badge ISO, gelembung helpdesk (judul, sub-judul, chip status, isi kutipan), kartu SSO, serta dua foto (tim & dashboard). Angka di kartu dashboard mengikuti *Angka Perusahaan*.
-
-### Sertifikasi
-- **Kartu Praktik Keamanan** — maks 4 kartu: judul, deskripsi, tag teknis (mis. `AES-256 · TLS 1.3`). Isi tag hanya dengan yang benar-benar diterapkan.
-- **Sertifikasi & Penghargaan Lain** — daftar sertifikat (nama, keterangan, deskripsi). Hapus baris yang belum dimiliki, mis. ISO 9001, agar tidak tampil; angka di hero halaman ikut menyesuaikan.
 
 ### Tentang
 - **Narasi Perusahaan** — judul dan cerita "Siapa Kami", kutipan (kosongkan untuk menyembunyikan) dan sumbernya.

@@ -28,7 +28,7 @@ composer install
 npm install
 cp .env.example .env          # lalu isi DB_DATABASE / DB_USERNAME / DB_PASSWORD
 php artisan key:generate
-php artisan migrate --seed    # tabel + 7 layanan + 6 proyek + akun admin
+php artisan migrate --seed    # tabel + 7 layanan + 6 proyek + 4 artikel + akun admin
 php artisan storage:link      # untuk file unggahan (sampul, galeri, logo)
 ```
 
@@ -52,12 +52,13 @@ Buka http://localhost:8000. Untuk produksi ganti `npm run dev` dengan `npm run b
 
 | Rute | Halaman | Sumber data |
 |---|---|---|
-| `/` | Beranda | 3 layanan & 3 proyek teratas, angka perusahaan, komposisi hero |
+| `/` | Beranda | 3 layanan & 3 proyek teratas, 3 artikel terbaru, angka perusahaan, komposisi hero |
 | `/layanan` | Daftar layanan + filter | `services` |
 | `/layanan/{slug}` | Detail layanan | `services` (meta, kapabilitas, proses, tag), proyek terkait |
 | `/portofolio` | Daftar proyek + filter kategori | `projects` |
 | `/portofolio/{slug}` | Studi kasus | `projects` (sampul, stats, tantangan/solusi/teknologi, galeri + lightbox) |
-| `/sertifikasi` | Sertifikasi & keamanan | `settings` (praktik, sertifikasi lain) |
+| `/blog` | Daftar artikel: unggulan, filter kategori, paginasi 9/hal | `articles` |
+| `/blog/{slug}` | Artikel: isi (Quill), tag, bagikan, artikel terkait, Open Graph | `articles` |
 | `/tentang` | Tentang | `settings` (narasi, logo partner/klien), angka perusahaan |
 | `/kontak` | Form kontak + info | `settings` (identitas, peta, medsos); POST → `contact_submissions` |
 | `404` | Halaman tidak ditemukan | — |
@@ -70,8 +71,9 @@ Buka http://localhost:8000. Untuk produksi ganti `npm run dev` dengan `npm run b
 | `/admin` | Dashboard: ringkasan angka, pesan terbaru, aksi cepat |
 | `/admin/projects` | CRUD proyek: sampul, galeri + caption, statistik hasil, slug otomatis |
 | `/admin/services` | CRUD layanan: ikon, tag teknologi, tahap proses (+durasi), kartu meta, kapabilitas |
+| `/admin/articles` | CRUD artikel blog: editor Quill + unggah gambar, sampul, kategori/tag, draft/tayang/terjadwal, unggulan |
 | `/admin/messages` | Inbox pesan kontak: filter/cari, tandai dibaca, hapus, balas via email/WhatsApp |
-| `/admin/content/{tab}` | Konten Website: *Umum & Kontak*, *Beranda*, *Sertifikasi*, *Tentang* |
+| `/admin/content/{tab}` | Konten Website: *Umum & Kontak*, *Beranda*, *Tentang* |
 | `/admin/settings` | Profil & kata sandi admin |
 
 Daftar lengkap: `php artisan route:list`.
@@ -83,10 +85,9 @@ Daftar lengkap: `php artisan route:list`.
 - Pesan kontak.
 - Identitas: logo, email, telepon/WA, alamat, jam, tautan Maps, medsos; angka perusahaan (tahun / proyek / instansi).
 - Komposisi kartu melayang di hero Beranda (teks kartu & dua foto).
-- Kartu praktik keamanan dan daftar sertifikasi lain.
 - Narasi "Siapa Kami" dan logo partner/klien.
 
-**Di kode (Blade)** — teks halaman yang jarang berubah: judul/deskripsi hero, judul section, CTA, poin sertifikasi ISO 27001, nilai kerja, teks form kontak. File: `resources/views/pages/*.blade.php`.
+**Di kode (Blade)** — teks halaman yang jarang berubah: judul/deskripsi hero, judul section, CTA, nilai kerja, teks form kontak. File: `resources/views/pages/*.blade.php`.
 
 Menambah field baru yang bisa diedit hanya perlu satu baris di `config/content.php` (lihat [docs/arsitektur.md](docs/arsitektur.md#konten-yang-bisa-diedit-settings)).
 

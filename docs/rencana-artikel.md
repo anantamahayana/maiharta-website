@@ -1,6 +1,6 @@
 # Rencana: Hapus Fitur Sertifikasi → Ganti Fitur Artikel
 
-Tanggal: 21/09/2026 · Status: **disetujui, dikerjakan**
+Tanggal: 21/09/2026 · Status: **selesai (langkah 1–7); langkah 8 Figma menyusul**
 
 **Keputusan (21/09):** A = hapus **semua** klaim ISO/sertifikasi (MaiHarta belum memiliki sertifikasi apa pun) · B = editor **Quill** · C = nama menu **"Blog"**, rute `/blog`, referensi tata letak https://kerjaindo.co.id/blog (hero + badge, filter chip, kartu unggulan 3:1 berlabel "Pilihan", grid 16:9 dengan tanggal · menit baca, "Menampilkan 1–9 dari N"; detail: breadcrumb, ringkasan, meta penulis/bagikan, sidebar Artikel Terkait + CTA).
 
