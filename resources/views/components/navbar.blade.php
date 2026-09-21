@@ -3,7 +3,7 @@
         ['label' => 'Beranda', 'route' => 'home', 'active' => request()->routeIs('home')],
         ['label' => 'Solusi Kita', 'route' => 'layanan.index', 'active' => request()->routeIs('layanan.*')],
         ['label' => 'Portofolio', 'route' => 'portofolio.index', 'active' => request()->routeIs('portofolio.*')],
-        ['label' => 'Sertifikasi', 'route' => 'sertifikasi', 'active' => request()->routeIs('sertifikasi')],
+        ['label' => 'Blog', 'route' => 'blog.index', 'active' => request()->routeIs('blog.*')],
         ['label' => 'Tentang', 'route' => 'tentang', 'active' => request()->routeIs('tentang')],
     ];
 @endphp

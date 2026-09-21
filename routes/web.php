@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\PasswordResetController;
 use App\Http\Controllers\Admin\ContentController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +26,10 @@ Route::prefix('portofolio')->name('portofolio.')->group(function () {
     Route::get('/{project}', [PageController::class, 'portofolioShow'])->name('show');
 });
 
-Route::get('/sertifikasi', [PageController::class, 'sertifikasi'])->name('sertifikasi');
+// Blog
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{article}', [BlogController::class, 'show'])->name('blog.show');
+Route::redirect('/sertifikasi', '/blog', 301); // halaman sertifikasi dihapus
 Route::get('/tentang', [PageController::class, 'tentang'])->name('tentang');
 
 Route::get('/kontak', [ContactController::class, 'show'])->name('kontak');
@@ -51,6 +56,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('projects', ProjectController::class)->except('show');
         Route::resource('services', ServiceController::class)->except('show');
+        Route::post('articles/upload', [ArticleController::class, 'upload'])->name('articles.upload');
+        Route::resource('articles', ArticleController::class)->except('show');
 
         Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
         Route::get('messages/{message}', [MessageController::class, 'show'])->name('messages.show');

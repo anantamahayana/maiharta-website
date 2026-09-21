@@ -7,7 +7,7 @@
             ['Total Proyek', $projectCount, ($projectsThisMonth ? '+' . $projectsThisMonth . ' bulan ini' : 'Tidak ada tambahan bulan ini'), 'rectangle-stack', 'bg-brand-light text-brand-dark'],
             ['Layanan Aktif', $serviceCount, 'Semua terpublikasi', 'squares-2x2', 'bg-brand-light text-brand-dark'],
             ['Pesan Belum Dibaca', $unreadCount, 'dari ' . $messageCount . ' pesan', 'envelope', 'bg-brand-normal text-white'],
-            ['Halaman Publik', 9, 'Beranda hingga kontak', 'globe-alt', 'bg-success-bg text-success-text'],
+            ['Artikel Tayang', $articleLive, $articleDraft . ' draft menunggu', 'newspaper', 'bg-success-bg text-success-text'],
         ] as [$label, $value, $sub, $icon, $iconClass])
             <x-admin.card>
                 <div class="flex items-center justify-between gap-2"><span class="text-label text-brand-muted">{{ $label }}</span><span class="flex h-9 w-9 items-center justify-center rounded-lg {{ $iconClass }}"><x-dynamic-component :component="'heroicon-o-' . $icon" class="h-[18px] w-[18px]" /></span></div>
@@ -42,6 +42,7 @@
             <x-admin.card title="Aksi Cepat">
                 <div class="space-y-2">
                     <x-admin.button :href="route('admin.projects.create')" icon="plus" class="w-full !justify-start">Tambah Proyek Baru</x-admin.button>
+                    <x-admin.button :href="route('admin.articles.create')" variant="secondary" icon="newspaper" class="w-full !justify-start">Tulis Artikel Blog</x-admin.button>
                     <x-admin.button :href="route('admin.services.create')" variant="secondary" icon="squares-2x2" class="w-full !justify-start">Tambah Layanan</x-admin.button>
                     <x-admin.button :href="route('admin.messages.index')" variant="secondary" icon="envelope" class="w-full !justify-start">Buka Kotak Masuk</x-admin.button>
                 </div>

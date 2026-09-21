@@ -69,8 +69,8 @@ return [
                         ['key' => 'card_sub', 'label' => 'Kartu dashboard — sub-judul ({tahun} = tahun berjalan)', 'type' => 'text', 'default' => 'Semua klien · {tahun}'],
                         ['key' => 'card_badge', 'label' => 'Kartu dashboard — badge (kosongkan untuk sembunyikan)', 'type' => 'text', 'default' => 'Live'],
                         ['key' => 'card_note', 'label' => 'Kartu dashboard — catatan progres', 'type' => 'text', 'default' => '12 proyek aktif'],
-                        ['key' => 'iso_title', 'label' => 'Badge ISO — judul', 'type' => 'text', 'default' => 'ISO/IEC 27001'],
-                        ['key' => 'iso_sub', 'label' => 'Badge ISO — keterangan', 'type' => 'text', 'default' => 'Keamanan informasi tersertifikasi'],
+                        ['key' => 'badge_title', 'label' => 'Badge kecil — judul', 'type' => 'text', 'default' => 'Dukungan Purna Jual'],
+                        ['key' => 'badge_sub', 'label' => 'Badge kecil — keterangan', 'type' => 'text', 'default' => 'Pemeliharaan & helpdesk aktif'],
                         ['key' => 'bubble_title', 'label' => 'Gelembung helpdesk — judul', 'type' => 'text', 'default' => 'Helpdesk · Tiket #1042'],
                         ['key' => 'bubble_sub', 'label' => 'Gelembung helpdesk — sub-judul', 'type' => 'text', 'default' => 'Nasabah · 2 jam lalu'],
                         ['key' => 'bubble_status', 'label' => 'Gelembung helpdesk — chip status', 'type' => 'text', 'default' => 'Selesai · SLA'],
@@ -79,42 +79,6 @@ return [
                         ['key' => 'sso_sub', 'label' => 'Kartu SSO — keterangan', 'type' => 'text', 'default' => 'Bank BPD Bali · 1 pintu login'],
                         ['key' => 'photo_1', 'label' => 'Foto kiri atas (tim)', 'type' => 'image', 'default' => 'images/hero-team.jpg'],
                         ['key' => 'photo_2', 'label' => 'Foto kanan bawah (dashboard)', 'type' => 'image', 'default' => 'images/hero-dashboard.jpg'],
-                    ],
-                ],
-            ],
-        ],
-
-        'sertifikasi' => [
-            'label' => 'Sertifikasi',
-            'icon' => 'shield-check',
-            'groups' => [
-                'praktik' => [
-                    'label' => 'Kartu Praktik Keamanan',
-                    'help' => 'Tag teknis (mis. AES-256 · TLS 1.3) tampil sebagai chip di bawah kartu — pastikan sesuai praktik nyata.',
-                    'fields' => [
-                        ['key' => 'items', 'label' => 'Kartu', 'type' => 'repeater', 'max' => 4, 'fields' => [
-                            ['key' => 'title', 'label' => 'Judul', 'type' => 'text'],
-                            ['key' => 'description', 'label' => 'Deskripsi', 'type' => 'textarea'],
-                            ['key' => 'tag', 'label' => 'Tag teknis', 'type' => 'text'],
-                        ], 'default' => [
-                            ['title' => 'Data Terenkripsi', 'description' => 'Seluruh data klien dienkripsi baik saat disimpan maupun saat dikirim antar sistem, menggunakan protokol standar industri.', 'tag' => 'AES-256 · TLS 1.3'],
-                            ['title' => 'Akses Terkontrol', 'description' => 'Akses ke sistem dan data dibatasi berdasarkan peran, dengan autentikasi berlapis dan pencatatan aktivitas.', 'tag' => 'RBAC · 2FA · Audit Trail'],
-                            ['title' => 'Audit Risiko Berkala', 'description' => 'Penilaian risiko keamanan dilakukan secara rutin untuk mengidentifikasi celah sebelum menjadi ancaman.', 'tag' => 'Penetration Test · Review'],
-                        ]],
-                    ],
-                ],
-                'lain' => [
-                    'label' => 'Sertifikasi & Penghargaan Lain',
-                    'help' => 'Hapus baris yang belum dimiliki (mis. ISO 9001) agar tidak tampil.',
-                    'fields' => [
-                        ['key' => 'items', 'label' => 'Sertifikasi', 'type' => 'repeater', 'max' => 6, 'fields' => [
-                            ['key' => 'name', 'label' => 'Nama (mis. ISO 9001:2015)', 'type' => 'text'],
-                            ['key' => 'sub', 'label' => 'Keterangan', 'type' => 'text'],
-                            ['key' => 'description', 'label' => 'Deskripsi', 'type' => 'text'],
-                        ], 'default' => [
-                            ['name' => 'ISO 9001:2015', 'sub' => 'Quality Management System', 'description' => 'Menjamin proses kerja yang konsisten dan berorientasi pada kepuasan klien.'],
-                            ['name' => 'ISO/IEC 27001', 'sub' => 'Information Security Management', 'description' => 'Perlindungan data dan sistem informasi klien di seluruh siklus proyek.'],
-                        ]],
                     ],
                 ],
             ],

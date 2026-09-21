@@ -13,7 +13,7 @@
                 <ul class="mt-4 space-y-3 text-sm text-white/60">
                     <li><a href="{{ route('layanan.index') }}" class="hover:text-white">Solusi Kita</a></li>
                     <li><a href="{{ route('portofolio.index') }}" class="hover:text-white">Portofolio</a></li>
-                    <li><a href="{{ route('sertifikasi') }}" class="hover:text-white">Sertifikasi</a></li>
+                    <li><a href="{{ route('blog.index') }}" class="hover:text-white">Blog</a></li>
                     <li><a href="{{ route('tentang') }}" class="hover:text-white">Tentang</a></li>
                 </ul>
             </div>
@@ -30,7 +30,7 @@
 
         <div class="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
             <span>&copy; {{ date('Y') }} Maiharta. Seluruh hak cipta dilindungi.</span>
-            <span>Dibuat dengan standar keamanan ISO/IEC 27001</span>
+            <span>Mitra pengembangan produk digital di Bali</span>
         </div>
     </div>
 </footer>

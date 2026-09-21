@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\ContactSubmission;
 use App\Models\Project;
 use App\Models\Service;
@@ -19,6 +20,8 @@ class DashboardController extends Controller
             'messageCount' => ContactSubmission::count(),
             'recentMessages' => ContactSubmission::latest()->take(5)->get(),
             'recentProjects' => Project::latest('updated_at')->take(3)->get(),
+            'articleLive' => Article::published()->count(),
+            'articleDraft' => Article::where('status', 'draft')->count(),
         ]);
     }
 }

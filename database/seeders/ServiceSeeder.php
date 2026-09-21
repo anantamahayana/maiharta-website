@@ -33,7 +33,7 @@ class ServiceSeeder extends Seeder
                     ['label' => 'Deliverable', 'value' => 'Web app, mobile app, API, dokumentasi'],
                     ['label' => 'Durasi tipikal', 'value' => '2 — 6 bulan'],
                     ['label' => 'Model kerja', 'value' => 'Fixed-scope atau retainer'],
-                    ['label' => 'Standar', 'value' => 'ISO/IEC 27001'],
+                    ['label' => 'Keamanan', 'value' => 'Enkripsi, RBAC, audit trail'],
                 ],
                 'capabilities' => [
                     ['title' => 'Aplikasi Web & Portal', 'description' => 'Sistem internal, portal publik, dashboard'],

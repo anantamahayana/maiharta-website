@@ -3,7 +3,7 @@
         ['label' => 'Beranda',    'route' => 'home',             'active' => request()->routeIs('home'),         'icon' => 'home'],
         ['label' => 'Solusi',     'route' => 'layanan.index',    'active' => request()->routeIs('layanan.*'),    'icon' => 'squares-2x2'],
         ['label' => 'Portofolio', 'route' => 'portofolio.index', 'active' => request()->routeIs('portofolio.*'), 'icon' => 'rectangle-stack'],
-        ['label' => 'Tentang',    'route' => 'tentang',          'active' => request()->routeIs('tentang'),      'icon' => 'user-circle'],
+        ['label' => 'Blog',       'route' => 'blog.index',       'active' => request()->routeIs('blog.*'),       'icon' => 'newspaper'],
         ['label' => 'Kontak',     'route' => 'kontak',           'active' => request()->routeIs('kontak'),       'icon' => 'envelope'],
     ];
 @endphp

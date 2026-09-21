@@ -1,7 +1,7 @@
 @php
     $editing = $service->exists;
     $steps = collect(old('steps', $service->process_steps ?: [['title' => '', 'description' => '']]))->map(fn ($s) => $s + ['duration' => ''])->values()->all();
-    $meta = old('meta', $service->meta ?: [['label' => 'Cocok untuk', 'value' => ''], ['label' => 'Deliverable', 'value' => ''], ['label' => 'Durasi tipikal', 'value' => ''], ['label' => 'Model kerja', 'value' => ''], ['label' => 'Standar', 'value' => 'ISO/IEC 27001']]);
+    $meta = old('meta', $service->meta ?: [['label' => 'Cocok untuk', 'value' => ''], ['label' => 'Deliverable', 'value' => ''], ['label' => 'Durasi tipikal', 'value' => ''], ['label' => 'Model kerja', 'value' => ''], ['label' => 'Keamanan', 'value' => '']]);
     $caps = old('capabilities', $service->capabilities ?: [['title' => '', 'description' => '']]);
     $tags = collect(old('tech_tags') !== null ? explode(',', old('tech_tags')) : ($service->tech_tags ?? []))->map(fn ($t) => trim($t))->filter()->values();
 @endphp

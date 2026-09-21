@@ -29,9 +29,8 @@ class ContentEditorTest extends TestCase
 
     public function test_content_tabs_render(): void
     {
-        $this->assertSame(['umum', 'beranda', 'sertifikasi', 'tentang'], array_keys(config('content.pages')));
+        $this->assertSame(['umum', 'beranda', 'tentang'], array_keys(config('content.pages')));
         $this->get('/admin/content')->assertOk()->assertSee('Identitas & Kontak')->assertSee('Logo');
-        $this->get('/admin/content/sertifikasi')->assertOk()->assertSee('Kartu Praktik Keamanan');
         $this->get('/admin/content/tentang')->assertOk()->assertSee('Narasi Perusahaan')->assertSee('Logo Partner');
         $this->get('/admin/content/tidak-ada')->assertNotFound();
     }
@@ -60,16 +59,8 @@ class ContentEditorTest extends TestCase
         $this->get('/')->assertOk()->assertSee('Statistik Klien')->assertSee('Update ' . date('Y'))->assertSee('Login Tunggal')->assertDontSee('Ringkasan Proyek')->assertSee('storage/content/', false);
     }
 
-    public function test_certification_cards_and_story_are_editable(): void
+    public function test_story_is_editable(): void
     {
-        $this->get('/sertifikasi')->assertOk()->assertSee('AES-256')->assertSee('ISO 9001:2015');
-
-        $this->put('/admin/content/sertifikasi', [
-            'praktik' => ['items' => [['title' => 'Backup Harian', 'description' => 'd', 'tag' => '']]],
-            'lain' => ['items' => []],
-        ])->assertRedirect();
-        $this->get('/sertifikasi')->assertOk()->assertSee('Backup Harian')->assertDontSee('AES-256')->assertDontSee('ISO 9001:2015')->assertDontSee('Standar Lain yang Kami Penuhi');
-
         $this->put('/admin/content/tentang', ['cerita' => ['title' => 'Judul Cerita Baru', 'description' => 'Narasi baru.', 'quote' => '', 'quote_by' => '']]);
         $this->get('/tentang')->assertOk()->assertSee('Judul Cerita Baru')->assertSee('Narasi baru.')->assertDontSee('Ngga ada habisnya');
     }

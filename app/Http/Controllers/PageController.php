@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Project;
 use App\Models\Service;
 
@@ -11,8 +12,9 @@ class PageController extends Controller
     {
         $services = Service::orderBy('sort_order')->take(3)->get();
         $projects = Project::orderBy('sort_order')->take(3)->get();
+        $articles = Article::latestPublished()->take(3)->get();
 
-        return view('pages.home', compact('services', 'projects'));
+        return view('pages.home', compact('services', 'projects', 'articles'));
     }
 
     public function layananIndex()
@@ -47,11 +49,6 @@ class PageController extends Controller
             ->get();
 
         return view('pages.portofolio.show', compact('project', 'otherProjects'));
-    }
-
-    public function sertifikasi()
-    {
-        return view('pages.sertifikasi');
     }
 
     public function tentang()

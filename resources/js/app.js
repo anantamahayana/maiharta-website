@@ -38,6 +38,58 @@ Alpine.data('slidingNav', () => ({
     },
 }));
 
+// Form artikel admin: editor Quill + unggah gambar + preview sampul
+Alpine.data('articleForm', (opts) => ({
+    body: opts.body,
+    coverPreview: opts.cover,
+    removeCover: false,
+    uploading: false,
+    quill: null,
+    init() {
+        if (typeof Quill === 'undefined') return;
+        this.quill = new Quill(this.$refs.editor, {
+            theme: 'snow',
+            placeholder: 'Tulis isi artikel di sini…',
+            modules: {
+                toolbar: {
+                    container: [
+                        [{ header: [2, 3, false] }],
+                        ['bold', 'italic', 'underline'],
+                        [{ list: 'ordered' }, { list: 'bullet' }],
+                        ['blockquote', 'link', 'image'],
+                        ['clean'],
+                    ],
+                    handlers: { image: () => this.pickImage() },
+                },
+            },
+        });
+        if (this.body) this.quill.clipboard.dangerouslyPasteHTML(this.body);
+        this.quill.on('text-change', () => { this.body = this.quill.getSemanticHTML(); });
+    },
+    pickImage() {
+        const input = document.createElement('input');
+        input.type = 'file'; input.accept = 'image/*';
+        input.onchange = async () => {
+            const file = input.files[0]; if (!file) return;
+            if (file.size > 2 * 1024 * 1024) { alert('Ukuran gambar maksimal 2 MB.'); return; }
+            const fd = new FormData(); fd.append('image', file);
+            this.uploading = true;
+            try {
+                const res = await fetch(opts.uploadUrl, { method: 'POST', body: fd, headers: { 'X-CSRF-TOKEN': opts.csrf, Accept: 'application/json' } });
+                if (!res.ok) throw new Error();
+                const { url } = await res.json();
+                const range = this.quill.getSelection(true);
+                this.quill.insertEmbed(range.index, 'image', url, 'user');
+                this.quill.setSelection(range.index + 1);
+            } catch (e) { alert('Gagal mengunggah gambar.'); }
+            finally { this.uploading = false; }
+        };
+        input.click();
+    },
+    previewCover(e) { const f = e.target.files[0]; if (!f) return; this.removeCover = false; this.coverPreview = URL.createObjectURL(f); },
+    slugify(v) { return v.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); },
+}));
+
 Alpine.start();
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

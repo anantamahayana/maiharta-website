@@ -23,7 +23,7 @@
         eyebrow="Layanan Kami"
         title="Solusi Digital untuk Setiap Kebutuhan Bisnis"
         description="Kami membantu bisnis Anda merancang, membangun, dan mengembangkan produk digital — dari website hingga sistem internal yang kompleks."
-        :stats="[[$services->count(), 'Layanan'], [site('umum.stats.projects'), 'Proyek'], ['ISO', '27001']]"
+        :stats="[[$services->count(), 'Layanan'], [site('umum.stats.projects'), 'Proyek'], [site('umum.stats.years'), 'Tahun']]"
     >
         <x-slot:footer><x-filter-tabs :items="$groups" /></x-slot:footer>
     </x-page-hero>

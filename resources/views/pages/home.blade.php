@@ -9,9 +9,9 @@
             <div data-animate-group="0.07" class="max-w-[680px]">
                 <span data-animate class="inline-flex items-center gap-2 rounded-full border border-brand-border bg-white py-1.5 pl-1.5 pr-3.5 text-label font-medium text-brand-dark">
                     <span class="flex h-6 w-6 items-center justify-center rounded-full bg-brand-light">
-                        <x-heroicon-o-shield-check class="h-3.5 w-3.5 text-brand-normal" />
+                        <x-heroicon-o-sparkles class="h-3.5 w-3.5 text-brand-normal" />
                     </span>
-                    Bersertifikasi ISO/IEC 27001
+                    Dipercaya {{ site('umum.stats.clients') }} instansi &amp; bisnis
                 </span>
 
                 <h1 class="mt-6 font-heading font-semibold text-brand-dark">
@@ -69,12 +69,12 @@
                     <img src="{{ asset($h['photo_1']) }}" alt="Tim MaiHarta" class="aspect-[18/13] w-full object-cover">
                 </div>
 
-                {{-- Float → ISO Badge --}}
+                {{-- Float → Badge dukungan --}}
                 <div data-animate="scale" style="--float-dur:4.5s;--float-delay:1.1s" class="animate-float absolute right-0 top-0 flex items-center gap-2.5 rounded-xl bg-white p-2.5 pr-4 shadow-floating lg:right-[10px] lg:top-[1%] lg:rounded-[14px] lg:p-3">
-                    <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-light lg:h-9 lg:w-9"><x-heroicon-o-shield-check class="h-5 w-5 text-brand-normal" /></span>
+                    <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-light lg:h-9 lg:w-9"><x-heroicon-o-lifebuoy class="h-5 w-5 text-brand-normal" /></span>
                     <span>
-                        <span class="block text-label font-semibold text-brand-dark lg:text-body-sm">{{ $h['iso_title'] }}</span>
-                        <span class="block text-caption text-brand-muted">{{ $h['iso_sub'] }}</span>
+                        <span class="block text-label font-semibold text-brand-dark lg:text-body-sm">{{ $h['badge_title'] }}</span>
+                        <span class="block text-caption text-brand-muted">{{ $h['badge_sub'] }}</span>
                     </span>
                 </div>
 
@@ -176,42 +176,19 @@
         </div>
     </section>
 
-    {{-- ===================================================== Sertifikasi --}}
-    <section class="container-site grid grid-cols-1 items-center gap-10 py-16 md:py-20 lg:grid-cols-[1fr_520px] lg:gap-16">
-        <div data-animate-group="0.07">
-            <p data-animate class="eyebrow">Kredibilitas &amp; Keamanan</p>
-            <h2 data-animate class="mt-2.5 font-heading text-h3 font-semibold text-brand-dark md:text-h2-lg">Standar Keamanan yang Terjamin</h2>
-            <p data-animate class="mt-4 text-body-sm text-brand-muted md:text-[15px] md:leading-6">Kami mengikuti standar keamanan informasi internasional ISO/IEC 27001 untuk memastikan data dan sistem klien kami terlindungi di setiap tahap kerja sama.</p>
-            <ul class="mt-6 space-y-3">
-                @foreach ([
-                    ['Perlindungan data terenkripsi', 'Data klien dienkripsi saat disimpan maupun ditransmisikan.'],
-                    ['Akses sistem yang terkontrol', 'Hak akses berjenjang dan tercatat pada audit trail.'],
-                    ['Penilaian risiko berkala', 'Evaluasi keamanan rutin di setiap siklus pengembangan.'],
-                ] as [$pointTitle, $pointDesc])
-                    <li data-animate class="flex items-start gap-3.5 rounded-xl bg-brand-light px-4 py-3.5">
-                        <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-normal"><x-heroicon-o-check class="h-3.5 w-3.5 text-white" /></span>
-                        <span>
-                            <span class="block text-[15px] font-medium leading-[22px] text-brand-dark">{{ $pointTitle }}</span>
-                            <span class="block text-label text-brand-muted">{{ $pointDesc }}</span>
-                        </span>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-
-        <div data-animate="scale" class="flex flex-col items-center rounded-panel bg-brand-dark px-8 py-10 text-center text-white md:px-12 md:py-12">
-            <span class="flex h-28 w-28 items-center justify-center rounded-full border border-brand-border-on-dark bg-brand-surface-on-dark">
-                <x-icons.shield class="h-12 w-12" />
-            </span>
-            <p class="mt-5 font-heading text-h3 font-semibold md:text-[26px] md:leading-[34px]">ISO/IEC 27001</p>
-            <p class="mt-1 text-body-sm text-brand-on-dark">Information Security Management System</p>
-            <div class="mt-5 flex flex-wrap justify-center gap-2">
-                @foreach (['Tersertifikasi', 'Audit Berkala', 'Standar Internasional'] as $tag)
-                    <x-chip variant="on-dark" class="text-label-sm">{{ $tag }}</x-chip>
+    {{-- ============================================================ Blog --}}
+    @if ($articles->isNotEmpty())
+        <section class="container-site py-16 md:py-20">
+            <x-section-head eyebrow="Blog" title="Wawasan &amp; Cerita dari Tim Kami" description="Tulisan seputar transformasi digital, tips membangun aplikasi, dan kabar terbaru MaiHarta.">
+                <x-slot:action><x-button :href="route('blog.index')" variant="outline" size="sm" icon="arrow-right">Lihat Semua Artikel</x-button></x-slot:action>
+            </x-section-head>
+            <div data-animate-group class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+                @foreach ($articles as $article)
+                    <x-article-card data-animate :article="$article" />
                 @endforeach
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     {{-- ========================================================= Tentang --}}
     <section class="bg-brand-light py-16 md:py-20">

@@ -6,6 +6,7 @@
         ['home', 'Dashboard', route('admin.dashboard'), request()->routeIs('admin.dashboard'), null],
         ['rectangle-stack', 'Proyek', route('admin.projects.index'), request()->routeIs('admin.projects.*'), null],
         ['squares-2x2', 'Layanan', route('admin.services.index'), request()->routeIs('admin.services.*'), null],
+        ['newspaper', 'Blog', route('admin.articles.index'), request()->routeIs('admin.articles.*'), null],
         ['envelope', 'Pesan Kontak', route('admin.messages.index'), request()->routeIs('admin.messages.*'), $unread ?: null],
         ['document-text', 'Konten Website', route('admin.content.edit'), request()->routeIs('admin.content.*'), null],
         ['cog-6-tooth', 'Pengaturan', route('admin.settings'), request()->routeIs('admin.settings*'), null],

@@ -5,7 +5,7 @@
 
 <x-admin.layouts.app :title="'Konten: ' . $def['label']" crumb="Konten Website">
     <x-slot:actions>
-        <x-admin.button :href="$page === 'umum' ? route('home') : route(['beranda' => 'home', 'layanan' => 'layanan.index', 'portofolio' => 'portofolio.index', 'sertifikasi' => 'sertifikasi', 'tentang' => 'tentang', 'kontak' => 'kontak'][$page] ?? 'home')" target="_blank" variant="secondary" icon="arrow-top-right-on-square">Lihat Halaman</x-admin.button>
+        <x-admin.button :href="$page === 'umum' ? route('home') : route(['beranda' => 'home', 'layanan' => 'layanan.index', 'portofolio' => 'portofolio.index', 'tentang' => 'tentang', 'kontak' => 'kontak'][$page] ?? 'home')" target="_blank" variant="secondary" icon="arrow-top-right-on-square">Lihat Halaman</x-admin.button>
         <x-admin.button type="submit" form="content-form" icon="check">Simpan</x-admin.button>
     </x-slot:actions>
 
