@@ -14,6 +14,14 @@
 */
 
 return [
+    // Kategori artikel blog (kunci = nilai tersimpan, nilai = label tampil). Tambah di sini bila perlu.
+    'article_categories' => [
+        'wawasan' => 'Wawasan Digital',
+        'tips' => 'Tips & Panduan',
+        'studi-kasus' => 'Studi Kasus',
+        'berita' => 'Berita MaiHarta',
+    ],
+
     'pages' => [
 
         'umum' => [
