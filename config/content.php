@@ -62,7 +62,7 @@ return [
             'icon' => 'home',
             'groups' => [
                 'hero' => [
-                    'label' => 'Komposisi Hero (kartu melayang)',
+                    'label' => 'Komposisi Hero (scene 3D)',
                     'help' => 'Angka proyek/instansi/tahun di kartu dashboard mengikuti “Angka Perusahaan” di tab Umum.',
                     'fields' => [
                         ['key' => 'card_title', 'label' => 'Kartu dashboard — judul', 'type' => 'text', 'default' => 'Ringkasan Proyek'],
@@ -77,9 +77,6 @@ return [
                         ['key' => 'bubble_text', 'label' => 'Gelembung helpdesk — isi', 'type' => 'textarea', 'default' => '“Pengaduan sudah ditindaklanjuti unit terkait dan diselesaikan dalam 2 jam. Terima kasih!”'],
                         ['key' => 'sso_title', 'label' => 'Kartu SSO — judul', 'type' => 'text', 'default' => 'SSO + 2FA aktif'],
                         ['key' => 'sso_sub', 'label' => 'Kartu SSO — keterangan', 'type' => 'text', 'default' => 'Bank BPD Bali · 1 pintu login'],
-                        ['key' => 'photo_1', 'label' => 'Foto kiri atas (tim)', 'type' => 'image', 'default' => 'images/hero-team.jpg'],
-                        ['key' => 'photo_2', 'label' => 'Foto kanan bawah (dashboard)', 'type' => 'image', 'default' => 'images/hero-dashboard.jpg'],
-                        ['key' => 'mascot', 'label' => 'Ilustrasi / maskot (PNG transparan, tampil di tengah komposisi)', 'type' => 'image', 'default' => 'images/hero-mascot.png'],
                     ],
                 ],
                 'alasan' => [

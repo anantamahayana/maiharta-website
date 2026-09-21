@@ -88,7 +88,7 @@ Menu **Konten Website** → 3 tab. Semua field punya nilai bawaan; kosongkan/hap
 ### Beranda
 **Komposisi Hero** — teks pada kartu-kartu melayang: kartu dashboard (judul, sub-judul — `{tahun}` otomatis jadi tahun berjalan, badge *Live*, catatan progres), badge kecil (judul & keterangan, mis. Dukungan Purna Jual), gelembung helpdesk (judul, sub-judul, chip status, isi kutipan), kartu SSO, serta dua foto (tim & dashboard). Angka di kartu dashboard mengikuti *Angka Perusahaan*.
 
-**Mengapa MaiHarta** — judul, deskripsi, poin singkat (satu per baris), dan maks 4 kartu alasan (judul + deskripsi). Kosongkan semua judul kartu untuk menyembunyikan section. **Ilustrasi/maskot** hero: PNG transparan, tampil di tengah komposisi kartu melayang.
+**Mengapa MaiHarta** — judul, deskripsi, poin singkat (satu per baris), dan maks 4 kartu alasan (judul + deskripsi). Kosongkan semua judul kartu untuk menyembunyikan section.
 
 ### Tentang
 - **Narasi Perusahaan** — judul dan cerita "Siapa Kami", kutipan (kosongkan untuk menyembunyikan) dan sumbernya.

@@ -53,10 +53,9 @@ class ContentEditorTest extends TestCase
 
     public function test_hero_composition_is_editable(): void
     {
-        $this->get('/')->assertOk()->assertSee('Ringkasan Proyek')->assertSee('SSO + 2FA aktif');
-        $photo = UploadedFile::fake()->createWithContent('tim.jpg', file_get_contents(public_path('images/hero-team.jpg')));
-        $this->put('/admin/content/beranda', ['hero' => ['card_title' => 'Statistik Klien', 'card_sub' => 'Update {tahun}', 'card_badge' => '', 'card_note' => 'n', 'iso_title' => 'i', 'iso_sub' => 'is', 'bubble_title' => 'Tiket 7', 'bubble_sub' => 'bs', 'bubble_status' => 'bst', 'bubble_text' => 'bt', 'sso_title' => 'Login Tunggal', 'sso_sub' => 'ss', 'photo_1' => $photo]])->assertRedirect();
-        $this->get('/')->assertOk()->assertSee('Statistik Klien')->assertSee('Update ' . date('Y'))->assertSee('Login Tunggal')->assertDontSee('Ringkasan Proyek')->assertSee('storage/content/', false);
+        $this->get('/')->assertOk()->assertSee('Ringkasan Proyek')->assertSee('SSO + 2FA aktif')->assertSee('hero-scene');
+        $this->put('/admin/content/beranda', ['hero' => ['card_title' => 'Statistik Klien', 'card_sub' => 'Update {tahun}', 'card_badge' => '', 'card_note' => 'n', 'badge_title' => 'b', 'badge_sub' => 'bs', 'bubble_title' => 't', 'bubble_sub' => 's', 'bubble_status' => 'st', 'bubble_text' => 'x', 'sso_title' => 'Login Tunggal', 'sso_sub' => 'ss']])->assertRedirect();
+        $this->get('/')->assertOk()->assertSee('Statistik Klien')->assertSee('Update ' . date('Y'))->assertSee('Login Tunggal')->assertDontSee('Ringkasan Proyek');
     }
 
     public function test_story_is_editable(): void

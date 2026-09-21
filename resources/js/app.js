@@ -250,3 +250,25 @@ document.addEventListener('input', (e) => {
     const el = e.target;
     if (el.form?.hasAttribute('novalidate') && fieldWrap(el)?.classList.contains('is-invalid')) showError(el, fieldMessage(el));
 });
+
+// Hero scene 3D: kemiringan mengikuti posisi mouse (parallax), halus dengan lerp; nonaktif di sentuh/reduced-motion
+(() => {
+    const scene = document.querySelector('[data-hero-scene]');
+    if (!scene || reducedMotion || !window.matchMedia('(hover: hover)').matches) return;
+    const stage = scene.querySelector('.hero-scene__stage');
+    let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+    const loop = () => {
+        cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
+        stage.style.setProperty('--tilt-x', `${cy.toFixed(2)}deg`);
+        stage.style.setProperty('--tilt-y', `${cx.toFixed(2)}deg`);
+        if (Math.abs(tx - cx) > 0.05 || Math.abs(ty - cy) > 0.05) raf = requestAnimationFrame(loop); else raf = null;
+    };
+    const kick = () => { if (!raf) raf = requestAnimationFrame(loop); };
+    window.addEventListener('mousemove', (e) => {
+        const r = scene.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / window.innerWidth;
+        const dy = (e.clientY - (r.top + r.height / 2)) / window.innerHeight;
+        tx = dx * 16; ty = -dy * 12; kick();
+    }, { passive: true });
+    window.addEventListener('mouseleave', () => { tx = 0; ty = 0; kick(); });
+})();
