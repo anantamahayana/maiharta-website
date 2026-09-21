@@ -234,6 +234,32 @@
     transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1), width 0.42s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
+/* Logo marquee (Partner & Klien) — lihat components/logo-marquee.blade.php */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.logo-marquee__viewport {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.logo-marquee__track {
+    display: flex; width: max-content; align-items: center;
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+    will-change: transform;
+}
+.logo-marquee__track--reverse { animation-direction: reverse; }
+.logo-marquee:hover .logo-marquee__track { animation-play-state: paused; }
+.logo-marquee__item {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: center;
+    height: 88px; width: 176px; padding: 0 24px;
+}
+.logo-marquee__item img {
+    max-height: 56px; max-width: 128px; width: auto; height: auto; object-fit: contain;
+    filter: grayscale(1); opacity: .65;
+    transition: filter .3s, opacity .3s, transform .3s;
+}
+.logo-marquee__item:hover img { filter: none; opacity: 1; transform: scale(1.06); }
+@media (width >= 48rem) { .logo-marquee__item { height: 104px; width: 208px; } .logo-marquee__item img { max-height: 64px; max-width: 152px; } }
+
 /* Bottom nav mobile — pill melayang */
 @keyframes nav-glow-in {
     from { transform: scale(0.6); opacity: 0; }
@@ -381,6 +407,7 @@ html.wa-seen .fab-wa__btn { animation: none; }
     ::view-transition-old(root),
     ::view-transition-new(root),
     .sliding-nav__pill,
+    .logo-marquee__track,
     .bottom-nav__glow,
     .bottom-nav__dot,
     .fab-wa__btn,
@@ -401,4 +428,6 @@ html.wa-seen .fab-wa__btn { animation: none; }
     .sliding-nav__pill.is-ready {
         transition: none;
     }
+    .logo-marquee__viewport { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+    .logo-marquee__item img { filter: none; opacity: 1; }
 }

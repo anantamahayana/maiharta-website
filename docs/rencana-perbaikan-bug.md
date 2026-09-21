@@ -1,6 +1,6 @@
 # Analisis & Rencana Perbaikan — Laporan Bug Tim Testing (17/09/2026)
 
-> **Status 17/09/2026:** 9 dari 10 selesai (#1 #3 #4 #5 #6 #7 #8 #9 #10). #2 marquee menunggu keputusan bentuk. #6 berjalan dengan `MAIL_MAILER=log`; isi kredensial SMTP di `.env` produksi agar email benar-benar terkirim.
+> **Status 21/09/2026:** 10 dari 10 selesai. #2 marquee: dua baris (partner & klien) berjalan berlawanan arah, referensi interlacestudies.id. #6 berjalan dengan `MAIL_MAILER=log`; isi kredensial SMTP di `.env` produksi agar email benar-benar terkirim.
 
 Sumber: `laporan bug redesign.pdf` (2 halaman, 10 temuan). Setiap temuan dianalisis akar masalahnya di kode, diberi prioritas, dan rencana perbaikan konkret.
 

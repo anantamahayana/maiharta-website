@@ -38,24 +38,15 @@
         </div>
     </section>
 
-    {{-- Partner & klien --}}
+    {{-- Partner & klien — logo berjalan (marquee) --}}
     @if ($partners || $clients)
-    <section class="bg-brand-light py-16 md:py-20">
+    <section class="overflow-hidden bg-white py-16 md:py-20">
         <div class="container-site">
             <x-section-head eyebrow="Partner & Klien" title="Dipercaya oleh Instansi dan Mitra Terkemuka" align="center" />
-            <div data-animate-group class="mt-9 flex flex-col gap-6 md:flex-row">
-                @foreach ([['Partner Kami', $partners], ['Client Kami', $clients]] as [$label, $logos])
-                    @continue(empty($logos))
-                    <x-card data-animate :interactive="false" padding="p-7" class="{{ $loop->last ? 'flex-1' : '' }}">
-                        <p class="font-heading text-body font-medium text-brand-dark">{{ $label }}</p>
-                        <div class="mt-5 flex flex-wrap gap-4">
-                            @foreach ($logos as $logo)
-                                <span title="{{ $logo['caption'] ?? '' }}" class="flex h-[88px] w-[88px] items-center justify-center rounded-xl bg-brand-light p-3 transition-transform hover:-translate-y-1"><img src="{{ asset($logo['src']) }}" alt="{{ $logo['caption'] ?? '' }}" class="max-h-full max-w-full object-contain" loading="lazy"></span>
-                            @endforeach
-                        </div>
-                    </x-card>
-                @endforeach
-            </div>
+        </div>
+        <div data-animate class="mt-10 space-y-8">
+            @if ($partners)<x-logo-marquee :logos="$partners" label="Partner Kami" :duration="36" />@endif
+            @if ($clients)<x-logo-marquee :logos="$clients" label="Klien Kami" :duration="48" :reverse="true" />@endif
         </div>
     </section>
     @endif

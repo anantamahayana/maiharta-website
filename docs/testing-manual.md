@@ -115,7 +115,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
 |---|---|---|---|---|---|
 | ABOUT-01 | Halaman tentang | Buka `/tentang` | Hero + statistik, "Siapa Kami", kutipan, nilai kerja, logo partner & klien, CTA | | |
-| ABOUT-02 | Logo partner/klien | Bandingkan dengan admin | Semua logo tampil, nama muncul saat hover (title); kelompok kosong tidak ditampilkan | | |
+| ABOUT-02 | Logo partner/klien (marquee) | Lihat section "Dipercaya oleh…" | Dua baris logo berjalan otomatis (partner ke kiri, klien ke kanan), loop mulus tanpa lompatan, tepi memudar, berhenti saat hover, logo abu-abu → berwarna saat hover; nama muncul saat hover; kelompok kosong disembunyikan | | |
 | ABOUT-03 | Kutipan opsional | Kosongkan kutipan di admin | Blok kutipan hilang tanpa merusak layout | | |
 | ABOUT-04 | Statistik | Ubah angka di Umum & Kontak | Kartu statistik ikut berubah | | |
 
@@ -294,7 +294,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | 1 | ACNT-02 | Logo partner/klien hilang saat Simpan tanpa perubahan (nama field `group[key]_keep` dipotong PHP) | Kritis | Fixed | Pengembang | 16/09/2026 | `1b50833` |
 | 2 | NAV-08 | Garis muncul di atas label subjudul (bentrok utilitas `overline` Tailwind) | Minor | Fixed | Klien | 16/09/2026 | `5292ba8` |
 | 3 | NAV-06 | Alamat di footer tidak bisa diklik | Minor | Fixed | Tim testing | 17/09/2026 | `bb50099` |
-| 4 | ABOUT-02 | Section logo partner/klien kosong di kanan; diminta marquee | Minor | Open (menunggu keputusan bentuk) | Tim testing | 17/09/2026 | — |
+| 4 | ABOUT-02 | Section logo partner/klien kosong di kanan; diminta marquee | Minor | Fixed | Tim testing | 21/09/2026 | lihat log |
 | 5 | CONTACT-02/03 | Validasi form kontak memakai popup browser | Mayor | Fixed | Tim testing | 17/09/2026 | `2685e6f` |
 | 6 | AMSG-02 | "Balas via Email" tidak membuka Gmail | Minor | Fixed | Tim testing | 17/09/2026 | `bb50099` |
 | 7 | APRJ-02 dkk | Validasi admin tidak konsisten | Minor | Fixed | Tim testing | 17/09/2026 | `2685e6f` |
