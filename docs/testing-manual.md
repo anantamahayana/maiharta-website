@@ -150,7 +150,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
 |---|---|---|---|---|---|
 | RESP-01 | Navbar mobile & teks | Buka di ≤ 1024 px | Pill atas berisi logo + tombol bulat chat; judul/deskripsi hero dan judul section rata tengah | | |
-| RESP-02 | Bottom nav | Lihat bawah layar | Bar putih melayang selalu tampil, ikon saja (Beranda · Solusi · Portofolio · Blog) dengan nama sebagai tooltip; tombol WhatsApp hijau duduk di lekukan tengah; tab aktif: ikon biru sedikit terangkat + titik di bawahnya | | |
+| RESP-02 | Bottom nav | Lihat bawah layar | Bar putih melayang selalu tampil, ikon + label (Beranda · Solusi · Portofolio · Blog); tombol WhatsApp hijau duduk di lekukan tengah; tab aktif: ikon biru sedikit terangkat + titik di bawahnya | | |
 | RESP-03 | Bottom nav sticky | Scroll ke bawah lalu ke atas | Bottom nav selalu terlihat (tidak sembunyi); tombol WA tengah membuka wa.me | | |
 | RESP-04 | Bottom nav navigasi | Ketuk tiap tab | Halaman berpindah; tab aktif berubah | | |
 | RESP-05 | FAB hanya desktop | Lihat kanan bawah mobile | Tombol WhatsApp melayang tidak tampil di mobile (diganti tombol tengah bottom nav); tampil di desktop | | |
