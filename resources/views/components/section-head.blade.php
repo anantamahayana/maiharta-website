@@ -6,8 +6,8 @@
     'dark' => false,
 ])
 
-<div {{ $attributes->merge(['class' => 'flex flex-col gap-6 md:flex-row md:items-end md:justify-between ' . ($align === 'center' ? 'md:flex-col md:items-center md:text-center' : '')]) }}>
-    <div class="max-w-[720px] {{ $align === 'center' ? 'mx-auto' : '' }}">
+<div {{ $attributes->merge(['class' => 'flex flex-col items-center gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left ' . ($align === 'center' ? 'md:flex-col md:items-center md:text-center' : '')]) }}>
+    <div class="max-w-[720px] {{ $align === 'center' ? 'mx-auto' : 'mx-auto md:mx-0' }}">
         @if ($eyebrow)
             <p data-animate class="eyebrow {{ $dark ? 'text-brand-accent-on-dark' : '' }}">{{ $eyebrow }}</p>
         @endif

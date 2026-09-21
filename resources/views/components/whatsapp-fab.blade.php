@@ -21,7 +21,7 @@
             try { sessionStorage.setItem('wa-bubble', '1'); } catch (e) {}
         },
     }"
-    class="fab-wa fixed right-4 bottom-[108px] z-40 flex flex-col items-end gap-3 md:right-7 lg:bottom-8"
+    class="fab-wa fixed right-7 bottom-8 z-40 hidden flex-col items-end gap-3 lg:flex"
 >
     {{-- Bubble ajakan --}}
     <div

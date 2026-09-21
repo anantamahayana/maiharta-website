@@ -71,7 +71,9 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | HOME-03 | Isi kartu hero dari admin | Ubah teks kartu di Admin → Konten Website → Beranda, simpan | Teks di kartu hero berubah sesuai input | | |
 | HOME-04 | Angka perusahaan | Bandingkan angka Proyek/Instansi/Tahun dengan Admin → Umum & Kontak | Sama; `{tahun}` diganti tahun berjalan | | |
 | HOME-04b | Strip "Dipercaya oleh" | Scroll tepat di bawah hero | Satu baris logo partner+klien berjalan (abu-abu, berhenti saat hover); hilang bila tidak ada logo | | |
-| HOME-05 | Section Solusi | Scroll ke "Satu Mitra untuk Seluruh Kebutuhan Digital Anda" | 3 kartu layanan unggulan, link "Pelajari Lebih Lanjut" ke detail layanan | | |
+| HOME-05 | Section Solusi | Scroll ke "Satu Mitra untuk Seluruh Kebutuhan Digital Anda" | Kartu layanan utama (gelap) + grid layanan lain — tampilan identik dengan halaman Solusi; tanpa chip teknologi | | |
+| HOME-05b | Section Mengapa MaiHarta | Scroll lanjut | Section gelap: judul, deskripsi, poin centang, CTA; 4 kartu alasan bernomor 01–04 (diedit di Admin → Beranda → Mengapa MaiHarta) | | |
+| HOME-01b | Maskot hero | Lihat komposisi kanan hero | Ilustrasi karakter tampil di tengah komposisi, kartu melayang di sekitarnya; bisa diganti di Admin → Beranda | | |
 | HOME-06 | Section Portofolio | Scroll ke "Bukti Nyata Kapabilitas Kami" | 3 proyek unggulan dengan gambar, kategori, link ke detail; "Lihat Semua Proyek" ke `/portofolio` | | |
 | HOME-07 | Section Blog & Tentang | Scroll lanjut | 3 artikel terbaru + "Lihat Semua Artikel" (section hilang bila belum ada artikel), 3 nilai kerja, tombol "Kenali Kami Lebih Dekat" | | |
 | HOME-08 | CTA akhir | Klik "Hubungi Kami Sekarang" dan "Lihat Layanan" | Menuju `/kontak` dan `/layanan` | | |
@@ -147,11 +149,11 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
 |---|---|---|---|---|---|
-| RESP-01 | Navbar mobile | Buka di ≤ 1024 px | Pill atas berisi logo + tombol bulat chat; tidak ada link teks | | |
-| RESP-02 | Bottom nav pill | Lihat bawah layar | Pill melayang dengan 5 tab (Beranda · Solusi · Portofolio · Blog · Tentang); tab aktif ikon solid + glow + titik | | |
-| RESP-03 | Bottom nav auto-hide | Scroll ke bawah lalu ke atas | Sembunyi saat scroll turun (>120 px), muncul saat scroll naik, transisi halus | | |
+| RESP-01 | Navbar mobile & teks | Buka di ≤ 1024 px | Pill atas berisi logo + tombol bulat chat; judul/deskripsi hero dan judul section rata tengah | | |
+| RESP-02 | Bottom nav pill | Lihat bawah layar | Pill melayang selalu tampil: Beranda · Solusi · [tombol WhatsApp hijau menonjol di tengah] · Portofolio · Blog; tab aktif ikon solid + glow + titik | | |
+| RESP-03 | Bottom nav sticky | Scroll ke bawah lalu ke atas | Bottom nav selalu terlihat (tidak sembunyi); tombol WA tengah membuka wa.me | | |
 | RESP-04 | Bottom nav navigasi | Ketuk tiap tab | Halaman berpindah; tab aktif berubah | | |
-| RESP-05 | FAB tidak bertabrakan | Lihat kanan bawah mobile | Tombol WhatsApp berada di atas bottom nav, tidak menutupi tab | | |
+| RESP-05 | FAB hanya desktop | Lihat kanan bawah mobile | Tombol WhatsApp melayang tidak tampil di mobile (diganti tombol tengah bottom nav); tampil di desktop | | |
 | RESP-06 | Tidak ada scroll horizontal | Geser ke samping di semua halaman pada 390 px | Halaman tidak bergeser horizontal; gambar/tabel tidak meluber | | |
 | RESP-07 | Konten tidak tertutup | Scroll ke paling bawah | Footer terbaca penuh di atas bottom nav (padding bawah cukup) | | |
 | RESP-08 | Tablet 768 px | Buka semua halaman | Grid turun menjadi 2 kolom / 1 kolom dengan rapi | | |
@@ -248,7 +250,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | ACNT-04 | Kembali ke default logo | Klik "Kembali ke default" lalu Simpan | Logo default kembali; file unggahan lama terhapus | | |
 | ACNT-05 | Kontak & sosial | Ubah email, telepon, WhatsApp (angka saja), alamat, jam, Instagram/Facebook/LinkedIn | Footer, halaman kontak, FAB WhatsApp mengikuti; sosial kosong disembunyikan | | |
 | ACNT-06 | Angka perusahaan | Ubah 3 angka | Hero, Layanan, Portofolio, Tentang berubah | | |
-| ACNT-07 | Komposisi hero | Ubah teks kartu, unggah 2 foto hero | Hero Beranda berubah; foto rasio 4:3 tidak terdistorsi | | |
+| ACNT-07 | Komposisi hero | Ubah teks kartu, unggah 2 foto hero + maskot PNG | Hero Beranda berubah; foto rasio 4:3 tidak terdistorsi; maskot transparan | | |
 | ACNT-09 | Logo partner — tambah | Unggah beberapa logo sekaligus | Semua muncul dengan caption dari nama file; hitungan `(n)` benar | | |
 | ACNT-10 | Logo partner — ubah nama & hapus | Ubah caption, hapus satu, Simpan | Caption tersimpan; hanya yang dihapus yang hilang; sisanya tetap | | |
 | ACNT-11 | Narasi tentang | Ubah judul, cerita, kutipan, sumber | `/tentang` berubah | | |

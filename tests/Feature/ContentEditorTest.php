@@ -151,4 +151,16 @@ class ContentEditorTest extends TestCase
         $html = $this->get('/admin/content/umum')->assertOk()->getContent();
         $this->assertStringContainsString('name="brand[logo_remove]"', $html);
     }
+
+    public function test_reasons_section_is_editable_and_hides_when_empty(): void
+    {
+        $this->get('/')->assertOk()->assertSee('Alasan kuat untuk memilih kami.')->assertSee('Tim Developer Berpengalaman');
+
+        $this->put('/admin/content/beranda', ['alasan' => ['title' => 'Kenapa Kami', 'description' => 'd', 'checks' => "Satu
+Dua", 'items' => [['title' => 'Cepat', 'description' => 'x']]]])->assertRedirect();
+        $this->get('/')->assertOk()->assertSee('Kenapa Kami')->assertSee('Cepat')->assertDontSee('Tim Developer Berpengalaman');
+
+        $this->put('/admin/content/beranda', ['alasan' => ['title' => 't', 'description' => 'd', 'checks' => '', 'items' => []]])->assertRedirect();
+        $this->get('/')->assertOk()->assertDontSee('Mengapa MaiHarta?');
+    }
 }

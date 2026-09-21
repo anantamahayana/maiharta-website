@@ -79,24 +79,8 @@
         </section>
     @endif
 
-    {{-- Teknologi --}}
-    @if ($tags->isNotEmpty())
-        <section class="container-site py-16 md:py-20">
-            <x-section-head eyebrow="Teknologi & Skillset" title="Stack yang Terbukti di Produksi" />
-            <div data-animate-group class="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
-                @foreach ($techGroups as $g => $items)
-                    @continue($items->isEmpty())
-                    <x-card data-animate :interactive="false" padding="p-6">
-                        <p class="text-h5 font-medium text-brand-dark">{{ $g }}</p>
-                        <div class="mt-3 flex flex-wrap gap-1.5">@foreach ($items as $t)<x-chip class="bg-brand-light">{{ $t }}</x-chip>@endforeach</div>
-                    </x-card>
-                @endforeach
-            </div>
-        </section>
-    @endif
-
     {{-- Proyek terkait --}}
-    <section id="proyek-terkait" class="container-site pb-16 md:pb-20 {{ $tags->isEmpty() ? 'pt-16 md:pt-20' : '' }}">
+    <section id="proyek-terkait" class="container-site py-16 md:py-20">
         <x-section-head eyebrow="Proyek Terkait" title="Yang Sudah Kami Bangun dengan Layanan Ini">
             <x-slot:action><x-button :href="route('portofolio.index')" variant="outline" size="sm" icon="arrow-right">Lihat Semua Portofolio</x-button></x-slot:action>
         </x-section-head>

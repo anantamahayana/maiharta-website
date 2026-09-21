@@ -31,38 +31,14 @@
     <section class="container-site py-12 md:py-16">
         {{-- Featured --}}
         @if ($featured)
-            <div data-animate="scale" x-show="active === 'Semua' || active === @js($groupOf($featured))" class="flex flex-col gap-8 rounded-panel bg-brand-dark p-7 text-white md:flex-row md:items-center md:p-9">
-                <div class="flex-1">
-                    <x-chip variant="accent">Layanan Utama</x-chip>
-                    <div class="mt-4 flex items-center gap-4">
-                        <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] bg-brand-surface-on-dark [&_svg]:text-white"><x-service-icon :icon="$featured->icon" class="h-7 w-7" /></span>
-                        <h2 class="font-heading text-h3 font-semibold md:text-[28px] md:leading-9">{{ $featured->name }}</h2>
-                    </div>
-                    <p class="mt-4 text-body-sm text-brand-on-dark md:text-[15px] md:leading-6">{{ $featured->short_description }} Termasuk sistem internal, portal publik, e-commerce, dan integrasi API.</p>
-                    <div class="mt-4 flex flex-wrap gap-2">
-                        @foreach (collect($featured->tech_tags ?? [])->take(5) as $tag)<x-chip variant="on-dark">{{ $tag }}</x-chip>@endforeach
-                    </div>
-                </div>
-                <div class="flex flex-col gap-3 md:items-end">
-                    <x-button :href="route('layanan.show', $featured)" icon="arrow-right">Pelajari Lebih Lanjut</x-button>
-                    <div class="rounded-xl border border-brand-border-on-dark bg-brand-surface-on-dark px-5 py-4 md:text-right">
-                        <p class="text-body-sm font-semibold">{{ $featured->projects_count ?? 5 }} proyek unggulan</p>
-                        <p class="text-caption text-brand-on-dark">SSO, Helpdesk, E-PBBKB, LoveBali, Klungkung</p>
-                    </div>
-                </div>
-            </div>
+            <x-service-featured :service="$featured" data-animate="scale" x-show="active === 'Semua' || active === @js($groupOf($featured))" />
         @endif
 
         {{-- Grid --}}
         <div data-animate-group class="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             @foreach ($rest as $i => $service)
                 <div data-animate x-show="active === 'Semua' || active === @js($groupOf($service))">
-                    <x-card :href="route('layanan.show', $service)" class="flex h-full flex-col">
-                        <span class="flex h-[52px] w-[52px] items-center justify-center rounded-xl bg-brand-light transition-colors group-hover:bg-brand-light-hover"><x-service-icon :icon="$service->icon" /></span>
-                        <h3 class="mt-5 font-heading text-[19px] font-medium leading-7 text-brand-dark">{{ $service->name }}</h3>
-                        <p class="mt-3 flex-1 text-body-sm text-brand-muted">{{ $service->short_description }}</p>
-                        <span class="mt-5 inline-flex items-center gap-1.5 text-label font-medium text-brand-normal">Pelajari Lebih Lanjut <x-heroicon-o-arrow-right class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" /></span>
-                    </x-card>
+                    <x-service-card :service="$service" />
                 </div>
             @endforeach
         </div>

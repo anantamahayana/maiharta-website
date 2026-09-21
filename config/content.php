@@ -79,6 +79,25 @@ return [
                         ['key' => 'sso_sub', 'label' => 'Kartu SSO — keterangan', 'type' => 'text', 'default' => 'Bank BPD Bali · 1 pintu login'],
                         ['key' => 'photo_1', 'label' => 'Foto kiri atas (tim)', 'type' => 'image', 'default' => 'images/hero-team.jpg'],
                         ['key' => 'photo_2', 'label' => 'Foto kanan bawah (dashboard)', 'type' => 'image', 'default' => 'images/hero-dashboard.jpg'],
+                        ['key' => 'mascot', 'label' => 'Ilustrasi / maskot (PNG transparan, tampil di tengah komposisi)', 'type' => 'image', 'default' => 'images/hero-mascot.png'],
+                    ],
+                ],
+                'alasan' => [
+                    'label' => 'Mengapa MaiHarta (alasan memilih kami)',
+                    'help' => 'Section gelap di Beranda. Maks 4 kartu; kosongkan judul kartu untuk menyembunyikannya.',
+                    'fields' => [
+                        ['key' => 'title', 'label' => 'Judul', 'type' => 'text', 'default' => 'Alasan kuat untuk memilih kami.'],
+                        ['key' => 'description', 'label' => 'Deskripsi', 'type' => 'textarea', 'default' => 'Sebagai perusahaan yang bergerak di bidang teknologi informasi, kami ingin memberikan yang terbaik dengan alasan yang kuat.'],
+                        ['key' => 'checks', 'label' => 'Poin singkat (satu per baris, maks 4)', 'type' => 'textarea', 'default' => "Tim berpengalaman 8+ tahun\nProses transparan & terukur\nTeknologi terkini & aman"],
+                        ['key' => 'items', 'label' => 'Kartu alasan', 'type' => 'repeater', 'max' => 4, 'fields' => [
+                            ['key' => 'title', 'label' => 'Judul', 'type' => 'text'],
+                            ['key' => 'description', 'label' => 'Deskripsi', 'type' => 'textarea'],
+                        ], 'default' => [
+                            ['title' => 'Tim Developer Berpengalaman', 'description' => 'Tim kami telah menangani 199+ proyek untuk pemerintahan, perbankan, dan swasta.'],
+                            ['title' => 'Support After-Sales', 'description' => 'Dukungan teknis, pemeliharaan rutin, dan pengembangan fitur tambahan setelah peluncuran.'],
+                            ['title' => 'Scalable & Aman', 'description' => 'Sistem dibangun dengan standar keamanan dan kualitas tinggi, siap tumbuh bersama bisnis Anda.'],
+                            ['title' => 'Custom Sesuai Kebutuhan', 'description' => 'Setiap solusi dirancang khusus mengikuti alur bisnis dan kebutuhan spesifik klien.'],
+                        ]],
                     ],
                 ],
             ],

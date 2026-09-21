@@ -10,11 +10,13 @@ class PageController extends Controller
 {
     public function home()
     {
-        $services = Service::orderBy('sort_order')->take(3)->get();
+        $all = Service::orderBy('sort_order')->get();
+        $featuredService = $all->first();
+        $services = $all->skip(1)->take(6);
         $projects = Project::orderBy('sort_order')->take(3)->get();
         $articles = Article::latestPublished()->take(3)->get();
 
-        return view('pages.home', compact('services', 'projects', 'articles'));
+        return view('pages.home', compact('services', 'featuredService', 'projects', 'articles'));
     }
 
     public function layananIndex()

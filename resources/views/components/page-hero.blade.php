@@ -9,7 +9,7 @@
 <section {{ $attributes->merge(['class' => 'bg-hero-gradient']) }}>
     <div class="container-site py-12 md:py-16">
         @if ($crumbs)
-            <nav data-animate aria-label="Breadcrumb" class="mb-6 flex flex-wrap items-center gap-2 text-caption">
+            <nav data-animate aria-label="Breadcrumb" class="mb-6 flex flex-wrap items-center justify-center gap-2 text-caption lg:justify-start">
                 @foreach ($crumbs as [$label, $href])
                     @if ($href)
                         <a href="{{ $href }}" class="text-brand-normal hover:text-brand-normal-hover">{{ $label }}</a>
@@ -22,7 +22,7 @@
         @endif
 
         <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-            <div data-animate-group="0.07" class="max-w-[760px]">
+            <div data-animate-group="0.07" class="mx-auto max-w-[760px] text-center lg:mx-0 lg:text-left">
                 @if ($eyebrow)<p data-animate class="eyebrow">{{ $eyebrow }}</p>@endif
                 @if ($title)<h1 data-animate class="mt-3 font-heading text-h2 font-semibold text-brand-dark md:text-h1-hero">{{ $title }}</h1>@endif
                 @if ($description)<p data-animate class="mt-4 text-body-sm text-brand-muted md:text-body">{{ $description }}</p>@endif
