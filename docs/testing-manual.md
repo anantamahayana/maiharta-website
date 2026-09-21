@@ -147,7 +147,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
 |---|---|---|---|---|---|
 | RESP-01 | Navbar mobile | Buka di ≤ 1024 px | Pill atas berisi logo + tombol bulat chat; tidak ada link teks | | |
-| RESP-02 | Bottom nav pill | Lihat bawah layar | Pill melayang dengan 5 tab (Beranda · Solusi · Portofolio · Blog · Kontak); tab aktif ikon solid + glow + titik | | |
+| RESP-02 | Bottom nav pill | Lihat bawah layar | Pill melayang dengan 5 tab (Beranda · Solusi · Portofolio · Blog · Tentang); tab aktif ikon solid + glow + titik | | |
 | RESP-03 | Bottom nav auto-hide | Scroll ke bawah lalu ke atas | Sembunyi saat scroll turun (>120 px), muncul saat scroll naik, transisi halus | | |
 | RESP-04 | Bottom nav navigasi | Ketuk tiap tab | Halaman berpindah; tab aktif berubah | | |
 | RESP-05 | FAB tidak bertabrakan | Lihat kanan bawah mobile | Tombol WhatsApp berada di atas bottom nav, tidak menutupi tab | | |
