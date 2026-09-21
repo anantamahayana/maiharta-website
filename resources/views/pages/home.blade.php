@@ -119,6 +119,14 @@
         </div>
     </section>
 
+    {{-- ================================================ Dipercaya oleh --}}
+    @php $trustLogos = array_merge(site('tentang.partner.partners', []), site('tentang.partner.clients', [])); @endphp
+    @if ($trustLogos)
+        <section class="overflow-hidden border-y border-brand-border/60 bg-white py-8 md:py-10" aria-label="Partner dan klien kami">
+            <x-logo-marquee :logos="$trustLogos" label="Dipercaya oleh instansi & mitra" :duration="60" />
+        </section>
+    @endif
+
     {{-- ===================================================== Solusi Kita --}}
     <section class="container-site py-16 md:py-20">
         <x-section-head eyebrow="Solusi Kita" title="Satu Mitra untuk Seluruh Kebutuhan Digital Anda" description="Solusi digital yang disesuaikan dengan kebutuhan bisnis Anda — dari sistem internal hingga identitas brand dan pemasaran.">

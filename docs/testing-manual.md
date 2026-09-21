@@ -70,6 +70,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | HOME-02 | Animasi hero | Muat ulang halaman | Judul shimmer, kartu melayang naik-turun, bar chart tumbuh dari bawah, angka berhitung naik (counter), garis putus-putus tergambar | | |
 | HOME-03 | Isi kartu hero dari admin | Ubah teks kartu di Admin → Konten Website → Beranda, simpan | Teks di kartu hero berubah sesuai input | | |
 | HOME-04 | Angka perusahaan | Bandingkan angka Proyek/Instansi/Tahun dengan Admin → Umum & Kontak | Sama; `{tahun}` diganti tahun berjalan | | |
+| HOME-04b | Strip "Dipercaya oleh" | Scroll tepat di bawah hero | Satu baris logo partner+klien berjalan (abu-abu, berhenti saat hover); hilang bila tidak ada logo | | |
 | HOME-05 | Section Solusi | Scroll ke "Satu Mitra untuk Seluruh Kebutuhan Digital Anda" | 3 kartu layanan unggulan, link "Pelajari Lebih Lanjut" ke detail layanan | | |
 | HOME-06 | Section Portofolio | Scroll ke "Bukti Nyata Kapabilitas Kami" | 3 proyek unggulan dengan gambar, kategori, link ke detail; "Lihat Semua Proyek" ke `/portofolio` | | |
 | HOME-07 | Section Blog & Tentang | Scroll lanjut | 3 artikel terbaru + "Lihat Semua Artikel" (section hilang bila belum ada artikel), 3 nilai kerja, tombol "Kenali Kami Lebih Dekat" | | |
