@@ -13,14 +13,15 @@
 {{-- Bottom nav mobile — pill melayang, selalu tampil (sticky), tombol WhatsApp menonjol di tengah --}}
 <nav class="bottom-nav fixed inset-x-4 bottom-4 z-30 lg:hidden" aria-label="Navigasi utama">
     <div class="relative mx-auto max-w-md">
-        {{-- Tombol WhatsApp tengah (menonjol keluar pill) --}}
-        <a href="{{ $waHref }}" target="_blank" rel="noopener" class="bottom-nav__wa absolute left-1/2 top-0 z-10 grid size-[60px] -translate-x-1/2 -translate-y-[22px] place-items-center rounded-full bg-[#25d366] text-white shadow-[0_10px_24px_rgba(37,211,102,0.4)] ring-[5px] ring-white transition active:scale-95" aria-label="Chat via WhatsApp">
-            <x-icons.social-whatsapp class="size-7" />
+        {{-- Tombol WhatsApp tengah: duduk di lekukan (notch) pill sehingga menyatu dengan bar --}}
+        <a href="{{ $waHref }}" target="_blank" rel="noopener" class="bottom-nav__wa" aria-label="Chat via WhatsApp">
+            <span class="bottom-nav__wa-ring" aria-hidden="true"></span>
+            <x-icons.social-whatsapp class="relative size-7" />
         </a>
-        <div class="flex h-[68px] items-center justify-between rounded-full border border-white/70 bg-white/90 px-2 shadow-floating backdrop-blur-xl">
+        <div class="bottom-nav__pill flex h-[68px] items-center justify-between rounded-full px-2">
             @foreach ($tabs as $tab)
                 @if ($tab === null)
-                    <span class="h-14 w-[64px] shrink-0" aria-hidden="true"></span>
+                    <span class="h-14 w-[72px] shrink-0" aria-hidden="true"></span>
                     @continue
                 @endif
                 <a

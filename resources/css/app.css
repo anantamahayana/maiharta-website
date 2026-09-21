@@ -333,6 +333,37 @@
 .logo-marquee__item:hover img { filter: none; opacity: 1; transform: scale(1.06); }
 @media (width >= 48rem) { .logo-marquee__item { height: 104px; width: 208px; } .logo-marquee__item img { max-height: 64px; max-width: 152px; } }
 
+/* Bottom nav — pill dengan lekukan (notch) untuk tombol WhatsApp di tengah */
+.bottom-nav__pill {
+    position: relative;
+    /* bayangan mengikuti bentuk (termasuk lekukan) karena dihitung dari piksel yang terlihat */
+    filter: drop-shadow(0 12px 22px rgb(18 48 111 / .16)) drop-shadow(0 2px 4px rgb(18 48 111 / .08));
+}
+.bottom-nav__pill::before {
+    content: ''; position: absolute; inset: 0; border-radius: 9999px; z-index: 0;
+    background: rgb(255 255 255 / .96);
+    /* lubang melingkar di tepi atas tengah: radius tombol 30px + celah 7px */
+    -webkit-mask: radial-gradient(circle 37px at 50% 0, transparent 98%, #000 100%);
+    mask: radial-gradient(circle 37px at 50% 0, transparent 98%, #000 100%);
+}
+.bottom-nav__pill > * { position: relative; z-index: 1; }
+.bottom-nav__wa {
+    position: absolute; left: 50%; top: 0; z-index: 10;
+    display: grid; place-items: center; width: 60px; height: 60px;
+    transform: translate(-50%, -50%);
+    border-radius: 9999px; color: #fff;
+    background: radial-gradient(circle at 35% 30%, #5fe89a 0%, #25d366 45%, #128c5e 100%);
+    box-shadow: 0 10px 22px -6px rgb(37 211 102 / .55), inset 0 2px 0 rgb(255 255 255 / .45), inset 0 -3px 0 rgb(0 0 0 / .12);
+    transition: transform .25s var(--ease-out-expo), box-shadow .25s;
+}
+.bottom-nav__wa:active { transform: translate(-50%, -50%) scale(.94); }
+.bottom-nav__wa-ring {
+    position: absolute; inset: -6px; border-radius: 9999px;
+    border: 2px solid rgb(37 211 102 / .35);
+    animation: fab-ring-soft 2.4s ease-out infinite;
+}
+@keyframes fab-ring-soft { 0% { transform: scale(.9); opacity: .9; } 100% { transform: scale(1.35); opacity: 0; } }
+
 /* Bottom nav mobile — pill melayang */
 @keyframes nav-glow-in {
     from { transform: scale(0.6); opacity: 0; }
@@ -481,6 +512,7 @@ html.wa-seen .fab-wa__btn { animation: none; }
     ::view-transition-new(root),
     .sliding-nav__pill,
     .logo-marquee__track,
+    .bottom-nav__wa-ring,
     .hero-scene__device, .hero-scene__card, .hero-scene__sphere, .hero-scene__ring, .hero-scene__badge, .hero-scene__spark, .hero-scene__glow, .hero-scene__floor, .hero-scene__typing i, .hero-scene__pulse,
     .bottom-nav__glow,
     .bottom-nav__dot,
