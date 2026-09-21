@@ -1,5 +1,9 @@
 import './bootstrap';
 import Alpine from 'alpinejs';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
+
+window.Quill = Quill;
 
 window.Alpine = Alpine;
 // Navbar desktop: pill indikator meluncur ke link yang diklik, lalu navigasi.
@@ -46,7 +50,6 @@ Alpine.data('articleForm', (opts) => ({
     uploading: false,
     quill: null,
     init() {
-        if (typeof Quill === 'undefined') return;
         this.quill = new Quill(this.$refs.editor, {
             theme: 'snow',
             placeholder: 'Tulis isi artikel di sini…',

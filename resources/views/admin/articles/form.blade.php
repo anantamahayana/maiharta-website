@@ -9,10 +9,6 @@
         <x-admin.button type="submit" form="article-form" icon="check">{{ $editing ? 'Simpan Perubahan' : 'Simpan Artikel' }}</x-admin.button>
     </x-slot:actions>
 
-    {{-- Editor teks kaya (Quill) — dimuat dari CDN, tanpa build tambahan --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.3/quill.snow.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.3/quill.min.js"></script>
-
     <form novalidate id="article-form" method="POST" action="{{ $editing ? route('admin.articles.update', $article) : route('admin.articles.store') }}" enctype="multipart/form-data"
           x-data="articleForm({
               body: @js(old('body', $article->body ?? '')),

@@ -121,6 +121,9 @@ class ArticleController extends Controller
             'slug.unique' => 'Slug sudah dipakai artikel lain.',
         ]);
 
+        // Quill 2 (getSemanticHTML) menulis spasi biasa sebagai &nbsp; — kembalikan agar teks bisa wrap normal
+        $data['body'] = str_replace(['&nbsp;', "\u{A0}"], ' ', $data['body']);
+
         // Editor Quill mengirim "<p><br></p>" saat kosong
         if (trim(strip_tags($data['body'])) === '' && ! str_contains($data['body'], '<img')) {
             throw \Illuminate\Validation\ValidationException::withMessages(['body' => 'Isi artikel wajib diisi.']);
