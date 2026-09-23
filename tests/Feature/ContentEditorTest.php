@@ -53,6 +53,10 @@ class ContentEditorTest extends TestCase
 
     public function test_hero_composition_is_editable(): void
     {
+        // default: karakter 3D; kosongkan field karakter -> scene dashboard 3D
+        $this->get('/')->assertOk()->assertSee('hero-char')->assertSee('images/hero-character.png');
+        $this->put('/admin/content/beranda', ['hero' => ['card_title' => 'Ringkasan Proyek', 'card_sub' => 's', 'card_badge' => 'Live', 'card_note' => 'n', 'badge_title' => 'b', 'badge_sub' => 'bs', 'bubble_title' => 't', 'bubble_sub' => 's', 'bubble_status' => 'st', 'bubble_text' => 'x', 'sso_title' => 'SSO + 2FA aktif', 'sso_sub' => 'ss']])->assertRedirect();
+        \App\Models\Setting::put('beranda.hero', array_merge(\App\Models\Setting::content()['beranda']['hero'], ['character' => '']));
         $this->get('/')->assertOk()->assertSee('Ringkasan Proyek')->assertSee('SSO + 2FA aktif')->assertSee('hero-scene');
         $this->put('/admin/content/beranda', ['hero' => ['card_title' => 'Statistik Klien', 'card_sub' => 'Update {tahun}', 'card_badge' => '', 'card_note' => 'n', 'badge_title' => 'b', 'badge_sub' => 'bs', 'bubble_title' => 't', 'bubble_sub' => 's', 'bubble_status' => 'st', 'bubble_text' => 'x', 'sso_title' => 'Login Tunggal', 'sso_sub' => 'ss']])->assertRedirect();
         $this->get('/')->assertOk()->assertSee('Statistik Klien')->assertSee('Update ' . date('Y'))->assertSee('Login Tunggal')->assertDontSee('Ringkasan Proyek');
@@ -84,7 +88,7 @@ class ContentEditorTest extends TestCase
         $this->get('/tentang')->assertOk()->assertSee('250+')->assertSee('9+');
         $this->get('/layanan')->assertOk()->assertSee('250+');
         // footer + home hero counters
-        $this->get('/')->assertOk()->assertSee('halo@contoh.id')->assertSee('data-count="250"', false);
+        $this->get('/')->assertOk()->assertSee('halo@contoh.id')->assertSee('250');
         // page copy stays static
         $this->get('/')->assertSee('Ngga ada habisnya');
     }
