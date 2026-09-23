@@ -16,15 +16,13 @@
         <span class="hero-char__obj hero-char__obj--code bg-gradient-to-br from-[#5b86e0] to-[#2155cd]"><x-heroicon-o-code-bracket class="size-6" /></span>
         <span class="hero-scene__sphere hero-char__sphere"></span>
 
-        {{-- kartu: tim --}}
+        {{-- kartu: konsultasi --}}
         <div class="hero-scene__card hero-char__card--team">
-            <p class="text-[13px] font-semibold leading-tight text-brand-dark">Tim berpengalaman<br>siap membantu Anda.</p>
-            <div class="mt-2 flex items-center">
-                @foreach (['from-[#2155cd] to-[#12306f]', 'from-[#f59e0b] to-[#d97706]', 'from-[#22c55e] to-[#15803d]', 'from-[#a855f7] to-[#7c3aed]'] as $i => $g)
-                    <span class="-ml-1.5 grid size-7 place-items-center rounded-full border-2 border-white bg-gradient-to-br {{ $g }} text-[10px] font-semibold text-white first:ml-0">{{ ['MH', 'AR', 'DS', 'KP'][$i] }}</span>
-                @endforeach
-                <span class="-ml-1.5 grid size-7 place-items-center rounded-full border-2 border-white bg-brand-normal text-white"><x-heroicon-s-plus class="size-3.5" /></span>
-            </div>
+            <span class="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-[#22c55e] to-[#15803d] text-white"><x-heroicon-o-chat-bubble-left-right class="size-5" /></span>
+            <span>
+                <span class="block text-[12px] font-semibold text-brand-dark">Konsultasi Gratis</span>
+                <span class="block text-[10px] text-brand-muted">Respons &lt; 24 jam kerja</span>
+            </span>
         </div>
 
         {{-- kartu: dukungan --}}

@@ -330,10 +330,10 @@
 .hero-char__obj--bulb { left: 2%; bottom: 14%; transform: translateZ(140px) rotate(10deg); animation: card-float 5.5s ease-in-out 1s infinite; }
 .hero-char__obj--code { left: 2%; top: 6%; width: 50px; height: 50px; border-radius: 15px; transform: translateZ(160px) rotate(8deg); animation: card-float 6s ease-in-out .5s infinite; }
 .hero-char__sphere { width: 8%; aspect-ratio: 1; right: 6%; top: 44%; transform: translateZ(80px); animation: sphere-float 7s ease-in-out infinite; }
-.hero-char__card--team { position: absolute; left: 0; top: 64%; flex-direction: column; align-items: flex-start; gap: 0; transform: translateZ(150px) rotate(-3deg); animation: card-float 5.5s ease-in-out .3s infinite; }
+.hero-char__card--team { left: 0; top: 64%; transform: translateZ(150px) rotate(-2deg); animation: card-float 5.5s ease-in-out .3s infinite; }
 .hero-char__card--support { right: 0; top: 2%; transform: translateZ(120px); animation: card-float 5s ease-in-out .9s infinite; }
 .hero-char__card--stat { right: 2%; bottom: 8%; transform: translateZ(130px); animation: card-float 6s ease-in-out 1.4s infinite; }
-@media (width < 40rem) { .hero-char__obj { width: 46px; height: 46px; border-radius: 14px; } .hero-char__card--stat { display: none; } .hero-char__card--support { top: 0; } .hero-char__card--team { top: auto; bottom: 0; } }
+@media (width < 40rem) { .hero-char__obj { width: 46px; height: 46px; border-radius: 14px; } .hero-char__card--stat { display: none; } .hero-char__card--support { top: 0; right: 0; } .hero-char__card--team { top: auto; bottom: 4%; left: 0; } .hero-char .hero-scene__card { padding: 8px 10px; gap: 8px; border-radius: 12px; } .hero-char .hero-scene__card .size-9 { width: 30px; height: 30px; } .hero-char__img { width: 86%; bottom: 13%; } .hero-char { aspect-ratio: 1 / 1.22; } .hero-char__card--support { top: 1%; } .hero-char__card--team { bottom: 1%; } .hero-char__obj--code { top: 5%; } .hero-char__ring { top: 46%; } .hero-char__card--support, .hero-char__card--team, .hero-char__obj, .hero-char__sphere { transform: none; } .hero-char__img { transform: translateX(-50%); } }
 
 /* Logo marquee (Partner & Klien) — lihat components/logo-marquee.blade.php */
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
