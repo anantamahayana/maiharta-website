@@ -70,10 +70,10 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | HOME-02 | Animasi hero | Muat ulang halaman | Judul shimmer, perangkat & kartu melayang, lencana mengorbit, bar chart tumbuh, angka berhitung, kilau berkedip, titik mengetik; semua mati pada reduced-motion | | |
 | HOME-03 | Isi kartu hero dari admin | Ubah teks kartu di Admin → Konten Website → Beranda, simpan | Teks di kartu hero berubah sesuai input | | |
 | HOME-04 | Angka perusahaan | Bandingkan angka Proyek/Instansi/Tahun dengan Admin → Umum & Kontak | Sama; `{tahun}` diganti tahun berjalan | | |
-| HOME-04b | Strip "Dipercaya oleh" | Scroll tepat di bawah hero | Satu baris logo partner+klien berjalan (abu-abu, berhenti saat hover); hilang bila tidak ada logo | | |
+| HOME-04b | Strip "Dipercaya oleh" | Scroll tepat di bawah hero | Satu baris logo partner+klien berjalan (berwarna, berhenti saat hover); hilang bila tidak ada logo | | |
 | HOME-05 | Section Solusi | Scroll ke "Satu Mitra untuk Seluruh Kebutuhan Digital Anda" | Kartu layanan utama (gelap) + grid layanan lain — tampilan identik dengan halaman Solusi; tanpa chip teknologi | | |
 | HOME-05b | Section Mengapa MaiHarta | Scroll lanjut | Section gelap: judul, deskripsi, poin centang, CTA; 4 kartu alasan bernomor 01–04 (diedit di Admin → Beranda → Mengapa MaiHarta) | | |
-| HOME-01b | Scene 3D hero | Lihat komposisi hero (desktop kanan; mobile di bawah judul) | Perangkat dashboard 3D miring, bola glossy, 4 lencana ikon mengorbit, kartu helpdesk/dukungan/SSO melayang; scene miring mengikuti gerakan mouse (desktop); tidak meluber di mobile | | |
+| HOME-01b | Scene 3D hero | Lihat komposisi hero (desktop kanan; mobile di bawah judul) | Perangkat dashboard 3D miring, bola glossy, 4 lencana ikon mengorbit, kartu helpdesk/dukungan/SSO melayang; tidak meluber di mobile | | |
 | HOME-06 | Section Portofolio | Scroll ke "Bukti Nyata Kapabilitas Kami" | 3 proyek unggulan dengan gambar, kategori, link ke detail; "Lihat Semua Proyek" ke `/portofolio` | | |
 | HOME-07 | Section Blog & Tentang | Scroll lanjut | 3 artikel terbaru + "Lihat Semua Artikel" (section hilang bila belum ada artikel), 3 nilai kerja, tombol "Kenali Kami Lebih Dekat" | | |
 | HOME-08 | CTA akhir | Klik "Hubungi Kami Sekarang" dan "Lihat Layanan" | Menuju `/kontak` dan `/layanan` | | |
@@ -118,7 +118,7 @@ Dokumen ini berisi skenario pengujian manual (black-box) untuk website publik da
 | ID | Skenario | Langkah | Hasil yang diharapkan | Status | Catatan |
 |---|---|---|---|---|---|
 | ABOUT-01 | Halaman tentang | Buka `/tentang` | Hero + statistik, "Siapa Kami", kutipan, nilai kerja, logo partner & klien, CTA | | |
-| ABOUT-02 | Logo partner/klien (marquee) | Lihat section "Dipercaya oleh…" | Dua baris logo berjalan otomatis (partner ke kiri, klien ke kanan), loop mulus tanpa lompatan, tepi memudar, berhenti saat hover, logo abu-abu → berwarna saat hover; nama muncul saat hover; kelompok kosong disembunyikan | | |
+| ABOUT-02 | Logo partner/klien (marquee) | Lihat section "Dipercaya oleh…" | Dua baris logo berjalan otomatis (partner ke kiri, klien ke kanan), loop mulus tanpa lompatan, tepi memudar, berhenti saat hover, logo berwarna, sedikit membesar saat hover; nama muncul saat hover; kelompok kosong disembunyikan | | |
 | ABOUT-03 | Kutipan opsional | Kosongkan kutipan di admin | Blok kutipan hilang tanpa merusak layout | | |
 | ABOUT-04 | Statistik | Ubah angka di Umum & Kontak | Kartu statistik ikut berubah | | |
 

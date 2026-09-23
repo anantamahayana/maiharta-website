@@ -355,7 +355,6 @@
 }
 .logo-marquee__item img {
     max-height: 56px; max-width: 128px; width: auto; height: auto; object-fit: contain;
-    filter: grayscale(1); opacity: .65;
     transition: filter .3s, opacity .3s, transform .3s;
 }
 .logo-marquee__item:hover img { filter: none; opacity: 1; transform: scale(1.06); }
