@@ -59,6 +59,7 @@ class ContentEditorTest extends TestCase
         \App\Models\Setting::put('beranda.hero', array_merge(\App\Models\Setting::content()['beranda']['hero'], ['character' => '']));
         $this->get('/')->assertOk()->assertSee('Ringkasan Proyek')->assertSee('SSO + 2FA aktif')->assertSee('hero-scene');
         $this->put('/admin/content/beranda', ['hero' => ['card_title' => 'Statistik Klien', 'card_sub' => 'Update {tahun}', 'card_badge' => '', 'card_note' => 'n', 'badge_title' => 'b', 'badge_sub' => 'bs', 'bubble_title' => 't', 'bubble_sub' => 's', 'bubble_status' => 'st', 'bubble_text' => 'x', 'sso_title' => 'Login Tunggal', 'sso_sub' => 'ss']])->assertRedirect();
+        \App\Models\Setting::put('beranda.hero', array_merge(\App\Models\Setting::content()['beranda']['hero'], ['character' => '']));
         $this->get('/')->assertOk()->assertSee('Statistik Klien')->assertSee('Update ' . date('Y'))->assertSee('Login Tunggal')->assertDontSee('Ringkasan Proyek');
     }
 
