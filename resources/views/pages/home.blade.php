@@ -24,7 +24,7 @@
 
             {{-- 2. Scene 3D --}}
             <div data-animate="scale" class="mx-auto w-full max-w-[420px] lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:flex lg:h-full lg:max-w-none lg:items-center lg:justify-center">
-                <x-hero-scene :h="$h" />
+                @if ($h['character'] ?? null)<x-hero-character :h="$h" />@else<x-hero-scene :h="$h" />@endif
             </div>
 
             {{-- 3. Deskripsi + CTA --}}

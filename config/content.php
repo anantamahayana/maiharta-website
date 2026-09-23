@@ -76,6 +76,7 @@ return [
                         ['key' => 'bubble_status', 'label' => 'Gelembung helpdesk — chip status', 'type' => 'text', 'default' => 'Selesai · SLA'],
                         ['key' => 'bubble_text', 'label' => 'Gelembung helpdesk — isi', 'type' => 'textarea', 'default' => '“Pengaduan sudah ditindaklanjuti unit terkait dan diselesaikan dalam 2 jam. Terima kasih!”'],
                         ['key' => 'sso_title', 'label' => 'Kartu SSO — judul', 'type' => 'text', 'default' => 'SSO + 2FA aktif'],
+                        ['key' => 'character', 'label' => 'Karakter 3D (PNG transparan, rasio ±7:8). Kosong = scene dashboard 3D', 'type' => 'image', 'default' => ''],
                         ['key' => 'sso_sub', 'label' => 'Kartu SSO — keterangan', 'type' => 'text', 'default' => 'Bank BPD Bali · 1 pintu login'],
                     ],
                 ],
