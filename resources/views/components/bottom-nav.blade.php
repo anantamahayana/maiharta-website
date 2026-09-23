@@ -20,7 +20,7 @@
         </div>
 
         <svg class="bottom-nav__notch h-[68px] w-[112px] shrink-0" viewBox="0 0 112 68" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0 0 H4 C14 0 17 3 20 9 C27 30 39 46 56 46 C73 46 85 30 92 9 C95 3 98 0 108 0 H112 V68 H0 Z" />
+            <path d="M0 0 H11.01 A8 8 0 0 1 19.01 7.82 A37 37 0 1 0 92.99 7.82 A8 8 0 0 1 100.99 0 H112 V68 H0 Z" />
         </svg>
 
         <div class="bottom-nav__side flex flex-1 items-center rounded-r-full pr-2">
