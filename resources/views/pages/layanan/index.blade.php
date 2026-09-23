@@ -28,7 +28,7 @@
         <x-slot:footer><x-filter-tabs :items="$groups" /></x-slot:footer>
     </x-page-hero>
 
-    <section class="container-site py-12 md:py-16">
+    <section class="container-site pt-6 pb-12 md:pt-8 md:pb-16">
         {{-- Featured --}}
         @if ($featured)
             <x-service-featured :service="$featured" data-animate="scale" x-show="active === 'Semua' || active === @js($groupOf($featured))" />

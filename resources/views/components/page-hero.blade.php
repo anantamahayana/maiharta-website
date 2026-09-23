@@ -7,7 +7,7 @@
 ])
 
 <section {{ $attributes->merge(['class' => 'bg-hero-gradient']) }}>
-    <div class="container-site py-12 md:py-16">
+    <div class="container-site pt-8 pb-8 md:pt-10 md:pb-10">
         @if ($crumbs)
             <nav data-animate aria-label="Breadcrumb" class="mb-6 flex flex-wrap items-center justify-center gap-2 text-caption lg:justify-start">
                 @foreach ($crumbs as [$label, $href])

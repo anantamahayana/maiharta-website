@@ -31,7 +31,7 @@
         </x-slot:footer>
     </x-page-hero>
 
-    <section class="container-site py-12 md:py-16">
+    <section class="container-site pt-6 pb-12 md:pt-8 md:pb-16">
         {{-- Unggulan (hanya di tampilan "Semua", halaman 1) --}}
         @if ($featured && ! $category && $articles->currentPage() === 1)
             <a href="{{ route('blog.show', $featured) }}" data-animate="scale" class="group grid overflow-hidden rounded-panel border border-brand-border bg-white shadow-card transition-shadow hover:shadow-elevated lg:grid-cols-[1.25fr_1fr]">

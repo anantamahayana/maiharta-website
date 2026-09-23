@@ -22,7 +22,7 @@
         </x-slot:footer>
     </x-page-hero>
 
-    <section class="container-site py-12 md:py-16">
+    <section class="container-site pt-6 pb-12 md:pt-8 md:pb-16">
         {{-- Featured --}}
         @if ($featured)
             <div data-animate="scale" x-show="active === 'Semua' || active === @js($featured->category)" class="grid overflow-hidden rounded-panel bg-brand-dark text-white lg:grid-cols-[1fr_600px]">

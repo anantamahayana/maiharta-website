@@ -50,7 +50,7 @@
     </x-page-hero>
 
     {{-- Showcase: browser mock + stats --}}
-    <section class="container-site py-12 md:py-16">
+    <section class="container-site pt-6 pb-12 md:pt-8 md:pb-16">
         <div data-animate="scale" class="overflow-hidden rounded-card border border-brand-border bg-white shadow-showcase">
             <div class="flex items-center gap-4 border-b border-brand-border bg-brand-input px-4 py-3">
                 <span class="flex gap-1.5"><i class="h-2.5 w-2.5 rounded-full bg-[#ff5f57]"></i><i class="h-2.5 w-2.5 rounded-full bg-[#febc2e]"></i><i class="h-2.5 w-2.5 rounded-full bg-[#28c840]"></i></span>

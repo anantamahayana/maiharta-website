@@ -69,4 +69,4 @@
 </header>
 
 {{-- Ruang untuk navbar melayang --}}
-<div class="h-[96px] bg-brand-light lg:h-[112px]" aria-hidden="true"></div>
+<div class="h-[88px] bg-brand-light lg:h-[104px]" aria-hidden="true"></div>
