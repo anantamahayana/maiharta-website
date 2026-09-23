@@ -133,7 +133,7 @@
     {{-- ============================================================ Blog --}}
     @if ($articles->isNotEmpty())
         <section class="container-site py-16 md:py-20">
-            <x-section-head eyebrow="Blog" title="Wawasan &amp; Cerita dari Tim Kami" description="Tulisan seputar transformasi digital, tips membangun aplikasi, dan kabar terbaru MaiHarta.">
+            <x-section-head eyebrow="Blog" title="Wawasan & Cerita dari Tim Kami" description="Tulisan seputar transformasi digital, tips membangun aplikasi, dan kabar terbaru MaiHarta.">
                 <x-slot:action><x-button :href="route('blog.index')" variant="outline" size="sm" icon="arrow-right">Lihat Semua Artikel</x-button></x-slot:action>
             </x-section-head>
             <div data-animate-group class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
