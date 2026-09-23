@@ -75,7 +75,7 @@ Menu **Pesan Kontak** → daftar di kiri, isi pesan di kanan.
 
 ## Konten Website
 
-Menu **Konten Website** → 3 tab. Semua field punya nilai bawaan; kosongkan/hapus untuk kembali ke bawaan hanya bila dijelaskan di labelnya.
+Menu **Konten Website** → 4 tab: Umum & Kontak, Beranda, Solusi Kita, Tentang. Semua field punya nilai bawaan; kosongkan/hapus untuk kembali ke bawaan hanya bila dijelaskan di labelnya.
 
 ### Umum & Kontak
 - **Logo** — unggah PNG/SVG transparan (tinggi ±40 px). Dipakai di navbar, halaman login, sidebar admin. *Kembali ke default* memakai logo bawaan.
@@ -83,14 +83,22 @@ Menu **Konten Website** → 3 tab. Semua field punya nilai bawaan; kosongkan/hap
 - **Alamat, Jam operasional** — tampil di halaman Kontak dan footer.
 - **Tautan Google Maps** — tombol *Buka di Maps*. **Kueri peta tersemat** — nama tempat/koordinat untuk peta di halaman Kontak (bawaan: pin *Kantor MaiHarta*).
 - **URL Instagram / Facebook / LinkedIn** — kosong = ikonnya tidak tampil.
+- **Deskripsi Singkat Perusahaan** — satu kalimat di footer semua halaman dan deskripsi default untuk Google.
 - **Angka Perusahaan** — tahun berkarya, proyek selesai, instansi terlayani; dipakai di hero Beranda (angka berhitung), Layanan, Portofolio, Tentang. Tulis dengan tanda `+` bila perlu (`199+`).
 
 ### Beranda
+**Teks Utama Hero** — judul baris 1 (warna gradien) dan baris 2, deskripsi, serta poin singkat di bawah tombol (satu per baris, maks 3).
+
 **Komposisi Hero** — teks pada kartu-kartu melayang: kartu dashboard (judul, sub-judul — `{tahun}` otomatis jadi tahun berjalan, badge *Live*, catatan progres), badge kecil (judul & keterangan, mis. Dukungan Purna Jual), gelembung helpdesk (judul, sub-judul, chip status, isi kutipan), kartu SSO, serta dua foto (tim & dashboard). Angka di kartu dashboard mengikuti *Angka Perusahaan*.
 
 **Mengapa MaiHarta** — judul, deskripsi, poin singkat (satu per baris), dan maks 4 kartu alasan (judul + deskripsi). Kosongkan semua judul kartu untuk menyembunyikan section.
 
+### Solusi Kita
+**Tahapan Kerja** — maks 4 tahap (nama + deskripsi) untuk section “Empat Langkah dari Ide ke Produk”.
+
 ### Tentang
+**Nilai Kerja** — 3 kartu nilai (judul + deskripsi), tampil di Beranda dan halaman Tentang.
+
 - **Narasi Perusahaan** — judul dan cerita "Siapa Kami", kutipan (kosongkan untuk menyembunyikan) dan sumbernya.
 - **Logo Partner & Klien** — unggah beberapa logo sekaligus, beri nama (tampil saat hover), hapus per logo. Kelompok kosong disembunyikan.
 
