@@ -6,6 +6,24 @@
                 <p class="mt-3 text-sm text-white/60">
                     {{ site('umum.tagline.text') }}
                 </p>
+                @php
+                    $wa = preg_replace('/\D+/', '', (string) site('umum.brand.whatsapp'));
+                    $socials = array_filter([
+                        ['Instagram', site('umum.brand.instagram'), 'social-instagram'],
+                        ['Facebook', site('umum.brand.facebook'), 'social-facebook'],
+                        ['LinkedIn', site('umum.brand.linkedin'), 'social-linkedin'],
+                        ['WhatsApp', $wa ? 'https://wa.me/' . $wa : null, 'social-whatsapp'],
+                    ], fn ($s) => filled($s[1]));
+                @endphp
+                @if ($socials)
+                    <div class="mt-5 flex items-center gap-2.5">
+                        @foreach ($socials as [$name, $url, $icon])
+                            <a href="{{ $url }}" target="_blank" rel="noopener" aria-label="{{ $name }}" title="{{ $name }}" class="grid size-10 place-items-center rounded-full bg-white/10 text-white/80 transition hover:-translate-y-0.5 hover:bg-brand-normal hover:text-white">
+                                <x-dynamic-component :component="'icons.' . $icon" class="size-[18px]" />
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
             </div>
 
             <div>
