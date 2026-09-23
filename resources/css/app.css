@@ -318,22 +318,22 @@
 /* Hero karakter 3D (components/hero-character.blade.php) */
 .hero-char { position: relative; aspect-ratio: 1 / 1.02; width: 100%; perspective: 1400px; }
 @media (width >= 64rem) { .hero-fit .hero-char { width: min(100%, calc(100svh - 104px - 48px)); margin-inline: auto; } }
-.hero-char__ring { position: absolute; left: 50%; top: 52%; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, -50%); }
+.hero-char__ring { position: absolute; left: 50%; top: 50%; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, -50%); }
 .hero-char__ring--1 { width: 92%; background: radial-gradient(circle, rgb(183 204 243 / .45), rgb(214 226 248 / .2) 70%); border: 1.5px solid rgb(143 176 245 / .45); animation: ring-breathe 6s ease-in-out infinite; }
 .hero-char__ring--2 { width: 72%; background: rgb(183 204 243 / .5); border: 1.5px solid rgb(143 176 245 / .55); animation: ring-breathe 6s ease-in-out .6s infinite; }
 .hero-char__ring--3 { width: 52%; background: radial-gradient(circle at 50% 40%, #fff, #d6e2f8); box-shadow: 0 20px 50px -20px rgb(33 85 205 / .35); animation: ring-breathe 6s ease-in-out 1.2s infinite; }
 @keyframes ring-breathe { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.03); } }
-.hero-char__img { position: absolute; left: 50%; bottom: 4%; height: 88%; width: auto; max-width: none; transform: translateX(-50%) translateZ(60px); filter: drop-shadow(0 24px 30px rgb(18 48 111 / .25)); animation: char-float 6s ease-in-out infinite; }
+.hero-char__img { position: absolute; left: 50%; bottom: 3%; width: 92%; height: auto; max-width: none; transform: translateX(-50%) translateZ(60px); filter: drop-shadow(0 24px 30px rgb(18 48 111 / .25)); animation: char-float 6s ease-in-out infinite; }
 @keyframes char-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
 .hero-char__obj { position: absolute; display: grid; place-items: center; width: 60px; height: 60px; border-radius: 18px; color: #fff; box-shadow: 0 6px 0 rgb(0 0 0 / .15), 0 16px 28px -10px rgb(18 48 111 / .45), inset 0 2px 0 rgb(255 255 255 / .45); }
 .hero-char__obj--rocket { left: 14%; top: 6%; transform: translateZ(120px) rotate(-12deg); animation: card-float 5s ease-in-out infinite; }
 .hero-char__obj--bulb { left: 2%; bottom: 14%; transform: translateZ(140px) rotate(10deg); animation: card-float 5.5s ease-in-out 1s infinite; }
-.hero-char__obj--code { right: 4%; top: 40%; width: 50px; height: 50px; border-radius: 15px; transform: translateZ(160px) rotate(8deg); animation: card-float 6s ease-in-out .5s infinite; }
-.hero-char__sphere { width: 11%; aspect-ratio: 1; right: 16%; top: 4%; transform: translateZ(80px); animation: sphere-float 7s ease-in-out infinite; }
-.hero-char__card--team { position: absolute; left: 0; top: 46%; flex-direction: column; align-items: flex-start; gap: 0; transform: translateZ(150px) rotate(-3deg); animation: card-float 5.5s ease-in-out .3s infinite; }
-.hero-char__card--support { right: 0; top: 16%; transform: translateZ(120px); animation: card-float 5s ease-in-out .9s infinite; }
+.hero-char__obj--code { left: 2%; top: 6%; width: 50px; height: 50px; border-radius: 15px; transform: translateZ(160px) rotate(8deg); animation: card-float 6s ease-in-out .5s infinite; }
+.hero-char__sphere { width: 8%; aspect-ratio: 1; right: 6%; top: 44%; transform: translateZ(80px); animation: sphere-float 7s ease-in-out infinite; }
+.hero-char__card--team { position: absolute; left: 0; top: 64%; flex-direction: column; align-items: flex-start; gap: 0; transform: translateZ(150px) rotate(-3deg); animation: card-float 5.5s ease-in-out .3s infinite; }
+.hero-char__card--support { right: 0; top: 2%; transform: translateZ(120px); animation: card-float 5s ease-in-out .9s infinite; }
 .hero-char__card--stat { right: 2%; bottom: 8%; transform: translateZ(130px); animation: card-float 6s ease-in-out 1.4s infinite; }
-@media (width < 40rem) { .hero-char__obj { width: 46px; height: 46px; border-radius: 14px; } .hero-char__card--stat { display: none; } .hero-char__card--support { top: auto; bottom: 6%; } .hero-char__card--team { top: 58%; } }
+@media (width < 40rem) { .hero-char__obj { width: 46px; height: 46px; border-radius: 14px; } .hero-char__card--stat { display: none; } .hero-char__card--support { top: 0; } .hero-char__card--team { top: auto; bottom: 0; } }
 
 /* Logo marquee (Partner & Klien) — lihat components/logo-marquee.blade.php */
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }

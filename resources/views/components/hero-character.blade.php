@@ -10,11 +10,9 @@
         <span class="hero-char__ring hero-char__ring--3"></span>
 
         {{-- karakter --}}
-        <img src="{{ asset($h['character']) }}" alt="" width="560" height="640" fetchpriority="high" class="hero-char__img">
+        <img src="{{ asset($h['character']) }}" alt="" width="1066" height="1100" fetchpriority="high" class="hero-char__img">
 
         {{-- objek 3D melayang --}}
-        <span class="hero-char__obj hero-char__obj--rocket bg-gradient-to-br from-[#a855f7] to-[#7c3aed]"><x-heroicon-s-rocket-launch class="size-7" /></span>
-        <span class="hero-char__obj hero-char__obj--bulb bg-gradient-to-br from-[#fde047] to-[#f59e0b]"><x-heroicon-s-light-bulb class="size-7" /></span>
         <span class="hero-char__obj hero-char__obj--code bg-gradient-to-br from-[#5b86e0] to-[#2155cd]"><x-heroicon-o-code-bracket class="size-6" /></span>
         <span class="hero-scene__sphere hero-char__sphere"></span>
 

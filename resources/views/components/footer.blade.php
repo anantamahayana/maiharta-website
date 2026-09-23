@@ -30,7 +30,7 @@
 
         <div class="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
             <span>&copy; {{ date('Y') }} Maiharta. Seluruh hak cipta dilindungi.</span>
-            <span>Mitra pengembangan produk digital di Bali</span>
+            <span>Mitra pengembangan produk digital di Bali · Ilustrasi 3D <a href="https://www.magnific.com" target="_blank" rel="noopener" class="underline-offset-2 hover:text-white hover:underline">designed by Freepik - Magnific.com</a></span>
         </div>
     </div>
 </footer>
