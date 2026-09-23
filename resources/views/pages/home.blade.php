@@ -4,11 +4,11 @@
     {{-- ============================================================ Hero --}}
     {{-- Urutan DOM: (1) badge+judul, (2) scene 3D, (3) deskripsi+tombol. Di mobile tampil berurutan
          (scene tepat di bawah judul); di desktop scene menempati kolom kanan penuh. --}}
-    <section class="bg-hero-gradient overflow-hidden">
-        <div class="container-site grid grid-cols-1 items-center gap-8 py-10 md:py-16 lg:grid-cols-[1fr_600px] lg:grid-rows-[auto_auto] lg:gap-x-12 lg:gap-y-0 lg:py-20">
+    <section class="hero-fit bg-hero-gradient overflow-hidden">
+        <div class="container-site grid grid-cols-1 items-center gap-8 py-10 md:py-16 lg:h-full lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-rows-[1fr_auto_auto_1fr] lg:gap-x-12 lg:gap-y-0 lg:py-6">
 
             {{-- 1. Badge + judul --}}
-            <div data-animate-group="0.07" class="mx-auto max-w-[680px] text-center lg:col-start-1 lg:row-start-1 lg:mx-0 lg:self-end lg:text-left">
+            <div data-animate-group="0.07" class="mx-auto max-w-[680px] text-center lg:col-start-1 lg:row-start-2 lg:mx-0 lg:text-left">
                 <span data-animate class="inline-flex items-center gap-2 rounded-full border border-brand-border bg-white py-1.5 pl-1.5 pr-3.5 text-label font-medium text-brand-dark">
                     <span class="flex h-6 w-6 items-center justify-center rounded-full bg-brand-light">
                         <x-heroicon-o-sparkles class="h-3.5 w-3.5 text-brand-normal" />
@@ -17,18 +17,18 @@
                 </span>
 
                 <h1 class="mt-6 font-heading font-semibold text-brand-dark">
-                    <span data-animate class="text-gradient-brand animate-shimmer block text-h2-lg md:text-[56px] md:leading-[64px] xl:text-display-sm xl:whitespace-nowrap">Ngga ada habisnya</span>
-                    <span data-animate class="block text-h2-lg md:text-[56px] md:leading-[64px] xl:text-display-sm">membangun produk digital untuk bisnis Anda</span>
+                    <span data-animate class="hero-title text-gradient-brand animate-shimmer block text-h2-lg md:text-[56px] md:leading-[64px] xl:whitespace-nowrap">Ngga ada habisnya</span>
+                    <span data-animate class="hero-title block text-h2-lg md:text-[56px] md:leading-[64px]">membangun produk digital untuk bisnis Anda</span>
                 </h1>
             </div>
 
             {{-- 2. Scene 3D --}}
-            <div data-animate="scale" class="mx-auto w-full max-w-[420px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-none">
+            <div data-animate="scale" class="mx-auto w-full max-w-[420px] lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:flex lg:h-full lg:max-w-none lg:items-center lg:justify-center">
                 <x-hero-scene :h="$h" />
             </div>
 
             {{-- 3. Deskripsi + CTA --}}
-            <div data-animate-group="0.07" class="mx-auto max-w-[680px] text-center lg:col-start-1 lg:row-start-2 lg:mx-0 lg:self-start lg:text-left">
+            <div data-animate-group="0.07" class="mx-auto max-w-[680px] text-center lg:col-start-1 lg:row-start-3 lg:mx-0 lg:text-left">
                 <p data-animate class="mx-auto max-w-[620px] text-body-sm text-brand-muted md:text-body lg:mx-0 lg:mt-6">
                     MaiHarta membantu bisnis Anda berkembang cepat melalui jasa dan produk digital — dari sistem internal, aplikasi mobile, hingga marketplace — dengan standar keamanan internasional.
                 </p>

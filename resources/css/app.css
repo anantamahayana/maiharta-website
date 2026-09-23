@@ -234,6 +234,14 @@
     transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1), width 0.42s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
+/* Hero Beranda pas satu layar di desktop: tinggi = viewport − ruang navbar melayang (112px);
+   judul & scene menyesuaikan tinggi layar sehingga tidak ada bagian terpotong atau celah kosong. */
+@media (width >= 64rem) {
+    .hero-fit { height: calc(100svh - 112px); min-height: 480px; max-height: 900px; }
+    .hero-fit .hero-title { font-size: clamp(34px, 6.2svh, 64px); line-height: 1.12; }
+    .hero-fit .hero-scene { width: min(100%, calc((100svh - 112px - 48px) / 0.92)); max-height: 100%; margin-inline: auto; }
+}
+
 /* =====================================================================
    Hero scene 3D (bergaya kartun) — lihat components/hero-scene.blade.php
    ===================================================================== */
