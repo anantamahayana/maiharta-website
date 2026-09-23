@@ -42,7 +42,7 @@
             <div class="prose-brand mt-8">{!! $article->body !!}</div>
 
             @if ($article->tags)
-                <div class="mt-8 flex flex-wrap items-center gap-2 border-t border-brand-border pt-6">
+                <div class="mt-8 flex flex-wrap items-center gap-2 pt-2">
                     <span class="text-caption text-brand-muted">Tag:</span>
                     @foreach ($article->tags as $tag)<x-chip variant="light">#{{ $tag }}</x-chip>@endforeach
                 </div>

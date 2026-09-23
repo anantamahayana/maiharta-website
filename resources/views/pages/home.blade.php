@@ -50,7 +50,7 @@
     {{-- ================================================ Dipercaya oleh --}}
     @php $trustLogos = array_merge(site('tentang.partner.partners', []), site('tentang.partner.clients', [])); @endphp
     @if ($trustLogos)
-        <section class="overflow-hidden border-y border-brand-border/60 bg-white py-8 md:py-10" aria-label="Partner dan klien kami">
+        <section class="overflow-hidden bg-white py-8 md:py-10" aria-label="Partner dan klien kami">
             <x-logo-marquee :logos="$trustLogos" label="Dipercaya oleh instansi & mitra" :duration="60" />
         </section>
     @endif
