@@ -361,28 +361,14 @@
 .logo-marquee__item:hover img { filter: none; opacity: 1; transform: scale(1.06); }
 @media (width >= 48rem) { .logo-marquee__item { height: 104px; width: 208px; } .logo-marquee__item img { max-height: 64px; max-width: 152px; } }
 
-/* Bottom nav — bar dengan lekukan halus untuk tombol WhatsApp (ikon saja, titik penanda aktif) */
-.bottom-nav__pill {
-    position: relative;
-    filter: drop-shadow(0 14px 24px rgb(18 48 111 / .14)) drop-shadow(0 2px 4px rgb(18 48 111 / .06));
-}
-.bottom-nav__pill::before {
-    content: ''; position: absolute; inset: 0; border-radius: 28px; z-index: 0;
-    background: #fff;
-    /* lekukan lebar & halus: lingkaran 46px di tepi atas tengah dengan tepi lembut */
-    -webkit-mask: radial-gradient(circle 46px at 50% 0, transparent 96%, #000 100%);
-    mask: radial-gradient(circle 46px at 50% 0, transparent 96%, #000 100%);
-}
-.bottom-nav__pill > * { position: relative; z-index: 1; }
-.bottom-nav__wa {
-    position: absolute; left: 50%; top: 0; z-index: 10;
-    display: grid; place-items: center; width: 68px; height: 68px;
-    transform: translate(-50%, -46%);
+/* Bottom nav — tombol WhatsApp bulat di tengah pill */
+.bottom-nav__wa-inline {
+    flex: 0 0 auto; display: grid; place-items: center; width: 52px; height: 52px; margin-inline: 4px;
     border-radius: 9999px; color: #fff; background: #25d366;
-    box-shadow: 0 8px 18px -6px rgb(37 211 102 / .5);
-    transition: transform .25s var(--ease-out-expo), background-color .2s;
+    box-shadow: 0 6px 14px -4px rgb(37 211 102 / .55), inset 0 1px 0 rgb(255 255 255 / .35);
+    transition: transform .2s var(--ease-out-expo), background-color .2s;
 }
-.bottom-nav__wa:active { transform: translate(-50%, -46%) scale(.94); background: #1fb85a; }
+.bottom-nav__wa-inline:active { transform: scale(.92); background: #1fb85a; }
 
 /* Bottom nav mobile — pill melayang */
 @keyframes nav-glow-in {
