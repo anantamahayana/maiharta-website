@@ -1,9 +1,7 @@
 @php
-    $values = [
-        ['check', 'Profesional', 'Bekerja dengan standar dan proses yang konsisten di setiap proyek.'],
-        ['value-collab', 'Kolaboratif', 'Melibatkan klien secara aktif dari perencanaan hingga peluncuran.'],
-        ['value-result', 'Berorientasi Hasil', 'Setiap solusi dirancang untuk memberi dampak nyata pada bisnis Anda.'],
-    ];
+    $valueIcons = ['check', 'value-collab', 'value-result'];
+    $values = collect(site('tentang.nilai.items', []))->filter(fn ($v) => filled($v['title'] ?? null))->take(3)->values()
+        ->map(fn ($v, $k) => [$valueIcons[$k % 3], $v['title'], $v['description'] ?? ''])->all();
     $cerita = site('tentang.cerita');
     $partners = site('tentang.partner.partners', []);
     $clients = site('tentang.partner.clients', []);

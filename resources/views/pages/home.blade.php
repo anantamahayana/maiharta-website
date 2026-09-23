@@ -1,4 +1,9 @@
-@php $h = site('beranda.hero'); @endphp
+@php
+    $h = site('beranda.hero');
+    $u = site('beranda.utama');
+    $valueIcons = ['check', 'value-collab', 'value-result'];
+    $values = collect(site('tentang.nilai.items', []))->filter(fn ($v) => filled($v['title'] ?? null))->take(3)->values();
+@endphp
 <x-layout title="MaiHarta — Ngga Ada Habisnya">
 
     {{-- ============================================================ Hero --}}
@@ -17,8 +22,8 @@
                 </span>
 
                 <h1 class="mt-6 font-heading font-semibold text-brand-dark">
-                    <span data-animate class="hero-title text-gradient-brand animate-shimmer block text-h2-lg md:text-[56px] md:leading-[64px] xl:whitespace-nowrap">Ngga ada habisnya</span>
-                    <span data-animate class="hero-title block text-h2-lg md:text-[56px] md:leading-[64px]">membangun produk digital untuk bisnis Anda</span>
+                    <span data-animate class="hero-title text-gradient-brand animate-shimmer block text-h2-lg md:text-[56px] md:leading-[64px] xl:whitespace-nowrap">{{ $u['title_1'] }}</span>
+                    <span data-animate class="hero-title block text-h2-lg md:text-[56px] md:leading-[64px]">{{ $u['title_2'] }}</span>
                 </h1>
             </div>
 
@@ -30,7 +35,7 @@
             {{-- 3. Deskripsi + CTA --}}
             <div data-animate-group="0.07" class="mx-auto max-w-[680px] text-center lg:col-start-1 lg:row-start-3 lg:mx-0 lg:text-left">
                 <p data-animate class="mx-auto max-w-[620px] text-body-sm text-brand-muted md:text-body lg:mx-0 lg:mt-6">
-                    MaiHarta membantu bisnis Anda berkembang cepat melalui jasa dan produk digital — dari sistem internal, aplikasi mobile, hingga marketplace — dengan standar keamanan internasional.
+                    {{ $u['description'] }}
                 </p>
 
                 <div data-animate class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
@@ -39,7 +44,7 @@
                 </div>
 
                 <ul data-animate class="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-caption text-brand-muted lg:justify-start">
-                    @foreach (['Konsultasi gratis', 'Tanpa biaya tersembunyi', 'Dukungan pascarilis'] as $bullet)
+                    @foreach (collect(preg_split('/\r?\n/', (string) $u['bullets']))->map(fn ($b) => trim($b))->filter()->take(3) as $bullet)
                         <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-brand-normal"></span>{{ $bullet }}</li>
                     @endforeach
                 </ul>
@@ -155,11 +160,8 @@
             </div>
 
             <div data-animate-group class="space-y-3.5">
-                @foreach ([
-                    ['check', 'Profesional', 'Bekerja dengan standar dan proses yang konsisten di setiap proyek.'],
-                    ['value-collab', 'Kolaboratif', 'Melibatkan klien secara aktif dari perencanaan hingga peluncuran.'],
-                    ['value-result', 'Berorientasi Hasil', 'Setiap solusi dirancang untuk memberi dampak nyata pada bisnis Anda.'],
-                ] as [$icon, $valueTitle, $valueDesc])
+                @foreach ($values as $k => $v)
+                    @php [$icon, $valueTitle, $valueDesc] = [$valueIcons[$k % 3], $v['title'], $v['description'] ?? '']; @endphp
                     <div data-animate class="flex items-center gap-4 rounded-[14px] border border-brand-border bg-white px-5 py-5">
                         <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand-normal">
                             <x-dynamic-component :component="'icons.' . $icon" class="h-5 w-5" />

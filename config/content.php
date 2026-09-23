@@ -45,6 +45,13 @@ return [
                         ['key' => 'linkedin', 'label' => 'URL LinkedIn', 'type' => 'text', 'default' => ''],
                     ],
                 ],
+                'tagline' => [
+                    'label' => 'Deskripsi Singkat Perusahaan',
+                    'help' => 'Tampil di footer semua halaman dan sebagai deskripsi default di hasil pencarian Google.',
+                    'fields' => [
+                        ['key' => 'text', 'label' => 'Deskripsi singkat (1 kalimat)', 'type' => 'textarea', 'default' => 'Mitra pengembangan produk digital yang profesional, aman, dan terpercaya.'],
+                    ],
+                ],
                 'stats' => [
                     'label' => 'Angka Perusahaan',
                     'help' => 'Dipakai di hero Beranda, Layanan, Portofolio, dan Tentang.',
@@ -61,6 +68,16 @@ return [
             'label' => 'Beranda',
             'icon' => 'home',
             'groups' => [
+                'utama' => [
+                    'label' => 'Teks Utama Hero',
+                    'help' => 'Judul besar, deskripsi, dan poin singkat di bagian paling atas Beranda.',
+                    'fields' => [
+                        ['key' => 'title_1', 'label' => 'Judul — baris 1 (warna gradien)', 'type' => 'text', 'default' => 'Ngga ada habisnya'],
+                        ['key' => 'title_2', 'label' => 'Judul — baris 2', 'type' => 'text', 'default' => 'membangun produk digital untuk bisnis Anda'],
+                        ['key' => 'description', 'label' => 'Deskripsi', 'type' => 'textarea', 'default' => 'MaiHarta membantu bisnis Anda berkembang cepat melalui jasa dan produk digital — dari sistem internal, aplikasi mobile, hingga marketplace — dengan standar keamanan internasional.'],
+                        ['key' => 'bullets', 'label' => 'Poin singkat di bawah tombol (satu per baris, maks 3)', 'type' => 'textarea', 'default' => "Konsultasi gratis\nTanpa biaya tersembunyi\nDukungan pascarilis"],
+                    ],
+                ],
                 'hero' => [
                     'label' => 'Komposisi Hero (scene 3D)',
                     'help' => 'Angka proyek/instansi/tahun di kartu dashboard mengikuti “Angka Perusahaan” di tab Umum.',
@@ -101,6 +118,28 @@ return [
             ],
         ],
 
+        'layanan' => [
+            'label' => 'Solusi Kita',
+            'icon' => 'squares-2x2',
+            'groups' => [
+                'proses' => [
+                    'label' => 'Tahapan Kerja',
+                    'help' => 'Section “Empat Langkah dari Ide ke Produk” di halaman Solusi Kita. Maks 4 tahap.',
+                    'fields' => [
+                        ['key' => 'items', 'label' => 'Tahap', 'type' => 'repeater', 'max' => 4, 'fields' => [
+                            ['key' => 'title', 'label' => 'Nama tahap', 'type' => 'text'],
+                            ['key' => 'description', 'label' => 'Deskripsi', 'type' => 'textarea'],
+                        ], 'default' => [
+                            ['title' => 'Konsultasi', 'description' => 'Memahami kebutuhan, tujuan bisnis, dan batasan proyek Anda.'],
+                            ['title' => 'Perencanaan & Desain', 'description' => 'Menyusun arsitektur sistem, alur pengguna, dan desain antarmuka.'],
+                            ['title' => 'Pengembangan & QA', 'description' => 'Membangun produk secara iteratif dengan pengujian berkelanjutan.'],
+                            ['title' => 'Peluncuran & Support', 'description' => 'Rilis ke produksi, pelatihan pengguna, dan pemeliharaan.'],
+                        ]],
+                    ],
+                ],
+            ],
+        ],
+
         'tentang' => [
             'label' => 'Tentang',
             'icon' => 'user-group',
@@ -113,6 +152,20 @@ return [
                         ['key' => 'description', 'label' => 'Cerita', 'type' => 'textarea', 'default' => 'Berawal dari tim kecil pengembang di Denpasar, Maiharta tumbuh menjadi mitra teknologi bagi perbankan daerah, pemerintah provinsi dan kabupaten, hingga pelaku usaha kreatif. Kami percaya produk digital yang baik lahir dari pemahaman mendalam terhadap proses bisnis klien — bukan sekadar kode.'],
                         ['key' => 'quote', 'label' => 'Kutipan (kosongkan untuk sembunyikan)', 'type' => 'text', 'default' => '“Ngga ada habisnya” — semangat kami untuk terus berinovasi bersama setiap klien.'],
                         ['key' => 'quote_by', 'label' => 'Sumber kutipan', 'type' => 'text', 'default' => 'Tim Maiharta'],
+                    ],
+                ],
+                'nilai' => [
+                    'label' => 'Nilai Kerja',
+                    'help' => 'Tiga kartu nilai di Beranda (section Tentang) dan halaman Tentang.',
+                    'fields' => [
+                        ['key' => 'items', 'label' => 'Nilai', 'type' => 'repeater', 'max' => 3, 'fields' => [
+                            ['key' => 'title', 'label' => 'Judul', 'type' => 'text'],
+                            ['key' => 'description', 'label' => 'Deskripsi', 'type' => 'textarea'],
+                        ], 'default' => [
+                            ['title' => 'Profesional', 'description' => 'Bekerja dengan standar dan proses yang konsisten di setiap proyek.'],
+                            ['title' => 'Kolaboratif', 'description' => 'Melibatkan klien secara aktif dari perencanaan hingga peluncuran.'],
+                            ['title' => 'Berorientasi Hasil', 'description' => 'Setiap solusi dirancang untuk memberi dampak nyata pada bisnis Anda.'],
+                        ]],
                     ],
                 ],
                 'partner' => [

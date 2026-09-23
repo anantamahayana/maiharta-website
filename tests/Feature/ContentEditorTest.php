@@ -29,7 +29,8 @@ class ContentEditorTest extends TestCase
 
     public function test_content_tabs_render(): void
     {
-        $this->assertSame(['umum', 'beranda', 'tentang'], array_keys(config('content.pages')));
+        $this->assertSame(['umum', 'beranda', 'layanan', 'tentang'], array_keys(config('content.pages')));
+        $this->get('/admin/content/layanan')->assertOk()->assertSee('Tahapan Kerja');
         $this->get('/admin/content')->assertOk()->assertSee('Identitas & Kontak')->assertSee('Logo');
         $this->get('/admin/content/tentang')->assertOk()->assertSee('Narasi Perusahaan')->assertSee('Logo Partner');
         $this->get('/admin/content/tidak-ada')->assertNotFound();
@@ -166,5 +167,22 @@ Dua", 'items' => [['title' => 'Cepat', 'description' => 'x']]]])->assertRedirect
 
         $this->put('/admin/content/beranda', ['alasan' => ['title' => 't', 'description' => 'd', 'checks' => '', 'items' => []]])->assertRedirect();
         $this->get('/')->assertOk()->assertDontSee('Mengapa MaiHarta?');
+    }
+
+    public function test_new_content_forms_update_the_site(): void
+    {
+        $this->put('/admin/content/beranda', ['utama' => ['title_1' => 'Judul Satu Baru', 'title_2' => 'baris dua baru', 'description' => 'Deskripsi hero baru.', 'bullets' => "Poin A
+Poin B"]])->assertRedirect();
+        $this->get('/')->assertOk()->assertSee('Judul Satu Baru')->assertSee('baris dua baru')->assertSee('Deskripsi hero baru.')->assertSee('Poin B')->assertDontSee('Tanpa biaya tersembunyi');
+
+        $this->put('/admin/content/tentang', ['nilai' => ['items' => [['title' => 'Cepat Tanggap', 'description' => 'x']]]])->assertRedirect();
+        $this->get('/tentang')->assertOk()->assertSee('Cepat Tanggap')->assertDontSee('Kolaboratif');
+        $this->get('/')->assertOk()->assertSee('Cepat Tanggap');
+
+        $this->put('/admin/content/layanan', ['proses' => ['items' => [['title' => 'Riset Awal', 'description' => 'y']]]])->assertRedirect();
+        $this->get('/layanan')->assertOk()->assertSee('Riset Awal');
+
+        $this->put('/admin/content/umum', ['tagline' => ['text' => 'Tagline baru perusahaan.']])->assertRedirect();
+        $this->get('/kontak')->assertOk()->assertSee('Tagline baru perusahaan.');
     }
 }

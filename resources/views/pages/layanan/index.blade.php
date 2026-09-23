@@ -8,12 +8,8 @@
         'megaphone' => 'Pemasaran',
         default => 'Dukungan',
     };
-    $steps = [
-        ['Konsultasi', 'Memahami kebutuhan, tujuan bisnis, dan batasan proyek Anda.'],
-        ['Perencanaan & Desain', 'Menyusun arsitektur sistem, alur pengguna, dan desain antarmuka.'],
-        ['Pengembangan & QA', 'Membangun produk secara iteratif dengan pengujian berkelanjutan.'],
-        ['Peluncuran & Support', 'Rilis ke produksi, pelatihan pengguna, dan pemeliharaan.'],
-    ];
+    $steps = collect(site('layanan.proses.items', []))->filter(fn ($s) => filled($s['title'] ?? null))->take(4)
+        ->map(fn ($s) => [$s['title'], $s['description'] ?? ''])->values()->all();
 @endphp
 
 <x-layout title="Layanan — MaiHarta" description="Solusi digital untuk setiap kebutuhan bisnis: software development, desain, digital marketing, hingga maintenance.">

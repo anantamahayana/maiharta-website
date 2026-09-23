@@ -4,7 +4,7 @@
             <div>
                 <img src="{{ asset('images/logo-maiharta-white.png') }}" alt="MaiHarta" class="h-9 w-auto">
                 <p class="mt-3 text-sm text-white/60">
-                    Mitra pengembangan produk digital yang profesional, aman, dan terpercaya.
+                    {{ site('umum.tagline.text') }}
                 </p>
             </div>
 

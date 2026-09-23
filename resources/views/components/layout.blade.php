@@ -10,7 +10,7 @@
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
     <link rel="icon" type="image/png" href="{{ asset('images/icon-maiharta.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
-    <meta name="description" content="{{ $description ?? 'Mitra pengembangan produk digital yang profesional, aman, dan terpercaya.' }}">
+    <meta name="description" content="{{ $description ?? site('umum.tagline.text') }}">
 
     <link rel="preload" as="image" href="{{ asset(site('umum.brand.logo')) }}" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
