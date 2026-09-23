@@ -361,14 +361,18 @@
 .logo-marquee__item:hover img { filter: none; opacity: 1; transform: scale(1.06); }
 @media (width >= 48rem) { .logo-marquee__item { height: 104px; width: 208px; } .logo-marquee__item img { max-height: 64px; max-width: 152px; } }
 
-/* Bottom nav — tombol WhatsApp bulat di tengah pill */
-.bottom-nav__wa-inline {
-    flex: 0 0 auto; display: grid; place-items: center; width: 52px; height: 52px; margin-inline: 4px;
+/* Bottom nav — pill dengan cekungan tengah (SVG) + tombol WhatsApp yang sedikit naik */
+.bottom-nav__shape { filter: drop-shadow(0 12px 22px rgb(18 48 111 / .15)) drop-shadow(0 2px 4px rgb(18 48 111 / .06)); }
+.bottom-nav__side { background: #fff; }
+.bottom-nav__notch { display: block; margin-inline: -1px; fill: #fff; position: relative; z-index: 1; }
+.bottom-nav__wa {
+    position: absolute; left: 50%; top: -24px; z-index: 10;
+    display: grid; place-items: center; width: 62px; height: 62px; transform: translateX(-50%);
     border-radius: 9999px; color: #fff; background: #25d366;
-    box-shadow: 0 6px 14px -4px rgb(37 211 102 / .55), inset 0 1px 0 rgb(255 255 255 / .35);
+    box-shadow: 0 10px 20px -6px rgb(37 211 102 / .55), inset 0 1px 0 rgb(255 255 255 / .35);
     transition: transform .2s var(--ease-out-expo), background-color .2s;
 }
-.bottom-nav__wa-inline:active { transform: scale(.92); background: #1fb85a; }
+.bottom-nav__wa:active { transform: translateX(-50%) scale(.93); background: #1fb85a; }
 
 /* Bottom nav mobile — pill melayang */
 @keyframes nav-glow-in {

@@ -1,8 +1,9 @@
 @php
-    $tabs = [
-        ['label' => 'Beranda',    'route' => 'home',             'active' => request()->routeIs('home'),         'icon' => 'home'],
-        ['label' => 'Solusi',     'route' => 'layanan.index',    'active' => request()->routeIs('layanan.*'),    'icon' => 'squares-2x2'],
-        null, // tombol WhatsApp di tengah
+    $left = [
+        ['label' => 'Beranda', 'route' => 'home',          'active' => request()->routeIs('home'),      'icon' => 'home'],
+        ['label' => 'Solusi',  'route' => 'layanan.index', 'active' => request()->routeIs('layanan.*'), 'icon' => 'squares-2x2'],
+    ];
+    $right = [
         ['label' => 'Portofolio', 'route' => 'portofolio.index', 'active' => request()->routeIs('portofolio.*'), 'icon' => 'rectangle-stack'],
         ['label' => 'Blog',       'route' => 'blog.index',       'active' => request()->routeIs('blog.*'),       'icon' => 'newspaper'],
     ];
@@ -10,37 +11,24 @@
     $waHref = 'https://wa.me/' . $wa . '?text=' . rawurlencode('Halo MaiHarta, saya ingin berkonsultasi tentang kebutuhan digital saya.');
 @endphp
 
-{{-- Bottom nav mobile — pill melayang (gaya awal): kaca putih, rounded penuh, glow + titik pada tab aktif;
-     tombol WhatsApp bulat berada di tengah, di dalam pill. Selalu tampil. --}}
+{{-- Bottom nav mobile — pill melayang; tengahnya melengkung ke dalam (cekungan halus, bahu membulat)
+     tempat tombol WhatsApp yang sedikit naik. Bentuk tengah = SVG agar kurvanya mulus. --}}
 <nav class="bottom-nav fixed inset-x-4 bottom-4 z-30 lg:hidden" aria-label="Navigasi utama">
-    <div class="mx-auto flex h-[68px] max-w-md items-center justify-between rounded-full border border-white/70 bg-white/85 px-2 shadow-floating backdrop-blur-xl">
-        @foreach ($tabs as $tab)
-            @if ($tab === null)
-                <a href="{{ $waHref }}" target="_blank" rel="noopener" class="bottom-nav__wa-inline" aria-label="Chat via WhatsApp">
-                    <x-icons.social-whatsapp class="size-6" />
-                </a>
-                @continue
-            @endif
-            <a
-                href="{{ route($tab['route']) }}"
-                @class([
-                    'group relative flex h-14 flex-1 flex-col items-center justify-center gap-0.5 rounded-full text-[11px] font-medium transition-colors',
-                    'text-brand-normal' => $tab['active'],
-                    'text-brand-muted active:text-brand-dark' => ! $tab['active'],
-                ])
-                @if ($tab['active']) aria-current="page" @endif
-            >
-                @if ($tab['active'])
-                    <span class="bottom-nav__glow bottom-nav__active absolute inset-x-1 inset-y-1 rounded-full bg-brand-light" aria-hidden="true"></span>
-                @endif
-                <span @class(['relative grid size-7 place-items-center transition-transform duration-300 ease-out-expo', '-translate-y-0.5' => $tab['active'], 'group-active:scale-90' => ! $tab['active']])>
-                    @svg('heroicon-' . ($tab['active'] ? 's' : 'o') . '-' . $tab['icon'], 'size-[22px]')
-                </span>
-                <span class="relative leading-none">{{ $tab['label'] }}</span>
-                @if ($tab['active'])
-                    <span class="bottom-nav__dot absolute -bottom-0.5 size-1 rounded-full bg-brand-normal" aria-hidden="true"></span>
-                @endif
-            </a>
-        @endforeach
+    <div class="bottom-nav__shape relative mx-auto flex h-[68px] max-w-md">
+        <div class="bottom-nav__side flex flex-1 items-center rounded-l-full pl-2">
+            @foreach ($left as $tab) @include('components.partials.bottom-nav-tab', ['tab' => $tab]) @endforeach
+        </div>
+
+        <svg class="bottom-nav__notch h-[68px] w-[112px] shrink-0" viewBox="0 0 112 68" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 0 H4 C14 0 17 3 20 9 C27 30 39 46 56 46 C73 46 85 30 92 9 C95 3 98 0 108 0 H112 V68 H0 Z" />
+        </svg>
+
+        <div class="bottom-nav__side flex flex-1 items-center rounded-r-full pr-2">
+            @foreach ($right as $tab) @include('components.partials.bottom-nav-tab', ['tab' => $tab]) @endforeach
+        </div>
+
+        <a href="{{ $waHref }}" target="_blank" rel="noopener" class="bottom-nav__wa" aria-label="Chat via WhatsApp">
+            <x-icons.social-whatsapp class="size-8" />
+        </a>
     </div>
 </nav>
