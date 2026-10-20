@@ -59,11 +59,11 @@
                 <x-heroicon-o-arrow-right class="size-4" />
             </a>
             <a
-                href="{{ route('kontak') }}"
-                class="grid size-11 place-items-center rounded-full bg-brand-normal text-white shadow-card transition active:scale-95 lg:hidden"
-                aria-label="Kontak Kami"
+                href="https://portal.maiharta.com/"
+                class="grid size-11 place-items-center rounded-full bg-brand-normal shadow-card transition active:scale-95 lg:hidden"
+                aria-label="Portal"
             >
-                <x-heroicon-o-chat-bubble-left-right class="size-5" />
+                <img src="{{ asset('images/portal-ticket-white.png') }}" alt="" width="26" height="26" class="size-[26px] object-contain">
             </a>
         </div>
     </div>

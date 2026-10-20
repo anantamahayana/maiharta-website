@@ -198,7 +198,6 @@
 }
 /* Logo tidak pernah melebihi tinggi navbar, bahkan sebelum CSS utilitas/JS aktif */
 .navbar img { max-height: 2.5rem; }
-
 /* Transisi antar-halaman (View Transitions API, cross-document). Browser lain: navigasi biasa. */
 @view-transition { navigation: auto; }
 @keyframes vt-out { to { opacity: 0; } }
