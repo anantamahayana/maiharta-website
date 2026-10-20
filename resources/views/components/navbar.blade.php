@@ -5,6 +5,7 @@
         ['label' => 'Portofolio', 'route' => 'portofolio.index', 'active' => request()->routeIs('portofolio.*')],
         ['label' => 'Blog', 'route' => 'blog.index', 'active' => request()->routeIs('blog.*')],
         ['label' => 'Tentang', 'route' => 'tentang', 'active' => request()->routeIs('tentang')],
+        ['label' => 'Kontak Kami', 'route' => 'kontak', 'active' => request()->routeIs('kontak')],
     ];
 @endphp
 
@@ -51,10 +52,10 @@
 
         <div class="flex items-center gap-2">
             <a
-                href="{{ route('kontak') }}"
+                href="https://portal.maiharta.com/login"
                 class="hidden items-center gap-2 rounded-full bg-brand-normal py-3 pr-5 pl-6 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-normal-hover hover:shadow-lg hover:shadow-brand-normal/30 active:translate-y-0 lg:inline-flex"
             >
-                Kontak Kami
+                Portal
                 <x-heroicon-o-arrow-right class="size-4" />
             </a>
             <a

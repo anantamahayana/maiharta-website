@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactSubmission;
 use Illuminate\Http\RedirectResponse;
+use App\Support\Recaptcha;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -37,6 +38,8 @@ class ContactController extends Controller
             'message.max' => 'Pesan terlalu panjang (maks. 5000 karakter).',
             'phone.regex' => 'Nomor telepon hanya boleh angka, 8–15 digit (contoh: 081234567890).',
         ]);
+
+        Recaptcha::verify($request);
 
         ContactSubmission::create([
             'name' => $validated['name'],

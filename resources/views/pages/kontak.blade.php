@@ -89,6 +89,14 @@
                         @error('message')<p class="mt-1.5 flex items-center gap-1 text-caption text-error"><x-heroicon-o-exclamation-circle class="h-3.5 w-3.5" />{{ $message }}</p>@enderror
                     </div>
 
+                    @if (config('services.recaptcha.site_key'))
+                        <div>
+                            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                            @error('captcha')<p class="mt-1.5 flex items-center gap-1 text-caption text-error"><x-heroicon-o-exclamation-circle class="h-3.5 w-3.5" />{{ $message }}</p>@enderror
+                            <script src="https://www.google.com/recaptcha/api.js?hl=id" async defer></script>
+                        </div>
+                    @endif
+
                     <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
                         <x-button type="submit" icon="arrow-right">Kirim Pesan</x-button>
                         <p class="text-caption text-brand-muted">Dengan mengirim, Anda menyetujui kebijakan privasi kami.</p>
