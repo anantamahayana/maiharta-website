@@ -11,6 +11,13 @@ class ArticleSeeder extends Seeder
 {
     public function run(): void
     {
+        // Data awal saja: jangan menimpa data yang sudah dikelola lewat admin.
+        if (Article::exists()) {
+            $this->command?->warn('ArticleSeeder dilewati: tabel sudah berisi data.');
+
+            return;
+        }
+
         $author = User::query()->orderBy('id')->first();
 
         $articles = [

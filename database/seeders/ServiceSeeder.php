@@ -13,6 +13,13 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
+        // Data awal saja: jangan menimpa data yang sudah dikelola lewat admin.
+        if (Service::exists()) {
+            $this->command?->warn('ServiceSeeder dilewati: tabel sudah berisi data.');
+
+            return;
+        }
+
         $services = [
             [
                 'name' => 'Software Development',

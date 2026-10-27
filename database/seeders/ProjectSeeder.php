@@ -15,6 +15,13 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
+        // Data awal saja: jangan menimpa data yang sudah dikelola lewat admin.
+        if (Project::exists()) {
+            $this->command?->warn('ProjectSeeder dilewati: tabel sudah berisi data.');
+
+            return;
+        }
+
         $softwareDev = Service::where('slug', 'software-development')->first();
         $konsultasi = Service::where('slug', 'konsultasi-sistem-digital')->first();
 
@@ -158,8 +165,5 @@ class ProjectSeeder extends Seeder
         foreach ($projects as $project) {
             Project::updateOrCreate(['slug' => $project['slug']], $project);
         }
-
-        // Bersihkan proyek contoh lama yang sudah tidak dipakai.
-        Project::whereNotIn('slug', array_column($projects, 'slug'))->delete();
     }
 }

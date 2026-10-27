@@ -13,7 +13,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::updateOrCreate(
+        // firstOrCreate: seeding ulang tidak mengembalikan kata sandi yang sudah diganti
+        User::firstOrCreate(
             ['email' => 'admin@maiharta.com'],
             ['name' => 'Admin Maiharta', 'password' => Hash::make(env('ADMIN_PASSWORD', 'password'))],
         );
