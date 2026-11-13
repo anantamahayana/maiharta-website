@@ -38,6 +38,7 @@
 
             <div>
                 <p class="text-sm font-semibold text-white">Kontak</p>
+                <p class="mt-4 text-sm text-white/60">CV MaiHarta</p>
                 <ul class="mt-4 space-y-3 text-sm text-white/60">
                     <li><a href="mailto:{{ site('umum.brand.email') }}" class="hover:text-white">{{ site('umum.brand.email') }}</a></li>
                     <li><a href="https://wa.me/{{ site('umum.brand.whatsapp') }}" class="hover:text-white">{{ site('umum.brand.phone') }}</a></li>
@@ -47,7 +48,7 @@
         </div>
 
         <div class="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
-            <span>&copy; {{ date('Y') }} Maiharta. Seluruh hak cipta dilindungi.</span>
+            <span>&copy; {{ date('Y') }} CV MaiHarta. Seluruh hak cipta dilindungi.</span>
             <span>Mitra pengembangan produk digital di Bali</span>
         </div>
     </div>
